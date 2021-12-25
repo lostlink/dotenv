@@ -1,0 +1,17 @@
+{
+    "preset": "tighten",
+    "disabled": [
+        "NoInlineVarDocs",
+        "SpaceAfterBladeDirectives",
+        "RemoveLeadingSlashNamespaces"
+    ],
+    "excluded": [
+        "_scratch/",
+        "tests/",
+        "packages/",
+        ".php-cs-fixer.dist.php",
+        "_ide_helper.php",
+        ".phpstorm.meta.php",
+        "ray.php"
+    ]
+}
