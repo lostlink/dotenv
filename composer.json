@@ -23,6 +23,7 @@
         "mad-web/laravel-robots": "^3.0",
         "pestphp/pest": "^1.16",
         "pestphp/pest-plugin-laravel": "^1.1",
+        "power-components/livewire-powergrid": "^1.5",
         "romanzipp/laravel-seo": "^2.3",
         "sentry/sentry-laravel": "^2.10",
         "spatie/laravel-ray": "^1.26",
