@@ -1,0 +1,69 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - feature/*
+      - hotfix/*
+  workflow_call:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+    env:
+      APP_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-composer-${{ hashFiles('composer.json') }}
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0.8
+          extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+
+      - name: Validate Composer
+        run: composer validate
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
+
+      - name: Copy testing environment config file
+        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
+
+      - name: Copy example environment config file
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Generate Laravel encryption key
+        run: php artisan key:generate
+
+      - name: Prepare Frontend Assets
+        run: npm ci && npm run prod
+
+      - name: Run Tests
+        run: ./vendor/bin/pest
+        env:
+          APP_ENV: testing
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: Logs
+          path: ./storage/logs

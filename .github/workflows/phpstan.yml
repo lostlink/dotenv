@@ -1,0 +1,49 @@
+name: Linters - PHPStan
+
+on:
+  push:
+    branches:
+      - feature/*
+      - hotfix/*
+  workflow_call:
+    secrets:
+      VAPOR_API_TOKEN:
+        required: true
+
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+    env:
+      APP_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-composer-${{ hashFiles('composer.json') }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0.8
+          extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress --no-scripts --ignore-platform-reqs
+
+      - name: Update .env
+        run: |
+          ./vendor/bin/vapor env:pull ${{ env.APP_ENV }} -q
+          cp .env.${{ env.APP_ENV }} .env
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+
+      - name: PHPStan Analyze
+        run: vendor/bin/phpstan analyze
