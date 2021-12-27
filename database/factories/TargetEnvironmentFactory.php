@@ -15,9 +15,10 @@ class TargetEnvironmentFactory extends Factory
     public function definition()
     {
         return [
-            'project_id' => ProjectTarget::factory(),
+            'project_target_id' => ProjectTarget::factory(),
             'name' => collect(['local', 'production', 'staging', 'develop'])->random(),
-            'variables' => '{}',
+            'description' => $this->faker->paragraph,
+            'variables' => 'ENVIRONMENT_ENV=NA',
         ];
     }
 }

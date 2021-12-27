@@ -10,9 +10,11 @@ class CreateTargetEnvironmentsTable extends Migration
     {
         Schema::create('target_environments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('target_id')->index();
+            $table->foreignId('project_target_id')->index();
+            $table->string('slug');
             $table->string('name');
-            $table->json('variables');
+            $table->text('variables')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

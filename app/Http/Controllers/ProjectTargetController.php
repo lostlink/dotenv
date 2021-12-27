@@ -8,78 +8,37 @@ use App\Models\ProjectTarget;
 
 class ProjectTargetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProjectTargetRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProjectTargetRequest $request)
+    public function store(StoreProjectTargetRequest $request): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ProjectTarget  $projectTarget
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProjectTarget $projectTarget)
+    public function show(ProjectTarget $projectTarget): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ProjectTarget  $projectTarget
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProjectTarget $projectTarget)
+    public function edit(ProjectTarget $projectTarget): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProjectTargetRequest  $request
-     * @param  \App\Models\ProjectTarget  $projectTarget
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProjectTargetRequest $request, ProjectTarget $projectTarget)
+    public function update(UpdateProjectTargetRequest $request, ProjectTarget $projectTarget): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ProjectTarget  $projectTarget
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProjectTarget $projectTarget)
+    public function destroy(ProjectTarget $projectTarget): \Illuminate\Http\Response
     {
         //
     }

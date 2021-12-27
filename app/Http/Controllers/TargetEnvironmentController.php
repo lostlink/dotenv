@@ -8,78 +8,37 @@ use App\Models\TargetEnvironment;
 
 class TargetEnvironmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTargetEnvironmentRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTargetEnvironmentRequest $request)
+    public function store(StoreTargetEnvironmentRequest $request): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TargetEnvironment $targetEnvironment)
+    public function show(TargetEnvironment $targetEnvironment): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TargetEnvironment $targetEnvironment)
+    public function edit(TargetEnvironment $targetEnvironment): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTargetEnvironmentRequest  $request
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTargetEnvironmentRequest $request, TargetEnvironment $targetEnvironment)
+    public function update(UpdateTargetEnvironmentRequest $request, TargetEnvironment $targetEnvironment): \Illuminate\Http\Response
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TargetEnvironment $targetEnvironment)
+    public function destroy(TargetEnvironment $targetEnvironment): \Illuminate\Http\Response
     {
         //
     }

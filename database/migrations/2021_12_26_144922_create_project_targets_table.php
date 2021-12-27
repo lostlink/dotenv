@@ -11,8 +11,10 @@ class CreateProjectTargetsTable extends Migration
         Schema::create('project_targets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->index();
+            $table->string('slug');
             $table->string('name');
-            $table->json('variables');
+            $table->text('variables')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

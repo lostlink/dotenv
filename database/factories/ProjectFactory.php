@@ -17,6 +17,8 @@ class ProjectFactory extends Factory
         return [
             'team_id' => Team::factory(),
             'name' => $this->faker->domainWord,
+            'description' => $this->faker->paragraph,
+            'variables' => 'PROJECT_ENV=NA',
         ];
     }
 }

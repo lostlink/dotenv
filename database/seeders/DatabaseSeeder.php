@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\ProjectTarget;
+use App\Models\TargetEnvironment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TeamSeeder::class,
+            ProjectSeeder::class,
+            ProjectTargetSeeder::class,
+            TargetEnvironmentSeeder::class,
         ]);
     }
 }

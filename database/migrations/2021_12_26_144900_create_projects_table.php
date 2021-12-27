@@ -11,7 +11,10 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->index();
+            $table->string('slug');
             $table->string('name');
+            $table->text('variables')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

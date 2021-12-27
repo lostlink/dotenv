@@ -17,7 +17,8 @@ class ProjectTargetFactory extends Factory
         return [
             'project_id' => Project::factory(),
             'name' => collect(['ec2', 'fargate', 'lambda', 'vapor', 'vultr'])->random(),
-            'variables' => '{}',
+            'description' => $this->faker->paragraph,
+            'variables' => 'TARGET_ENV=NA',
         ];
     }
 }
