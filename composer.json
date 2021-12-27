@@ -19,6 +19,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/vapor-core": "^2.17",
+        "livewire-ui/modal": "^1.0",
         "livewire/livewire": "^2.5",
         "mad-web/laravel-robots": "^3.0",
         "pestphp/pest": "^1.16",
@@ -26,7 +27,7 @@
         "power-components/livewire-powergrid": "^1.5",
         "romanzipp/laravel-seo": "^2.3",
         "sentry/sentry-laravel": "^2.10",
-        "spatie/laravel-ray": "^1.26",
+        "spatie/laravel-ray": "^1.27",
         "spatie/laravel-sitemap": "^6.0"
     },
     "require-dev": {

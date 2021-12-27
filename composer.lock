@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77554705d4b7e5c334cc8bd3e38ec0fd",
+    "content-hash": "763a289ed46dd8b56627d07c4379577a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4121,6 +4121,71 @@
                 }
             ],
             "time": "2021-11-21T11:48:40+00:00"
+        },
+        {
+            "name": "livewire-ui/modal",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wire-elements/modal.git",
+                "reference": "b3e08a9fbfabd615c6d27a8780b142a2dce47fbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wire-elements/modal/zipball/b3e08a9fbfabd615c6d27a8780b142a2dce47fbb",
+                "reference": "b3e08a9fbfabd615c6d27a8780b142a2dce47fbb",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/ytz/lostlink/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "livewire/livewire": "^2.0",
+                "php": "^7.4|^8.0",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.15",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LivewireUI\\Modal\\LivewireModalServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LivewireUI\\Modal\\": "src"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/ytz/lostlink/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philo Hermans",
+                    "email": "me@philohermans.com"
+                }
+            ],
+            "description": "Laravel Livewire modal component",
+            "keywords": [
+                "laravel",
+                "livewire",
+                "modal"
+            ],
+            "support": {
+                "issues": "https://github.com/wire-elements/modal/issues",
+                "source": "https://github.com/wire-elements/modal/tree/1.0.3"
+            },
+            "abandoned": "wire-elements/modal",
+            "time": "2021-11-05T12:45:43+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -9685,16 +9750,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.26.5",
+            "version": "1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "857d8fe465dbc025cbeb2735fe690ff9496f5f98"
+                "reference": "b0c3d13d17ea430e3cf02495192b6ed99f0f7615"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/857d8fe465dbc025cbeb2735fe690ff9496f5f98",
-                "reference": "857d8fe465dbc025cbeb2735fe690ff9496f5f98",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/b0c3d13d17ea430e3cf02495192b6ed99f0f7615",
+                "reference": "b0c3d13d17ea430e3cf02495192b6ed99f0f7615",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -9757,7 +9822,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.26.5"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.27.0"
             },
             "funding": [
                 {
@@ -9769,7 +9834,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-12-21T13:51:47+00:00"
+            "time": "2021-12-26T19:28:33+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
