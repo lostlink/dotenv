@@ -4,7 +4,6 @@ namespace App\JsonApi\V20220101\Teams;
 
 use App\Models\Team;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
-use LaravelJsonApi\Eloquent\Fields\ArrayHash;
 use LaravelJsonApi\Eloquent\Fields\Boolean;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
@@ -17,19 +16,8 @@ use LaravelJsonApi\Eloquent\Schema;
 
 class TeamSchema extends Schema
 {
-
-    /**
-     * The model the schema corresponds to.
-     *
-     * @var string
-     */
     public static string $model = Team::class;
 
-    /**
-     * Get the resource fields.
-     *
-     * @return array
-     */
     public function fields(): array
     {
         return [
@@ -43,11 +31,6 @@ class TeamSchema extends Schema
         ];
     }
 
-    /**
-     * Get the resource filters.
-     *
-     * @return array
-     */
     public function filters(): array
     {
         return [
@@ -55,14 +38,8 @@ class TeamSchema extends Schema
         ];
     }
 
-    /**
-     * Get the resource paginator.
-     *
-     * @return Paginator|null
-     */
     public function pagination(): ?Paginator
     {
         return PagePagination::make();
     }
-
 }

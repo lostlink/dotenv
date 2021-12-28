@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Project;
 use App\Models\Target;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateTarget extends ModalComponent
@@ -19,11 +21,15 @@ class CreateTarget extends ModalComponent
 
     public Project|string $project;
 
-    protected array $rules = [
-        'name' => 'required|max:100',
-        'notes' => 'nullable|max:100',
-        'variables' => 'nullable|max:100',
-    ];
+    public function rules()
+    {
+        return [
+            'name' => Rule::unique(Target::class)
+                ->where(fn ($query) => $query->where('project_id', $this->project->id)),
+            'notes' => 'nullable',
+            'variables' => 'nullable',
+        ];
+    }
 
     public function mount(Project $project)
     {

@@ -58,5 +58,8 @@
         "hooks": {
             "pre-commit": "lint-staged && vendor/bin/tlint lint --diff"
         }
+    },
+    "dependencies": {
+        "@ryangjchandler/alpine-clipboard": "^2.1.0"
     }
 }

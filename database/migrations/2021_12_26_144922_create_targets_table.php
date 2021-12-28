@@ -17,6 +17,8 @@ class CreateTargetsTable extends Migration
             $table->json('variables')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
+
+            $table->unique(['project_id', 'name']);
         });
     }
 }

@@ -16,6 +16,8 @@ class CreateProjectsTable extends Migration
             $table->json('variables')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['team_id', 'name']);
         });
     }
 }

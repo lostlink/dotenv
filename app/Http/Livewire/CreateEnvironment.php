@@ -6,6 +6,7 @@ use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateEnvironment extends ModalComponent
@@ -22,12 +23,16 @@ class CreateEnvironment extends ModalComponent
 
     public Target|string $target;
 
-    protected array $rules = [
-        'name' => 'required|max:100',
-        'url' => 'nullable|url',
-        'notes' => 'nullable|max:100',
-        'variables' => 'nullable|max:100',
-    ];
+    public function rules()
+    {
+        return [
+            'name' => Rule::unique(Environment::class)
+                ->where(fn ($query) => $query->where('target_id', $this->target->id)),
+            'url' => 'nullable|url',
+            'notes' => 'nullable|max:100',
+            'variables' => 'nullable|max:100',
+        ];
+    }
 
     public function mount(Target $target)
     {

@@ -18,6 +18,8 @@ class CreateEnvironmentsTable extends Migration
             $table->json('variables')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
+
+            $table->unique(['target_id', 'name']);
         });
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Environment;
+use App\Models\Project;
+use App\Models\Target;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -46,6 +49,19 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+        });
+
+
+        Route::bind('project', function ($value) {
+            return Project::where('id', $value)->orWhere('slug', $value)->first();
+        });
+
+        Route::bind('target', function ($value) {
+            return Target::where('id', $value)->orWhere('slug', $value)->first();
+        });
+
+        Route::bind('environment', function ($value) {
+            return Environment::where('id', $value)->orWhere('slug', $value)->first();
         });
     }
 

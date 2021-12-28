@@ -21,12 +21,20 @@
             <!-- Spacer element to match the height of the toolbar -->
             <div aria-hidden="true">
                 <div class="py-2">
-                    <div class="h-9"></div>
+                    <div class="h-1"></div>
                 </div>
-                <div class="h-px"></div>
+                <div x-data="{ input: '{{ config('app.url') }}/api/{{ $project }}/{{ $target }}/{{ $environment }}/env' }" class="h-px">
+                    @if($project && $target && $environment)
+                        <button type="button" @click="$clipboard(input)"
+                                class="ml-4 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group">
+                            <x-heroicon-o-clipboard-copy class="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500"/>
+                            <span x-model="input" class="text-sm text-gray-500 group-hover:text-gray-600 italic">{{ config('app.url') }}/api/{{ $project }}/{{ $target }}/{{ $environment }}/env</span>
+                        </button>
+                    @endif
+                </div>
                 <div class="py-2">
                     <div class="py-px">
-                        <div class="h-9"></div>
+                        <div class="h-7"></div>
                     </div>
                 </div>
             </div>
@@ -40,7 +48,6 @@
         </div>
 
     </form>
-
 
 </div>
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Environment;
 use App\Models\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateProject extends ModalComponent
@@ -17,11 +19,15 @@ class CreateProject extends ModalComponent
 
     public ?string $variables = null;
 
-    protected array $rules = [
-        'name' => 'required|max:100',
-        'description' => 'nullable|max:100',
-        'variables' => 'nullable|max:100',
-    ];
+    public function rules()
+    {
+        return [
+            'name' => Rule::unique(Project::class)
+                ->where(fn ($query) => $query->where('team_id', Auth::user()->currentTeam->id)),
+            'description' => 'nullable',
+            'variables' => 'nullable',
+        ];
+    }
 
     public function submit()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Components;
 
+use App\Helpers\EnvParser;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -13,41 +14,24 @@ class EditEnv extends Component
     public $model;
     public $variables;
 
+    public $project;
+    public $target;
+    public $environment;
+
     public function mount()
     {
-        $this->variables = $this->arrayToEnv($this->model->variables);
+        $this->variables = EnvParser::toEnv($this->model->variables);
     }
 
     public function save()
     {
-        $this->model->variables = $this->envToArray($this->variables);
+        $this->model->variables = EnvParser::toArray($this->variables);
         $this->model->save();
         $this->alert('success', 'ENV Successfully Updated!');
-//        $this->variables = $this->arrayToEnv($this->model->variables);
     }
 
     public function render()
     {
         return view('livewire.components.edit-env');
-    }
-
-    private function arrayToEnv(?array $data)
-    {
-        return collect($data)
-            ->map(fn ($content, $variable) => implode('=', [$variable, $content]))
-            ->implode(PHP_EOL);
-    }
-
-    private function envToArray(string $data)
-    {
-        return collect(explode(PHP_EOL, $data))
-            ->filter()
-            ->whenNotEmpty(function ($collection) {
-                return $collection->flatMap(function ($env) {
-                    [$variable, $content] = explode('=', $env);
-                    return [$variable => $content];
-                });
-            })
-            ->toArray();
     }
 }

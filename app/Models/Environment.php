@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -24,14 +25,31 @@ class Environment extends Model
         'variables',
     ];
 
-    public function getRouteKeyName(): string
+//    public function getRouteKeyName(): string
+//    {
+//        return 'slug';
+//    }
+
+    public function routeKey(): Attribute
     {
-        return 'slug';
+        return new Attribute(
+            get: fn($value) => $this->getAttribute('slug'),
+            set: fn($value) => $this->getAttribute('slug'),
+        );
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?Model
+    {
+        return $this
+            ->where('id', $value)
+            ->whereOr('slug', $value)
+            ->firstOrFail();
     }
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
+            ->allowDuplicateSlugs()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }

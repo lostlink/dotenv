@@ -11,7 +11,7 @@
    class=""
    x-state:on="Active"
    x-state:off="Not Active"
-   :class="{ 'bg-gray-100': {{ is_null($index) ? '' : 'activeIndex === ' . $index }} }"
+   :class="{ 'bg-gray-100': {{ is_null($index) ? '0' : 'activeIndex === ' . $index }} }"
    role="menuitem"
    tabindex="-1"
    id="user-menu-item-{{ $index ?? 0 }}"

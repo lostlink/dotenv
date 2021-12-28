@@ -8,7 +8,6 @@ use LaravelJsonApi\Eloquent\Fields\ArrayHash;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
-use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
@@ -16,7 +15,6 @@ use LaravelJsonApi\Eloquent\Schema;
 
 class EnvironmentSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
      *
@@ -65,5 +63,4 @@ class EnvironmentSchema extends Schema
     {
         return PagePagination::make();
     }
-
 }

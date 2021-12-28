@@ -1,5 +1,12 @@
 import Alpine from 'alpinejs';
+import Clipboard from "@ryangjchandler/alpine-clipboard"
 import Swal from 'sweetalert2';
+
+Alpine.plugin(Clipboard.configure({
+    onCopy: () => {
+        console.log('Copied!')
+    }
+}));
 
 window._ = require('lodash');
 window.axios = require('axios');

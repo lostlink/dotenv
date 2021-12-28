@@ -34,8 +34,8 @@ class Project extends Model
     public function routeKey(): Attribute
     {
         return new Attribute(
-            get: fn($value) => $this->getAttribute($this->getRouteKeyName()),
-            set: fn($value) => $this->getAttribute($this->getRouteKeyName()),
+            get: fn($value) => $this->getAttribute('slug'),
+            set: fn($value) => $this->getAttribute('slug'),
         );
     }
 

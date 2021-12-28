@@ -64,9 +64,10 @@
         <div class="mt-4" x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'target' }">
             <div class="lg:hidden sm:hidden">
                 <label for="current-tab" class="sr-only">{{ __('Select Environment') }}</label>
-                <select class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                        x-model="tab"
-                        @change="window.location.hash = tab">
+                <select
+                    class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                    x-model="tab"
+                    @change="window.location.hash = tab">
                     <option :value="'project'">{{ __('Project') }}</option>
                     <option :value="'target'">{{ __('Target') }}</option>
                     @foreach($target->environments as $environment)
@@ -83,7 +84,8 @@
                         {{ __('Project') }}
                     </a>
 
-                    <span class="border-transparent text-gray-500 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
+                    <span
+                        class="border-transparent text-gray-500 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         <x-heroicon-s-chevron-right class="w-5 h-5"/>
                     </span>
 
@@ -94,7 +96,8 @@
                         {{ __('Target') }}
                     </a>
 
-                    <span class="border-transparent text-gray-500 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
+                    <span
+                        class="border-transparent text-gray-500 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         <x-heroicon-s-chevron-right class="w-5 h-5"/>
                     </span>
 
@@ -106,14 +109,16 @@
                             {{ $environment->name }}
                         </a>
                         @if(!$loop->last)
-                            <span class="border-transparent text-gray-500 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm"> / </span>
+                            <span
+                                class="border-transparent text-gray-500 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm"> / </span>
                         @endif
                     @endforeach
 
-                    <span class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">  </span>
+                    <span
+                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">  </span>
 
                     <a href="#"
-                       @click.prevent='Livewire.emit("openModal", "create-environment", @json(['target' => $target->routeKey]))'
+                       @click.prevent='Livewire.emit("openModal", "create-environment", @json(['target' => $target->id]))'
                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         Create New Environment
                     </a>
@@ -129,7 +134,12 @@
             </div>
             @foreach($target->environments as $environment)
                 <div x-show="tab === '{{$environment->routeKey}}'" x-cloak>
-                    <livewire:components.edit-env :model="$environment" :title="$environment->name"/>
+                    <livewire:components.edit-env
+                        :model="$environment"
+                        :title="$environment->name"
+                        :project="$project->slug"
+                        :target="$target->slug"
+                        :environment="$environment->slug"/>
                 </div>
             @endforeach
         </div>
