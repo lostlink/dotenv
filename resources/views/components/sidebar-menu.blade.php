@@ -90,11 +90,16 @@
                         {{ __('Dashboard') }}
                     </x-sidebar-menu-link>
 
+                    <x-sidebar-menu-link :active="request()->routeIs('project.*')" href="{{ route('project.index') }}">
+                        <x-heroicon-o-folder class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>
+                        {{ __('Projects') }}
+                    </x-sidebar-menu-link>
+
+
                     {{--                    <x-sidebar-menu-link :active="request()->routeIs('reports')" href="{{ route('reports') }}" >--}}
                     {{--                        <x-heroicon-o-home class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>--}}
                     {{--                        {{ __('Reports') }}--}}
                     {{--                    </x-sidebar-menu-link>--}}
-
 
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -102,18 +107,42 @@
                         </div>
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-indigo-700 text-lg font-medium text-white">
-                              Projects
+                                <a href="{{ route('project.index') }}">Projects</a>
                             </span>
                         </div>
                     </div>
 
                     @if($projects)
                         @foreach($projects as $project)
-                            <x-sidebar-menu-link :active="request()->is('project/'.$project->slug)" href="{{ route('project.show', ['project' => $project->slug]) }}">
+                            <x-sidebar-menu-link :active="request()->is('project/'.$project->slug,'project/'.$project->slug.'/*')"
+                                                 href="{{ route('project.show', ['project' => $project->slug]) }}">
                                 <x-heroicon-o-code class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>
                                 {{ $project->name }}
                             </x-sidebar-menu-link>
                         @endforeach
+                    @endif
+
+                    @if($projects->isEmpty())
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 aria-hidden="true">
+                                <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                            </svg>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900">No projects</h3>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Get started by creating a new project.
+                            </p>
+                            <div class="mt-6">
+                                <button type="button" onclick='Livewire.emit("openModal", "create-project")'
+                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5"/>
+                                    New Project
+                                </button>
+                            </div>
+                        </div>
                     @endif
 
                 </nav>
