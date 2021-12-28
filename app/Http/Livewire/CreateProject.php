@@ -2,11 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Project;
+use App\Models\Target;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateProject extends ModalComponent
 {
+    use AuthorizesRequests;
+
     public ?string $name = null;
 
     public ?string $description = null;
@@ -21,6 +26,8 @@ class CreateProject extends ModalComponent
 
     public function submit()
     {
+        $this->authorize('create', [Project::class]);
+
         Auth::user()->currentTeam->projects()->create(
             $this->validate()
         );

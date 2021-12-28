@@ -2,11 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Environment;
+use App\Models\Project;
 use App\Models\Target;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateEnvironment extends ModalComponent
 {
+    use AuthorizesRequests;
+
     public ?string $name = null;
 
     public ?string $url = null;
@@ -31,6 +36,8 @@ class CreateEnvironment extends ModalComponent
 
     public function submit()
     {
+        $this->authorize('create', [Environment::class, Target::class, Project::class]);
+
         $this->target->environments()
             ->create(
                 $this->validate()

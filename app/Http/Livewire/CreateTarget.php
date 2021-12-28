@@ -3,10 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Project;
+use App\Models\Target;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateTarget extends ModalComponent
 {
+    use AuthorizesRequests;
+
     public ?string $name = null;
 
     public ?string $notes = null;
@@ -28,6 +32,8 @@ class CreateTarget extends ModalComponent
 
     public function submit()
     {
+        $this->authorize('create', [Target::class, Project::class]);
+
         $this->project->targets()
             ->create(
                 $this->validate()

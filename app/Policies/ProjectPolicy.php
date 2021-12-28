@@ -18,7 +18,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasTeamPermission($user->currentTeam, 'project:list');
     }
 
     /**
@@ -30,7 +30,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        //
+        return $user->currentTeam->id === $project->team->id;
     }
 
     /**
@@ -41,7 +41,7 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasTeamPermission($user->currentTeam, 'project:create');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        //
+        return $user->hasTeamPermission($user->currentTeam, 'project:update');
     }
 
     /**
@@ -65,7 +65,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        //
+        return $user->hasTeamPermission($user->currentTeam, 'project:delete');
     }
 
     /**
@@ -77,7 +77,7 @@ class ProjectPolicy
      */
     public function restore(User $user, Project $project)
     {
-        //
+        return $user->hasTeamPermission($user->currentTeam, 'project:restore');
     }
 
     /**
@@ -89,6 +89,6 @@ class ProjectPolicy
      */
     public function forceDelete(User $user, Project $project)
     {
-        //
+        return $user->hasTeamPermission($user->currentTeam, 'project:force-delete');
     }
 }
