@@ -8,19 +8,11 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
-    public function index(): \Illuminate\Http\Response
+    public function index(): \Illuminate\Contracts\View\View
     {
-        //
-    }
-
-    public function create(): \Illuminate\Http\Response
-    {
-        //
-    }
-
-    public function store(StoreProjectRequest $request): \Illuminate\Http\Response
-    {
-        //
+        return view('project.index', [
+            'projects' => Project::all()
+        ]);
     }
 
     public function show(Project $project): \Illuminate\Contracts\View\View
@@ -28,20 +20,5 @@ class ProjectController extends Controller
         return view('project.show', [
             'project' => $project
         ]);
-    }
-
-    public function edit(Project $project): \Illuminate\Http\Response
-    {
-        //
-    }
-
-    public function update(UpdateProjectRequest $request, Project $project): \Illuminate\Http\Response
-    {
-        //
-    }
-
-    public function destroy(Project $project): \Illuminate\Http\Response
-    {
-        //
     }
 }

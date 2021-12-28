@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\TargetEnvironment;
+use App\Models\Environment;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class TargetEnvironmentPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
+     * @param  \App\Models\Environment  $targetEnvironment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, TargetEnvironment $targetEnvironment)
+    public function view(User $user, Environment $targetEnvironment)
     {
         //
     }
@@ -48,10 +48,10 @@ class TargetEnvironmentPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
+     * @param  \App\Models\Environment  $targetEnvironment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, TargetEnvironment $targetEnvironment)
+    public function update(User $user, Environment $targetEnvironment)
     {
         //
     }
@@ -60,10 +60,10 @@ class TargetEnvironmentPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
+     * @param  \App\Models\Environment  $targetEnvironment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, TargetEnvironment $targetEnvironment)
+    public function delete(User $user, Environment $targetEnvironment)
     {
         //
     }
@@ -72,10 +72,10 @@ class TargetEnvironmentPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
+     * @param  \App\Models\Environment  $targetEnvironment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, TargetEnvironment $targetEnvironment)
+    public function restore(User $user, Environment $targetEnvironment)
     {
         //
     }
@@ -84,10 +84,10 @@ class TargetEnvironmentPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\TargetEnvironment  $targetEnvironment
+     * @param  \App\Models\Environment  $targetEnvironment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, TargetEnvironment $targetEnvironment)
+    public function forceDelete(User $user, Environment $targetEnvironment)
     {
         //
     }

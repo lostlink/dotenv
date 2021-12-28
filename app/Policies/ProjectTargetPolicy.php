@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\ProjectTarget;
+use App\Models\Target;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class ProjectTargetPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProjectTarget  $projectTarget
+     * @param  \App\Models\Target  $projectTarget
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ProjectTarget $projectTarget)
+    public function view(User $user, Target $projectTarget)
     {
         //
     }
@@ -48,10 +48,10 @@ class ProjectTargetPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProjectTarget  $projectTarget
+     * @param  \App\Models\Target  $projectTarget
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, ProjectTarget $projectTarget)
+    public function update(User $user, Target $projectTarget)
     {
         //
     }
@@ -60,10 +60,10 @@ class ProjectTargetPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProjectTarget  $projectTarget
+     * @param  \App\Models\Target  $projectTarget
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ProjectTarget $projectTarget)
+    public function delete(User $user, Target $projectTarget)
     {
         //
     }
@@ -72,10 +72,10 @@ class ProjectTargetPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProjectTarget  $projectTarget
+     * @param  \App\Models\Target  $projectTarget
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ProjectTarget $projectTarget)
+    public function restore(User $user, Target $projectTarget)
     {
         //
     }
@@ -84,10 +84,10 @@ class ProjectTargetPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProjectTarget  $projectTarget
+     * @param  \App\Models\Target  $projectTarget
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ProjectTarget $projectTarget)
+    public function forceDelete(User $user, Target $projectTarget)
     {
         //
     }

@@ -4,18 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectsTable extends Migration
+class CreateEnvironmentsTable extends Migration
 {
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('environments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->index();
+            $table->foreignId('target_id')->index();
             $table->string('slug');
             $table->string('name');
-            $table->string('url')->nullable();;
+            $table->string('color')->nullable();
+            $table->string('url')->nullable();
             $table->json('variables')->nullable();
-            $table->text('description')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

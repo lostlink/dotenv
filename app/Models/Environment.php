@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class TargetEnvironment extends Model
+class Environment extends Model
 {
     use HasFactory;
     use HasSlug;
 
     protected $casts = [
         'id' => 'integer',
+        'variables' => 'array',
+    ];
+
+    protected $fillable = [
+        'name',
+        'url',
+        'description',
+        'variables',
     ];
 
     public function getRouteKeyName(): string
@@ -30,6 +38,6 @@ class TargetEnvironment extends Model
 
     public function target(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\ProjectTarget::class);
+        return $this->belongsTo(\App\Models\Target::class);
     }
 }

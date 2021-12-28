@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\ProjectTarget;
+use App\Models\Target;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TargetEnvironmentFactory extends Factory
+class EnvironmentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,10 +15,12 @@ class TargetEnvironmentFactory extends Factory
     public function definition()
     {
         return [
-            'project_target_id' => ProjectTarget::factory(),
+            'target_id' => Target::factory(),
             'name' => collect(['local', 'production', 'staging', 'develop'])->random(),
-            'description' => $this->faker->paragraph,
-            'variables' => 'ENVIRONMENT_ENV=NA',
+            'color' => collect(['green', 'amber', 'red'])->random(),
+            'url' => $this->faker->url,
+            'notes' => $this->faker->paragraph,
+            'variables' => ['ENVIRONMENT_ENV' => 'NA'],
         ];
     }
 }

@@ -14,9 +14,16 @@ class Project extends Model
 
     protected $casts = [
         'id' => 'integer',
+        'variables' => 'array',
     ];
 
     protected $with = ['targets'];
+
+    protected $fillable = [
+        'name',
+        'description',
+        'variables',
+    ];
 
     public function getRouteKeyName(): string
     {
@@ -37,6 +44,6 @@ class Project extends Model
 
     public function targets(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(\App\Models\ProjectTarget::class);
+        return $this->hasMany(\App\Models\Target::class);
     }
 }

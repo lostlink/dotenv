@@ -2,21 +2,29 @@
 
 namespace App\Models;
 
+use App\Events\TargetCreatedEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class ProjectTarget extends Model
+class Target extends Model
 {
     use HasFactory;
     use HasSlug;
 
     protected $casts = [
         'id' => 'integer',
+        'variables' => 'array',
     ];
 
     protected $with = ['environments'];
+
+    protected $fillable = [
+        'name',
+        'description',
+        'variables',
+    ];
 
     public function getRouteKeyName(): string
     {
@@ -37,6 +45,6 @@ class ProjectTarget extends Model
 
     public function environments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(\App\Models\TargetEnvironment::class);
+        return $this->hasMany(\App\Models\Environment::class);
     }
 }

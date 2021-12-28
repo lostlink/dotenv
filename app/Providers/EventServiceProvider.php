@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Target;
+use App\Observers\TargetObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +28,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Target::observe(TargetObserver::class);
     }
 }

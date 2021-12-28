@@ -109,7 +109,7 @@
 
                     @if($projects)
                         @foreach($projects as $project)
-                            <x-sidebar-menu-link :active="request()->routeIs('project.show')" href="{{ route('project.show', ['project' => $project->slug]) }}">
+                            <x-sidebar-menu-link :active="request()->is('project/'.$project->slug)" href="{{ route('project.show', ['project' => $project->slug]) }}">
                                 <x-heroicon-o-code class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>
                                 {{ $project->name }}
                             </x-sidebar-menu-link>
