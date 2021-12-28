@@ -8,7 +8,7 @@ use Throwable;
 class Handler extends ExceptionHandler
 {
     protected $dontReport = [
-        //
+        \LaravelJsonApi\Core\Exceptions\JsonApiException::class,
     ];
 
     protected $dontFlash = [
@@ -22,6 +22,10 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        $this->renderable(
+            \LaravelJsonApi\Exceptions\ExceptionParser::make()->renderable()
+        );
     }
 
     public function report(Throwable $exception): void

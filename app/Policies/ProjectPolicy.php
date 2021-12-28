@@ -18,7 +18,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasTeamPermission($user->currentTeam, 'project:list');
+        return $user->tokenCan('project:list');
     }
 
     /**

@@ -24,7 +24,7 @@
                 <li>
                     <div class="flex items-center">
                         <x-heroicon-s-chevron-right class="flex-shrink-0 h-5 w-5 text-gray-400"/>
-                        <a href="{{ route('project.show', ['project' => $project->slug]) }}"
+                        <a href="{{ route('project.show', ['project' => $project->routeKey]) }}"
                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                             {{ $project->name }}
                         </a>
@@ -34,7 +34,7 @@
                 <li>
                     <div class="flex items-center">
                         <x-heroicon-s-chevron-right class="flex-shrink-0 h-5 w-5 text-gray-400"/>
-                        <a href="{{ route('project.show', ['project' => $project->slug]) }}"
+                        <a href="{{ route('project.show', ['project' => $project->routeKey]) }}"
                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                             {{ __('Target') }}
                         </a>
@@ -44,7 +44,7 @@
                 <li>
                     <div class="flex items-center">
                         <x-heroicon-s-chevron-right class="flex-shrink-0 h-5 w-5 text-gray-400"/>
-                        <a href="{{ route('project.target.show', ['project' => $project->slug, 'target' => $target->slug]) }}"
+                        <a href="{{ route('project.target.show', ['project' => $project->routeKey, 'target' => $target->routeKey]) }}"
                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                            aria-current="page">
                             {{ $target->name }}
@@ -70,7 +70,7 @@
                     <option :value="'project'">{{ __('Project') }}</option>
                     <option :value="'target'">{{ __('Target') }}</option>
                     @foreach($target->environments as $environment)
-                        <option :value="'{{ $environment->slug }}'">{{ $environment->name }}</option>
+                        <option :value="'{{ $environment->routeKey }}'">{{ $environment->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -100,9 +100,9 @@
 
                     @foreach($target->environments as $environment)
                         <a class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm"
-                           :class="{ 'border-indigo-500 text-indigo-600': tab === '{{ $environment->slug }}' }"
-                           @click.prevent="tab = '{{ $environment->slug }}'; window.location.hash = '{{ $environment->slug }}'"
-                           href="#{{ $environment->slug }}">
+                           :class="{ 'border-indigo-500 text-indigo-600': tab === '{{ $environment->routeKey }}' }"
+                           @click.prevent="tab = '{{ $environment->routeKey }}'; window.location.hash = '{{ $environment->routeKey }}'"
+                           href="#{{ $environment->routeKey }}">
                             {{ $environment->name }}
                         </a>
                         @if(!$loop->last)
@@ -113,7 +113,7 @@
                     <span class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">  </span>
 
                     <a href="#"
-                       @click.prevent='Livewire.emit("openModal", "create-environment", @json(['target' => $target->slug]))'
+                       @click.prevent='Livewire.emit("openModal", "create-environment", @json(['target' => $target->routeKey]))'
                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         Create New Environment
                     </a>
@@ -128,7 +128,7 @@
                 <livewire:components.edit-env :model="$target" :title="$target->name"/>
             </div>
             @foreach($target->environments as $environment)
-                <div x-show="tab === '{{$environment->slug}}'" x-cloak>
+                <div x-show="tab === '{{$environment->routeKey}}'" x-cloak>
                     <livewire:components.edit-env :model="$environment" :title="$environment->name"/>
                 </div>
             @endforeach

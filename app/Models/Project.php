@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -25,9 +26,17 @@ class Project extends Model
         'variables',
     ];
 
-    public function getRouteKeyName(): string
+//    public function getRouteKeyName(): string
+//    {
+//        return 'slug';
+//    }
+
+    public function routeKey(): Attribute
     {
-        return 'slug';
+        return new Attribute(
+            get: fn($value) => $this->getAttribute($this->getRouteKeyName()),
+            set: fn($value) => $this->getAttribute($this->getRouteKeyName()),
+        );
     }
 
     public function getSlugOptions(): SlugOptions

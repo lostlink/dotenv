@@ -63,5 +63,31 @@ class JetstreamServiceProvider extends ServiceProvider
             'create',
             'update',
         ])->description('Editor users have the ability to read, create, and update.');
+
+        Jetstream::permissions([
+            'project:list',
+            'project:create',
+            'project:view',
+            'project:update',
+            'project:delete',
+            'project:restore',
+            'project:force-delete',
+
+            'target:list',
+            'target:create',
+            'target:view',
+            'target:update',
+            'target:delete',
+            'target:restore',
+            'target:force-delete',
+
+            'environment:list',
+            'environment:create',
+            'environment:view',
+            'environment:update',
+            'environment:delete',
+            'environment:restore',
+            'environment:force-delete',
+        ]);
     }
 }

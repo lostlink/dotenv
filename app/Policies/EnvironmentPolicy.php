@@ -14,7 +14,7 @@ class EnvironmentPolicy
 
     public function viewAny(User $user)
     {
-        return $user->hasTeamPermission($user->currentTeam, 'environment:list');
+        return $user->tokenCan('environment:list');
     }
 
     public function view(User $user, Environment $environment, Target $target, Project $project): bool

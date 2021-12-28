@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Project;
-use App\Models\Target;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;

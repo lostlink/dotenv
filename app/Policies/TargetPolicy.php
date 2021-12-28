@@ -13,7 +13,7 @@ class TargetPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasTeamPermission($user->currentTeam, 'target:list');
+        return $user->tokenCan('target:list');
     }
 
     public function view(User $user, Target $target, Project $project): bool

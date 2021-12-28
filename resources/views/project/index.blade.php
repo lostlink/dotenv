@@ -29,7 +29,7 @@
 
                 @foreach($projects as $project)
                     <li>
-                        <a href="{{ route('project.show', ['project' => $project->slug]) }}"
+                        <a href="{{ route('project.show', ['project' => $project->routeKey]) }}"
                            class="block hover:bg-gray-50">
                             <div class="px-4 py-4 sm:px-6">
                                 <div class="flex items-center justify-between">

@@ -22,7 +22,7 @@
                 <li>
                     <div class="flex items-center">
                         <x-heroicon-s-chevron-right class="flex-shrink-0 h-5 w-5 text-gray-400"/>
-                        <a href="{{ route('project.show', ['project' => $project->slug]) }}"
+                        <a href="{{ route('project.show', ['project' => $project->routeKey]) }}"
                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                            aria-current="page">{{ $project->name }}</a>
                     </div>
@@ -31,7 +31,7 @@
                 <li>
                     <div class="flex items-center">
                         <x-heroicon-s-chevron-right class="flex-shrink-0 h-5 w-5 text-gray-400"/>
-                        <a href="{{ route('project.show', ['project' => $project->slug]) }}"
+                        <a href="{{ route('project.show', ['project' => $project->routeKey]) }}"
                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">{{ __('Targets') }}</a>
                     </div>
                 </li>
@@ -44,7 +44,7 @@
         <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             @foreach($project->targets as $target)
                 <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-                    <a href="{{ route('project.target.show', ['project' => $project->slug, 'target' => $target->slug]) }}"
+                    <a href="{{ route('project.target.show', ['project' => $project->routeKey, 'target' => $target->routeKey]) }}"
                        type="button">
                         <div class="flex-1 flex flex-col p-8">
                             <h3 class="mt-6 text-gray-900 text-sm font-medium">{{ $target->name }}</h3>
@@ -66,7 +66,7 @@
             @endforeach
 
             <li class="col-span-1 flex flex-col text-center rounded-lg divide-y divide-gray-200">
-                <button type="button" onclick='Livewire.emit("openModal", "create-target", @json(['project' => $project->slug]))' class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button type="button" onclick='Livewire.emit("openModal", "create-target", @json(['project' => $project->routeKey]))' class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <x-heroicon-o-folder-add class="mx-auto h-12 w-12 text-gray-400"/>
                     <span class="mt-2 block text-sm font-medium text-gray-900">{{ __('Create a new Target') }}</span>
                 </button>
