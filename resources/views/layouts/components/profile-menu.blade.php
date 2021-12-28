@@ -76,7 +76,7 @@
             @csrf
             <x-dropdown-menu-link
                 href="{{ route('logout') }}"
-                onclick="e.preventDefault(); this.closest('form').submit();"
+                onclick="event.preventDefault(); this.closest('form').submit();"
                 :active="request()->routeIs('logout')"
                 :index="2"
             >
