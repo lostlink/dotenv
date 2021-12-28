@@ -19,7 +19,9 @@ class Target extends Model
         'variables' => 'array',
     ];
 
-    protected $with = ['environments'];
+    protected $with = [
+        'environments',
+    ];
 
     protected $fillable = [
         'name',
@@ -35,8 +37,8 @@ class Target extends Model
     public function routeKey(): Attribute
     {
         return new Attribute(
-            get: fn($value) => $this->getAttribute('slug'),
-            set: fn($value) => $this->getAttribute('slug'),
+            get: fn ($value) => $this->getAttribute('slug'),
+            set: fn ($value) => $this->getAttribute('slug'),
         );
     }
 
