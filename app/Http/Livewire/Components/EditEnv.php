@@ -35,6 +35,7 @@ class EditEnv extends Component
 
         if ($this->shouldNotSave($originalVariables, $updatedVariables)) {
             $this->alert('warning', 'Nothing to Update!');
+
             return;
         }
 
@@ -52,6 +53,7 @@ class EditEnv extends Component
                 $updatedVariables,
                 $originalVariables
             );
+
             return;
         }
 
