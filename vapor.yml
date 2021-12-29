@@ -1,5 +1,5 @@
-id: 27268
-name: dotenv
+id: 27269
+name: dotenv-us-east-1
 environments:
   production:
     domain:
@@ -10,8 +10,8 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: ytz-80-east-2
-    cache: dotenv
+    database: lostlink
+    cache: lostlink
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
@@ -30,8 +30,8 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: ytz-80-east-2
-    cache: dotenv
+    database: lostlink
+    cache: lostlink
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
