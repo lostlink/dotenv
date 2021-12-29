@@ -51,7 +51,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-
         Route::bind('project', function ($value) {
             return Project::where('id', $value)->orWhere('slug', $value)->first();
         });

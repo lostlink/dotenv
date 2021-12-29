@@ -23,11 +23,8 @@ class Target extends Model
         'environments',
     ];
 
-    protected $fillable = [
-        'name',
-        'description',
-        'variables',
-    ];
+    protected $guarded = [];
+
 
 //    public function getRouteKeyName(): string
 //    {

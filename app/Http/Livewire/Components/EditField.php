@@ -27,7 +27,7 @@ class EditField extends Component
     public function save()
     {
         $entity = $this->model::findOrFail($this->entityId);
-        $newName = (string)Str::of($this->newName)->trim()->substr(0, 100); // trim whitespace & more than 100 characters
+        $newName = (string) Str::of($this->newName)->trim()->substr(0, 100); // trim whitespace & more than 100 characters
         $newName = $newName === $this->shortId ? null : $newName; // don't save it as operation name it if it's identical to the short_id
 
         $entity->{$this->field} = $newName ?? null;

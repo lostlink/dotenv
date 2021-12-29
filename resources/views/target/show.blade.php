@@ -127,19 +127,29 @@
             </div>
 
             <div x-show="tab === 'project'" x-cloak>
-                <livewire:components.edit-env :model="$project" :title="$project->name"/>
+                <livewire:components.edit-env
+                    :model="$project"
+                    :title="$project->name"
+                    :project="$project"
+                />
             </div>
             <div x-show="tab === 'target'" x-cloak>
-                <livewire:components.edit-env :model="$target" :title="$target->name"/>
+                <livewire:components.edit-env
+                    :model="$target"
+                    :title="$target->name"
+                    :project="$project"
+                    :target="$target"
+                />
             </div>
             @foreach($target->environments as $environment)
                 <div x-show="tab === '{{$environment->routeKey}}'" x-cloak>
                     <livewire:components.edit-env
                         :model="$environment"
                         :title="$environment->name"
-                        :project="$project->slug"
-                        :target="$target->slug"
-                        :environment="$environment->slug"/>
+                        :project="$project"
+                        :target="$target"
+                        :environment="$environment"
+                    />
                 </div>
             @endforeach
         </div>

@@ -18,12 +18,7 @@ class Environment extends Model
         'variables' => 'array',
     ];
 
-    protected $fillable = [
-        'name',
-        'url',
-        'description',
-        'variables',
-    ];
+    protected $guarded = [];
 
 //    public function getRouteKeyName(): string
 //    {
@@ -33,8 +28,8 @@ class Environment extends Model
     public function routeKey(): Attribute
     {
         return new Attribute(
-            get: fn($value) => $this->getAttribute('slug'),
-            set: fn($value) => $this->getAttribute('slug'),
+            get: fn ($value) => $this->getAttribute('slug'),
+            set: fn ($value) => $this->getAttribute('slug'),
         );
     }
 

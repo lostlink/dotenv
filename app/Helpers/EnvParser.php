@@ -18,6 +18,7 @@ class EnvParser
             ->whenNotEmpty(function ($collection) {
                 return $collection->flatMap(function ($env) {
                     [$variable, $content] = explode('=', $env);
+
                     return [$variable => $content];
                 });
             })

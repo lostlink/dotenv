@@ -13,7 +13,7 @@ class ProjectController extends Controller
 //        $this->authorize('viewAny', Project::class);
 
         return view('project.index', [
-            'projects' => Project::where('team_id', request()->user()->currentTeam->id)->get()
+            'projects' => Project::where('team_id', request()->user()->currentTeam->id)->get(),
         ]);
     }
 
@@ -22,7 +22,7 @@ class ProjectController extends Controller
         $this->authorize('view', $project);
 
         return view('project.show', [
-            'project' => $project
+            'project' => $project,
         ]);
     }
 }

@@ -9,7 +9,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::group(['middleware' => ['auth:sanctum']], function () {
     JsonApiRoute::server('v20220101')->prefix('v20220101')->resources(function ($server) {
         $server->resource('projects', JsonApiController::class)

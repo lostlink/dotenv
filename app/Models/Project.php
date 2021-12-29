@@ -20,11 +20,7 @@ class Project extends Model
 
     protected $with = ['targets'];
 
-    protected $fillable = [
-        'name',
-        'description',
-        'variables',
-    ];
+    protected $guarded = [];
 
 //    public function getRouteKeyName(): string
 //    {
@@ -34,8 +30,8 @@ class Project extends Model
     public function routeKey(): Attribute
     {
         return new Attribute(
-            get: fn($value) => $this->getAttribute('slug'),
-            set: fn($value) => $this->getAttribute('slug'),
+            get: fn ($value) => $this->getAttribute('slug'),
+            set: fn ($value) => $this->getAttribute('slug'),
         );
     }
 

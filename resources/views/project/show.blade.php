@@ -76,7 +76,11 @@
         <div class="py-10">
             <label for="comment" class="block text-sm font-medium text-gray-700">Common ENV for ALL Targets</label>
             <div class="mt-1">
-                <livewire:components.edit-env :model="$project" :title="$project->name"/>
+                <livewire:components.edit-env
+                    :model="$project"
+                    :title="$project->name"
+                    :project="$project"
+                />
             </div>
         </div>
     </div>

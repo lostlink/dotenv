@@ -16,10 +16,7 @@ class Team extends JetstreamTeam
         'personal_team' => 'boolean',
     ];
 
-    protected $fillable = [
-        'name',
-        'personal_team',
-    ];
+    protected $guarded = [];
 
     protected $dispatchesEvents = [
         'created' => TeamCreated::class,
@@ -30,5 +27,10 @@ class Team extends JetstreamTeam
     public function projects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(\App\Models\Project::class);
+    }
+
+    public function activities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\Activity::class);
     }
 }
