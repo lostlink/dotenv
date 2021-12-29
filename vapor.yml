@@ -1,18 +1,40 @@
-id: 27267
-name: dotenvhub
+id: 27268
+name: dotenv
 environments:
   production:
+    domain:
+      - 'dotenv.ca'
+      - 'dotenvhub.com'
+    warm: 10
     memory: 1024
     cli-memory: 512
+    scheduler: true
     runtime: docker
+    database: ytz-80-east-2
+    cache: dotenv
+    octane: true
+    octane-database-session-persist: true
+    octane-database-session-ttl: 10
     build:
       - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
       - 'php artisan event:cache'
       - 'npm ci && npm run prod && rm -rf node_modules'
-  staging:
+  develop:
+    domain:
+      - 'dev.dotenv.ca'
+      - 'dev.dotenvhub.com'
+      - 'develop.dotenv.ca'
+      - 'develop.dotenvhub.com'
+    warm: 10
     memory: 1024
     cli-memory: 512
+    scheduler: true
     runtime: docker
+    database: ytz-80-east-2
+    cache: dotenv
+    octane: true
+    octane-database-session-persist: true
+    octane-database-session-ttl: 10
     build:
       - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
       - 'php artisan event:cache'
