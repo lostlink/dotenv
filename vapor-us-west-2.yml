@@ -1,9 +1,9 @@
-id: 27269
-name: dotenv-us-east-1
+id: 27271
+name: dotenv-us-west-2
 environments:
   production:
     domain:
-      - 'dotenv.ca'
+      - 'dotenvhub.com'
     warm: 10
     memory: 1024
     cli-memory: 512
@@ -19,8 +19,8 @@ environments:
       - 'npm ci && npm run prod && rm -rf node_modules'
   develop:
     domain:
-      - 'dev.dotenv.ca'
-      - 'develop.dotenv.ca'
+      - 'dev.dotenvhub.com'
+      - 'develop.dotenvhub.com'
     warm: 10
     memory: 1024
     cli-memory: 512
