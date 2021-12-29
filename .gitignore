@@ -8,6 +8,7 @@
 .php-cs-fixer.cache
 .phpunit.result.cache
 storage/*
+vapor.yml
 cghooks.lock
 geoip.tar.gz
 npm-debug.log
