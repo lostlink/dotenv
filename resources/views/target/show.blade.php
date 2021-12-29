@@ -118,7 +118,7 @@
                         class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">  </span>
 
                     <a href="#"
-                       @click.prevent='Livewire.emit("openModal", "create-environment", @json(['target' => $target->id]))'
+                       @click.prevent='Livewire.emit("openModal", "create-environment", {!! json_encode([' target' => $target->id]) !!})'
                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         Create New Environment
                     </a>

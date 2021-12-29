@@ -37,7 +37,8 @@ class EnvironmentPolicy
 
     public function delete(User $user, Environment $environment)
     {
-        return $user->hasTeamPermission($user->currentTeam, 'environment:delete');
+        return $user->hasTeamPermission($user->currentTeam, 'environment:delete') &&
+            $user->currentTeam->getAttribute('id') === $environment->target->project->team->id;
     }
 
     public function restore(User $user, Environment $environment)

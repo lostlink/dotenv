@@ -11,6 +11,7 @@ class CreateEnvironmentsTable extends Migration
         Schema::create('environments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('target_id')->index();
+            $table->integer('parent_id')->index()->nullable();
             $table->string('slug');
             $table->string('name');
             $table->string('color')->nullable();
@@ -19,7 +20,7 @@ class CreateEnvironmentsTable extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
 
-            $table->unique(['target_id', 'name']);
+            $table->unique(['target_id', 'parent_id', 'name']);
         });
     }
 }
