@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\EnvParser;
 use App\Http\Controllers\Controller;
 use App\Jobs\RecordActivity;
-use App\Models\Activity;
 use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;

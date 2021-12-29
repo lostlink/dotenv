@@ -20,8 +20,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     Route::get('{project}/{target}/{environment}/env', \App\Http\Controllers\Api\EnvController::class);
-
-//    Route::resource('project', \App\Http\Controllers\Api\ProjectController::class)->only(['index', 'show']);
-//    Route::resource('project.target', \App\Http\Controllers\Api\TargetController::class)->only(['show']);
-//    Route::resource('project.target.environment', \App\Http\Controllers\EnvironmentController::class)->only(['show']);
 });

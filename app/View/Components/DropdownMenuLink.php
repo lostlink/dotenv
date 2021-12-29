@@ -15,11 +15,6 @@ class DropdownMenuLink extends Component
         $this->index = $index;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
     public function render()
     {
         return view('components.dropdown-menu-link');

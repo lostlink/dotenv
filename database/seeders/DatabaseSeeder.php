@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Environment;
-use App\Models\Target;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +17,6 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             ProjectSeeder::class,
             TargetSeeder::class,
-            EnvironmentSeeder::class,
         ]);
     }
 }

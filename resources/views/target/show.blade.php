@@ -142,7 +142,7 @@
                 />
             </div>
             @foreach($target->environments as $environment)
-                <div x-show="tab === '{{$environment->routeKey}}'" x-cloak>
+                <div x-show="tab === '{{ $environment->routeKey }}'" x-cloak>
                     <livewire:components.edit-env
                         :model="$environment"
                         :title="$environment->name"

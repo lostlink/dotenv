@@ -11,12 +11,13 @@
   <!-- se importan los rulesets, en este caso todos. -->
   <rule ref="rulesets/cleancode.xml">
     <exclude name="StaticAccess"/>
+    <exclude name="BooleanArgumentFlag" />
   </rule>
   <rule ref="rulesets/codesize.xml/CyclomaticComplexity"/>
   <rule ref="rulesets/codesize.xml/NPathComplexity"/>
   <rule ref="rulesets/codesize.xml/ExcessiveMethodLength"/>
   <rule ref="rulesets/codesize.xml/ExcessiveClassLength"/>
-  <rule ref="rulesets/codesize.xml/ExcessiveParameterList"/>
+  <!-- rule ref="rulesets/codesize.xml/ExcessiveParameterList"/ -->
   <rule ref="rulesets/codesize.xml/ExcessivePublicCount"/>
   <rule ref="rulesets/codesize.xml/TooManyFields"/>
   <rule ref="rulesets/codesize.xml/TooManyMethods">

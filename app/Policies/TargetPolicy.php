@@ -18,7 +18,9 @@ class TargetPolicy
 
     public function view(User $user, Target $target, Project $project): bool
     {
-        return $user->currentTeam->id === $project->team->id && $project->id === $target->project_id;
+        return
+            $user->hasTeamPermission($user->currentTeam, 'target:view') &&
+            $project->id === $target->project_id;
     }
 
     public function create(User $user): bool

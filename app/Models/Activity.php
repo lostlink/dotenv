@@ -23,35 +23,35 @@ class Activity extends Model
     public function user(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new User($this->user ?? [])
+            get: fn ($value) => new User($this->getAttribute('user') ?? [])
         );
     }
 
     public function team(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Team($this->team ?? [])
+            get: fn ($value) => new Team($this->getAttribute('team') ?? [])
         );
     }
 
     public function project(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Project($this->project ?? [])
+            get: fn ($value) => new Project($this->getAttribute('project') ?? [])
         );
     }
 
     public function target(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Target($this->target ?? [])
+            get: fn ($value) => new Target($this->getAttribute('target') ?? [])
         );
     }
 
     public function environment(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Environment($this->environment ?? [])
+            get: fn ($value) => new Environment($this->getAttribute('environment') ?? [])
         );
     }
 

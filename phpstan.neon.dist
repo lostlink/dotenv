@@ -10,10 +10,6 @@ parameters:
     level: 5
 
     ignoreErrors:
-        - '#Parameter \#2 \$param of method PowerComponents\\LivewirePowerGrid\\Button::route\(\) expects array<int, string>, array<string, string> given#'
-        - '#Parameter \#2 \$param of method PowerComponents\\LivewirePowerGrid\\Button::openModal\(\) expects array<int, string>, array<string, string> given#'
-        - '#Part .* \(array\) of encapsed string cannot be cast to string#'
-        - '#Call to an undefined static method LostLink\\GeoIP\\Facades\\GeoIP::getCountry\(\)#'
 
     excludePaths:
         - ./*/*/FileToBeExcluded.php

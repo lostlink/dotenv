@@ -2,8 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Models\Project;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class SidebarMenu extends Component
@@ -28,7 +26,7 @@ class SidebarMenu extends Component
         return view(
             'components.sidebar-menu',
             [
-                'projects' => Auth::user()->currentTeam->projects()->get(),
+                'projects' => request()->user()->currentTeam->projects()->get(),
             ]
         );
     }

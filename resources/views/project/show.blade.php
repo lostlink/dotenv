@@ -66,7 +66,7 @@
             @endforeach
 
             <li class="col-span-1 flex flex-col text-center rounded-lg divide-y divide-gray-200">
-                <button type="button" onclick='Livewire.emit("openModal", "create-target", @json(['project' => $project->id]))' class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button type="button" onclick='Livewire.emit("openModal", "create-target", {!! json_encode(['project' => $project->id]) !!})' class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <x-heroicon-o-folder-add class="mx-auto h-12 w-12 text-gray-400"/>
                     <span class="mt-2 block text-sm font-medium text-gray-900">{{ __('Create a new Target') }}</span>
                 </button>

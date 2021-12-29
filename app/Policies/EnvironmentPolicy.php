@@ -19,7 +19,10 @@ class EnvironmentPolicy
 
     public function view(User $user, Environment $environment, Target $target, Project $project): bool
     {
-        return $user->currentTeam->id === $project->team->id && $project->id === $target->project_id && $target->id === $environment->target_id;
+        return
+            $user->hasTeamPermission($user->currentTeam, 'environment:view') &&
+            $project->id === $target->project_id &&
+            $target->id === $environment->target_id;
     }
 
     public function create(User $user)
