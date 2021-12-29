@@ -13,45 +13,45 @@ class Activity extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'team' => 'array',
-        'user' => 'array',
-        'project' => 'array',
-        'target' => 'array',
-        'environment' => 'array',
+        'team_model' => 'array',
+        'user_model' => 'array',
+        'project_model' => 'array',
+        'target_model' => 'array',
+        'environment_model' => 'array',
     ];
 
     public function user(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new User($this->getAttribute('user') ?? [])
+            get: fn ($value) => new User($this->getAttribute('user_model') ?? [])
         );
     }
 
     public function team(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Team($this->getAttribute('team') ?? [])
+            get: fn ($value) => new Team($this->getAttribute('team_model') ?? [])
         );
     }
 
     public function project(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Project($this->getAttribute('project') ?? [])
+            get: fn ($value) => new Project($this->getAttribute('project_model') ?? [])
         );
     }
 
     public function target(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Target($this->getAttribute('target') ?? [])
+            get: fn ($value) => new Target($this->getAttribute('target_model') ?? [])
         );
     }
 
     public function environment(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => new Environment($this->getAttribute('environment') ?? [])
+            get: fn ($value) => new Environment($this->getAttribute('environment_model') ?? [])
         );
     }
 

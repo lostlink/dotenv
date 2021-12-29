@@ -13,7 +13,7 @@ class CreateProjectsTable extends Migration
             $table->foreignId('team_id')->index();
             $table->string('slug');
             $table->string('name');
-            $table->json('variables')->nullable();
+            $table->text('variables')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
 

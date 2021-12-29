@@ -14,7 +14,7 @@ class CreateTargetsTable extends Migration
             $table->string('slug');
             $table->string('name');
             $table->string('color')->nullable();
-            $table->json('variables')->nullable();
+            $table->text('variables')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
 

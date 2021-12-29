@@ -16,7 +16,7 @@ class CreateEnvironmentsTable extends Migration
             $table->string('name');
             $table->string('color')->nullable();
             $table->string('url')->nullable();
-            $table->json('variables')->nullable();
+            $table->text('variables')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
 

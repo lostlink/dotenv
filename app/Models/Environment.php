@@ -15,7 +15,6 @@ class Environment extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'variables' => 'array',
     ];
 
     protected $guarded = [];

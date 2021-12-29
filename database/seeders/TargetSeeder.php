@@ -12,9 +12,7 @@ class TargetSeeder extends Seeder
         Target::factory([
             'project_id' => 1,
             'name' => 'EC2',
-            'variables' => [
-                'MAILER_DRIVER' => 'ses',
-            ],
+            'variables' => 'MAILER_DRIVER=ses',
         ])->create();
     }
 }

@@ -11,8 +11,12 @@ class EnvParser
             ->implode(PHP_EOL);
     }
 
-    public static function toArray(string $data): array
+    public static function toArray(?string $data): array
     {
+        if (is_null($data)) {
+            return [];
+        }
+
         return collect(explode(PHP_EOL, $data))
             ->filter()
             ->whenNotEmpty(function ($collection) {

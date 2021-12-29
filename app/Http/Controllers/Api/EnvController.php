@@ -15,9 +15,9 @@ class EnvController extends Controller
     {
         $env = EnvParser::toEnv(
             collect()
-                ->merge($project->variables)
-                ->merge($target->variables)
-                ->merge($environment->variables)
+                ->merge(EnvParser::toArray($project->variables))
+                ->merge(EnvParser::toArray($target->variables))
+                ->merge(EnvParser::toArray($environment->variables))
                 ->toArray()
         );
 

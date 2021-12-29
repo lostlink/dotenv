@@ -15,7 +15,6 @@ class Project extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'variables' => 'array',
     ];
 
     protected $with = ['targets'];

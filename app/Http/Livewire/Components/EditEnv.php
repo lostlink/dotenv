@@ -23,15 +23,15 @@ class EditEnv extends Component
 
     public function mount()
     {
-        $this->variables = EnvParser::toEnv($this->model->variables);
+        $this->variables = $this->model->variables;
     }
 
     public function save()
     {
-        $this->model->variables = EnvParser::toArray($this->variables);
+        $this->model->variables = $this->variables;
 
-        $originalVariables = EnvParser::toEnv(collect($this->model->getOriginal('variables'))->sort()->toArray());
-        $updatedVariables = EnvParser::toEnv(collect(EnvParser::toArray($this->variables))->sort()->toArray());
+        $originalVariables = $this->model->getOriginal('variables');
+        $updatedVariables = $this->variables;
 
         if ($this->shouldNotSave($originalVariables, $updatedVariables)) {
             $this->alert('warning', 'Nothing to Update!');
