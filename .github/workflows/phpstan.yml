@@ -38,6 +38,10 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress --no-scripts --ignore-platform-reqs
 
+      - name: Set VaporFile from Region
+        run: |
+          ./vapor-switch.sh --region us-east-1 --force
+
       - name: Update .env
         run: |
           ./vendor/bin/vapor env:pull ${{ env.APP_ENV }} -q
