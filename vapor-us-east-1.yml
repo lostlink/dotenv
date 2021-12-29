@@ -18,7 +18,10 @@ environments:
       - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
       - 'php artisan event:cache'
       - 'npm ci && npm run prod && rm -rf node_modules'
+    deploy:
+      - 'php artisan config:cache'
       - 'php artisan migrate --force'
+
   develop:
     domain:
       - 'dev.dotenv.ca'
@@ -38,4 +41,8 @@ environments:
       - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
       - 'php artisan event:cache'
       - 'npm ci && npm run dev && rm -rf node_modules'
+    deploy:
+      - 'php artisan config:cache'
       - 'php artisan migrate:fresh --seed'
+#      - "php artisan db:seed --class=FromProductionSeeder"
+
