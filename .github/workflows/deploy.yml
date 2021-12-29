@@ -26,7 +26,7 @@ jobs:
     name: Deploy to Vapor
     runs-on: ubuntu-latest
     needs: [linters-tlint,linters-phpcs,linters-phpstan,test]
-    concurrency: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+    concurrency: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }} - ${{ matrix.region }}
     environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
     env:
       APP_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
