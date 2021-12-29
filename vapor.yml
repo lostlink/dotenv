@@ -3,7 +3,7 @@ name: dotenv
 environments:
   production:
     domain:
-      - 'dotenv.ca'
+#      - 'dotenv.ca'
       - 'dotenvhub.com'
     warm: 10
     memory: 1024
@@ -21,9 +21,9 @@ environments:
       - 'npm ci && npm run prod && rm -rf node_modules'
   develop:
     domain:
-      - 'dev.dotenv.ca'
+#      - 'dev.dotenv.ca'
       - 'dev.dotenvhub.com'
-      - 'develop.dotenv.ca'
+#      - 'develop.dotenv.ca'
       - 'develop.dotenvhub.com'
     warm: 10
     memory: 1024
