@@ -31,6 +31,13 @@ jobs:
     env:
       APP_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
 
+    strategy:
+      fail-fast: false
+      matrix:
+        region:
+          - "us-east-1"
+#          - "us-west-2"
+
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -70,6 +77,10 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
+
+      - name: Set VaporFile from Region
+        run: |
+          ./vapor-switch.sh --region ${{ matrix.region }} --force
 
 #      - name: Update .env
 #        run: |
