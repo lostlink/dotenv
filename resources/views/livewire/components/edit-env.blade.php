@@ -45,7 +45,7 @@
         <div class="mt-2 flex @if($project && $target && $environment) justify-between @else justify-end @endif">
             @if($project && $target && $environment)
             <button type="button"
-                    @click.prevent='Livewire.emit("openModal", "delete-environment", {!! json_encode(['environment_id' => $environment->id]) !!})'
+                    @click.prevent='Livewire.emit("openModal", "delete-environment", {!! json_encode(['environmentId' => $environment->id]) !!})'
                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                 Delete
             </button>

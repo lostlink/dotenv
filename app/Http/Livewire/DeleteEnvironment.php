@@ -16,7 +16,7 @@ class DeleteEnvironment extends ModalComponent
     public function mount(int $environmentId)
     {
         $this->environmentId = $environmentId;
-        $this->environment = Environment::findOrFail($this->environmentId);
+        $this->environment = Environment::findOrFail($environmentId);
     }
 
     public function delete()
