@@ -8,11 +8,11 @@ validate_input() {
     exit
   fi
 
-  # OS should be alpine or debian only
-  if [[ ${REGION} != "us-east-1" && ${REGION} != "us-west-2" ]];
-  then
-    echo "Missing AWS Region, eg: '--region us-east-1'" ; exit 1
-  fi
+#  # OS should be alpine or debian only
+#  if [[ ${REGION} != "us-east-1" && ${REGION} != "us-west-2" ]];
+#  then
+#    echo "Missing AWS Region, eg: '--region us-east-1'" ; exit 1
+#  fi
 }
 
 default_input() {

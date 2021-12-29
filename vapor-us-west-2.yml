@@ -9,7 +9,7 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: lostlink
+    database: ytz-57-west
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
@@ -26,7 +26,7 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: lostlink
+    database: ytz-57-west
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
