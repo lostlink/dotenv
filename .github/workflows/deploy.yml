@@ -10,18 +10,18 @@ on:
 jobs:
   linters-tlint:
     name: Linters
-    uses: lostlink/envmanager/.github/workflows/tlint.yml@main
+    uses: lostlink/dotenvhub/.github/workflows/tlint.yml@main
   linters-phpcs:
     name: Linters
-    uses: lostlink/envmanager/.github/workflows/phpcs.yml@main
+    uses: lostlink/dotenvhub/.github/workflows/phpcs.yml@main
   linters-phpstan:
     name: Linters
-    uses: lostlink/envmanager/.github/workflows/phpstan.yml@main
+    uses: lostlink/dotenvhub/.github/workflows/phpstan.yml@main
     secrets:
       VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
   test:
     name: Test
-    uses: lostlink/envmanager/.github/workflows/test.yml@main
+    uses: lostlink/dotenvhub/.github/workflows/test.yml@main
   deploy:
     name: Deploy to Vapor
     runs-on: ubuntu-latest
