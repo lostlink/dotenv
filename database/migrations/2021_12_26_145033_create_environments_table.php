@@ -10,7 +10,7 @@ class CreateEnvironmentsTable extends Migration
     {
         Schema::create('environments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('target_id')->index();
+            $table->foreignIdFor(\App\Models\Target::class)->index()->constrained()->cascadeOnDelete();
             $table->integer('parent_id')->index()->nullable();
             $table->string('slug');
             $table->string('name');

@@ -10,11 +10,11 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->index();
-            $table->foreignId('user_id')->index();
-            $table->foreignId('project_id')->index()->nullable();
-            $table->foreignId('target_id')->index()->nullable();
-            $table->foreignId('environment_id')->index()->nullable();
+            $table->foreignIdFor(\App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\User::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Project::class)->index()->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Target::class)->index()->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Environment::class)->index()->nullable()->constrained()->cascadeOnDelete();
             $table->string('transaction');
             $table->string('status');
             $table->string('reason')->nullable();

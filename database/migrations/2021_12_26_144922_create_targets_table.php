@@ -10,7 +10,7 @@ class CreateTargetsTable extends Migration
     {
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->index();
+            $table->foreignIdFor(\App\Models\Project::class)->index()->constrained()->cascadeOnDelete();
             $table->string('slug');
             $table->string('name');
             $table->string('color')->nullable();

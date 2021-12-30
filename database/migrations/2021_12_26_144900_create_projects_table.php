@@ -10,7 +10,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->index();
+            $table->foreignIdFor(\App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
             $table->string('slug');
             $table->string('name');
             $table->text('variables')->nullable();
