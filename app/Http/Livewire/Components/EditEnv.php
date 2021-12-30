@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Components;
 
-use App\Helpers\EnvParser;
 use App\Jobs\RecordActivity;
 use App\Models\Environment;
 use App\Models\Project;
