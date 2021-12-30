@@ -85,8 +85,7 @@ jobs:
 
 #      - name: Update .env
 #        run: |
-#          echo '${{ secrets[format('ENVAULT_{0}', env.APP_ENV)] }}' > .envault.json
-#          npx envault --filename=.env.${{ env.APP_ENV }} --force
+#          echo php artisan dotenv:pull -p=${{ secrets.PROJECT_SLUG }} -t=${{ secrets.TARGET_SLUG }} -e=${{ env.APP_ENV }} > .env.${{ env.APP_ENV }}
 #          ./vendor/bin/vapor env:push ${{ env.APP_ENV }} -q
 #        env:
 #          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}

@@ -15,7 +15,7 @@ class EditEnv extends Component
 
     public string $title;
     public Project|Target|Environment $model;
-    public string $variables;
+    public ?string $variables;
     public ?Project $project = null;
     public ?Target $target = null;
     public ?Environment $environment = null;

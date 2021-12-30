@@ -19,5 +19,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             });
     });
 
-    Route::get('{project}/{target}/{environment}/env', \App\Http\Controllers\Api\EnvController::class);
+    Route::get('{project}/{target}/{environment}', \App\Http\Controllers\Api\EnvController::class);
 });

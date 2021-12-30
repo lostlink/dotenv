@@ -17,14 +17,11 @@ class Project extends Model
         'id' => 'integer',
     ];
 
-    protected $with = ['targets'];
+    protected $with = [
+        'targets',
+    ];
 
     protected $guarded = [];
-
-//    public function getRouteKeyName(): string
-//    {
-//        return 'slug';
-//    }
 
     public function routeKey(): Attribute
     {

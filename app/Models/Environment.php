@@ -19,11 +19,6 @@ class Environment extends Model
 
     protected $guarded = [];
 
-//    public function getRouteKeyName(): string
-//    {
-//        return 'slug';
-//    }
-
     public function routeKey(): Attribute
     {
         return new Attribute(
