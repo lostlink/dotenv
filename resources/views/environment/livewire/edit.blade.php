@@ -3,20 +3,21 @@
         <div
             class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
             <label for="title" class="sr-only">Title</label>
-            <input disabled
-                   type="text"
-                   name="title"
-                   id="title"
-                   class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0"
-                   value="{{ $title }}">
+            <div class="relative">
+                <input value="{{ $title }}" type="text" name="title" id="title" disabled
+                       class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0">
+                @error('variables')
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <x-heroicon-s-exclamation-circle class="h-5 w-5 text-red-500"/>
+                    <p class="text-sm text-red-600" id="email-error">{{ $message }}</p>
+                </div>
+                @enderror
+            </div>
+
 
             <label for="description" class="sr-only">Variables</label>
-            <textarea wire:model="variables"
-                      rows="7"
-                      name="variables"
-                      id="variables"
-                      class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm"
-                      placeholder="ENV=VALUE"></textarea>
+            <textarea wire:model="variables" rows="7" name="variables" id="variables" placeholder="ENV=VALUE"
+                      class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm"></textarea>
 
             <!-- Spacer element to match the height of the toolbar -->
             <div aria-hidden="true">
@@ -45,7 +46,7 @@
         <div class="mt-2 flex @if($project && $target && $environment) justify-between @else justify-end @endif">
             @if($project && $target && $environment)
             <button type="button"
-                    @click.prevent='Livewire.emit("openModal", "delete-environment", {!! json_encode(['environmentId' => $environment->id]) !!})'
+                    @click.prevent='Livewire.emit("openModal", "environment.delete", {!! json_encode(['environmentId' => $environment->id]) !!})'
                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                 Delete
             </button>

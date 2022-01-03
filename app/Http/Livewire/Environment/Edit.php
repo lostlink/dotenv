@@ -6,6 +6,7 @@ use App\Jobs\RecordActivity;
 use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;
+use App\Rules\Env;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -15,7 +16,7 @@ class Edit extends Component
 
     public string $title;
     public Project|Target|Environment $model;
-    public ?string $variables;
+    public ?string $variables = null;
     public ?Project $project = null;
     public ?Target $target = null;
     public ?Environment $environment = null;
@@ -23,6 +24,12 @@ class Edit extends Component
     public function mount()
     {
         $this->variables = $this->model->variables;
+        $this->validateOnly('variables', ['variables' => new Env()]);
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, ['variables' => new Env()]);
     }
 
     public function save()
