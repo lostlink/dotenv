@@ -91,44 +91,44 @@
             Recent activity
         </h2>
 
-        <!-- Activity list (smallest breakpoint only) -->
+        {{-- Activity list (smallest breakpoint only) --}}
         <div class="shadow sm:hidden">
             <ul role="list" class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-                <li>
-                    <a href="#" class="block px-4 py-4 bg-white hover:bg-gray-50">
+                @foreach($activities as $activity)
+                    <li>
+                        <a href="#" class="block px-4 py-4 bg-white hover:bg-gray-50">
                         <span class="flex items-center space-x-4">
                             <span class="flex-1 flex space-x-2 truncate">
                                 <x-heroicon-s-cash class="flex-shrink-0 h-5 w-5 text-gray-400"/>
                                 <span class="flex flex-col text-gray-500 text-sm truncate">
-                                    <span class="truncate">Payment to Molly Sanders</span>
-                                    <span><span class="text-gray-900 font-medium">$20,000</span> USD</span>
-                                    <time datetime="2020-07-11">July 11, 2020</time>
+                                    <span class="truncate">{{ $activity->transaction }}</span>
+                                    <span><span class="text-gray-900 font-medium">{{ $activity->project->name }}</span> -> {{ $activity->target->name }} -> {{ $activity->environment->name }}</span>
+                                    <time datetime="{{ $activity->created_at->format('Y-m-d') }}">{{ $activity->created_at->format('M D, Y') }}</time>
                                 </span>
                             </span>
-                            <x-heroicon-s-chevron-right class="flex-shrink-0 h-5 w-5 text-gray-400"/>
                         </span>
-                    </a>
-                </li>
-                <!-- More transactions... -->
+                        </a>
+                    </li>
+                @endforeach
             </ul>
 
-            <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"
-                 aria-label="Pagination">
-                <div class="flex-1 flex justify-between">
-                    <a href="#"
-                       class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
-                        Previous
-                    </a>
-                    <a href="#"
-                       class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
-                        Next
-                    </a>
-                </div>
-            </nav>
+{{--            <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"--}}
+{{--                 aria-label="Pagination">--}}
+{{--                <div class="flex-1 flex justify-between">--}}
+{{--                    <a href="#"--}}
+{{--                       class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">--}}
+{{--                        Previous--}}
+{{--                    </a>--}}
+{{--                    <a href="#"--}}
+{{--                       class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">--}}
+{{--                        Next--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </nav>--}}
 
         </div>
 
-        <!-- Activity table (small breakpoint and up) -->
+        {{-- Activity table (small breakpoint and up) --}}
         <div class="hidden sm:block">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col mt-2">
@@ -192,32 +192,32 @@
                         </table>
 
 
-                        <!-- Pagination -->
-                        <nav
-                            class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
-                            aria-label="Pagination">
-                            <div class="hidden sm:block">
-                                <p class="text-sm text-gray-700">
-                                    Showing
-                                    <span class="font-medium">1</span>
-                                    to
-                                    <span class="font-medium">10</span>
-                                    of
-                                    <span class="font-medium">20</span>
-                                    results
-                                </p>
-                            </div>
-                            <div class="flex-1 flex justify-between sm:justify-end">
-                                <a href="#"
-                                   class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                    Previous
-                                </a>
-                                <a href="#"
-                                   class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                    Next
-                                </a>
-                            </div>
-                        </nav>
+                        {{-- Pagination --}}
+{{--                        <nav--}}
+{{--                            class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"--}}
+{{--                            aria-label="Pagination">--}}
+{{--                            <div class="hidden sm:block">--}}
+{{--                                <p class="text-sm text-gray-700">--}}
+{{--                                    Showing--}}
+{{--                                    <span class="font-medium">1</span>--}}
+{{--                                    to--}}
+{{--                                    <span class="font-medium">10</span>--}}
+{{--                                    of--}}
+{{--                                    <span class="font-medium">20</span>--}}
+{{--                                    results--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                            <div class="flex-1 flex justify-between sm:justify-end">--}}
+{{--                                <a href="#"--}}
+{{--                                   class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">--}}
+{{--                                    Previous--}}
+{{--                                </a>--}}
+{{--                                <a href="#"--}}
+{{--                                   class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">--}}
+{{--                                    Next--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </nav>--}}
                     </div>
                 </div>
             </div>
