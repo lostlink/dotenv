@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return redirect('/dashboard');
     })->middleware(['signed'])->name('verification.verify');
 
-    Route::post('email/verification-notification', function (Request $request) {
+    Route::post('email/verification-notification', function (Illuminate\Http\Request $request) {
         $request->user()->sendEmailVerificationNotification();
 
         return back()->with('message', 'Verification link sent!');
