@@ -11,7 +11,7 @@ class ProjectController extends Controller
 //        $this->authorize('viewAny', Project::class);
 
         return view('project.index', [
-            'projects' => Project::where('team_id', request()->user()->currentTeam->id)->get(),
+            'projects' => Project::where('team_id', currentTeam('id'))->get(),
         ]);
     }
 

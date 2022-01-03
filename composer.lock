@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee0b23f9e599187e72109c968383ae45",
+    "content-hash": "8d6e1f556b319fa39ffb758fda5ccd7e",
     "packages": [
         {
             "name": "asm89/stack-cors",
-            "version": "v2.0.3",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asm89/stack-cors.git",
-                "reference": "9cb795bf30988e8c96dd3c40623c48a877bc6714"
+                "reference": "7a198ec737e926eab15d29368fc6fff66772b0e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/9cb795bf30988e8c96dd3c40623c48a877bc6714",
-                "reference": "9cb795bf30988e8c96dd3c40623c48a877bc6714",
+                "url": "https://api.github.com/repos/asm89/stack-cors/zipball/7a198ec737e926eab15d29368fc6fff66772b0e2",
+                "reference": "7a198ec737e926eab15d29368fc6fff66772b0e2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -28,8 +28,8 @@
             },
             "require": {
                 "php": "^7.0|^8.0",
-                "symfony/http-foundation": "~2.7|~3.0|~4.0|~5.0",
-                "symfony/http-kernel": "~2.7|~3.0|~4.0|~5.0"
+                "symfony/http-foundation": "~2.7|~3.0|~4.0|~5.0|~6.0",
+                "symfony/http-kernel": "~2.7|~3.0|~4.0|~5.0|~6.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6|^7|^8|^9",
@@ -64,9 +64,9 @@
             ],
             "support": {
                 "issues": "https://github.com/asm89/stack-cors/issues",
-                "source": "https://github.com/asm89/stack-cors/tree/v2.0.3"
+                "source": "https://github.com/asm89/stack-cors/tree/v2.0.5"
             },
-            "time": "2021-03-11T06:42:03+00:00"
+            "time": "2022-01-03T15:27:13+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -673,6 +673,85 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "butschster/meta-tags",
+            "version": "v2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/butschster/LaravelMetaTags.git",
+                "reference": "313bfebfb89bafaf2114fcaf7138c3dbfffc2c62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/butschster/LaravelMetaTags/zipball/313bfebfb89bafaf2114fcaf7138c3dbfffc2c62",
+                "reference": "313bfebfb89bafaf2114fcaf7138c3dbfffc2c62",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/ytz/lostlink/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "illuminate/config": "^5.6|^6.0|^7.0|^8.0",
+                "illuminate/console": "^5.6|^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^5.6|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.6|^6.0|^7.0|^8.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.0|^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Butschster\\Head\\Providers\\MetaTagsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Meta": "Butschster\\Head\\Facades\\Meta",
+                        "PackageManager": "Butschster\\Head\\Facades\\PackageManager"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Butschster\\Head\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/ytz/lostlink/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Buchnev",
+                    "email": "butschster@gmail.com"
+                }
+            ],
+            "description": "The most powerful and extendable tools for managing SEO Meta Tags in your Laravel project",
+            "keywords": [
+                "laravel5",
+                "lumen",
+                "metatags",
+                "opengraph",
+                "seo",
+                "webmaster"
+            ],
+            "support": {
+                "issues": "https://github.com/butschster/LaravelMetaTags/issues",
+                "source": "https://github.com/butschster/LaravelMetaTags/tree/v2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://liberapay.com/butschster",
+                    "type": "liberapay"
+                }
+            ],
+            "time": "2021-09-27T08:40:43+00:00"
         },
         {
             "name": "calebporzio/sushi",
@@ -1918,16 +1997,16 @@
         },
         {
             "name": "fruitcake/laravel-cors",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruitcake/laravel-cors.git",
-                "reference": "a8ccedc7ca95189ead0e407c43b530dc17791d6a"
+                "reference": "3a066e5cac32e2d1cdaacd6b961692778f37b5fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/a8ccedc7ca95189ead0e407c43b530dc17791d6a",
-                "reference": "a8ccedc7ca95189ead0e407c43b530dc17791d6a",
+                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/3a066e5cac32e2d1cdaacd6b961692778f37b5fc",
+                "reference": "3a066e5cac32e2d1cdaacd6b961692778f37b5fc",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1941,11 +2020,11 @@
                 "illuminate/contracts": "^6|^7|^8|^9",
                 "illuminate/support": "^6|^7|^8|^9",
                 "php": ">=7.2",
-                "symfony/http-foundation": "^4|^5",
-                "symfony/http-kernel": "^4.3.4|^5"
+                "symfony/http-foundation": "^4|^5|^6",
+                "symfony/http-kernel": "^4.3.4|^5|^6"
             },
             "require-dev": {
-                "laravel/framework": "^6|^7|^8",
+                "laravel/framework": "^6|^7.24|^8",
                 "orchestra/testbench-dusk": "^4|^5|^6|^7",
                 "phpunit/phpunit": "^6|^7|^8|^9",
                 "squizlabs/php_codesniffer": "^3.5"
@@ -1989,15 +2068,19 @@
             ],
             "support": {
                 "issues": "https://github.com/fruitcake/laravel-cors/issues",
-                "source": "https://github.com/fruitcake/laravel-cors/tree/v2.0.4"
+                "source": "https://github.com/fruitcake/laravel-cors/tree/v2.0.5"
             },
             "funding": [
+                {
+                    "url": "https://fruitcake.nl",
+                    "type": "custom"
+                },
                 {
                     "url": "https://github.com/barryvdh",
                     "type": "github"
                 }
             ],
-            "time": "2021-04-26T11:24:25+00:00"
+            "time": "2022-01-03T14:53:04+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -3007,16 +3090,16 @@
         },
         {
             "name": "laravel-json-api/core",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-json-api/core.git",
-                "reference": "b5cf6e05d41b8c05e4c1b13bbe32c9256c54c138"
+                "reference": "4f8538deee9cf91b3ff9bca47026f79185ccfd3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-json-api/core/zipball/b5cf6e05d41b8c05e4c1b13bbe32c9256c54c138",
-                "reference": "b5cf6e05d41b8c05e4c1b13bbe32c9256c54c138",
+                "url": "https://api.github.com/repos/laravel-json-api/core/zipball/4f8538deee9cf91b3ff9bca47026f79185ccfd3f",
+                "reference": "4f8538deee9cf91b3ff9bca47026f79185ccfd3f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3071,9 +3154,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel-json-api/core/issues",
-                "source": "https://github.com/laravel-json-api/core/tree/v1.0.0"
+                "source": "https://github.com/laravel-json-api/core/tree/v1.1.0"
             },
-            "time": "2021-07-31T18:45:34+00:00"
+            "time": "2022-01-03T16:18:10+00:00"
         },
         {
             "name": "laravel-json-api/eloquent",
@@ -3147,16 +3230,16 @@
         },
         {
             "name": "laravel-json-api/encoder-neomerx",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-json-api/encoder-neomerx.git",
-                "reference": "b1d16f2140a84e52efa9422eaf223b6e0063af63"
+                "reference": "64921e6722c1243f67200248be3a66878dd6408e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-json-api/encoder-neomerx/zipball/b1d16f2140a84e52efa9422eaf223b6e0063af63",
-                "reference": "b1d16f2140a84e52efa9422eaf223b6e0063af63",
+                "url": "https://api.github.com/repos/laravel-json-api/encoder-neomerx/zipball/64921e6722c1243f67200248be3a66878dd6408e",
+                "reference": "64921e6722c1243f67200248be3a66878dd6408e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3168,7 +3251,7 @@
             "require": {
                 "ext-json": "*",
                 "illuminate/support": "^8.0",
-                "laravel-json-api/core": "^1.0.0",
+                "laravel-json-api/core": "^1.1",
                 "laravel-json-api/neomerx-json-api": "^4.0.2",
                 "php": "^7.4|^8.0"
             },
@@ -3215,9 +3298,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel-json-api/encoder-neomerx/issues",
-                "source": "https://github.com/laravel-json-api/encoder-neomerx/tree/v1.0.0"
+                "source": "https://github.com/laravel-json-api/encoder-neomerx/tree/v1.1.0"
             },
-            "time": "2021-07-31T19:34:21+00:00"
+            "time": "2022-01-03T16:22:40+00:00"
         },
         {
             "name": "laravel-json-api/exceptions",
@@ -3293,16 +3376,16 @@
         },
         {
             "name": "laravel-json-api/laravel",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-json-api/laravel.git",
-                "reference": "4cac2f1f3d30cecc41f8a80a23d2567bda917b24"
+                "reference": "1a84c24f12e49e49824f629778facc87df1c05fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-json-api/laravel/zipball/4cac2f1f3d30cecc41f8a80a23d2567bda917b24",
-                "reference": "4cac2f1f3d30cecc41f8a80a23d2567bda917b24",
+                "url": "https://api.github.com/repos/laravel-json-api/laravel/zipball/1a84c24f12e49e49824f629778facc87df1c05fe",
+                "reference": "1a84c24f12e49e49824f629778facc87df1c05fe",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3313,12 +3396,12 @@
             },
             "require": {
                 "ext-json": "*",
-                "laravel-json-api/core": "^1.0.0",
+                "laravel-json-api/core": "^1.1",
                 "laravel-json-api/eloquent": "^1.0.1",
-                "laravel-json-api/encoder-neomerx": "^1.0.0",
-                "laravel-json-api/exceptions": "^1.0.0",
-                "laravel-json-api/spec": "^1.0.0",
-                "laravel-json-api/validation": "^1.0.0",
+                "laravel-json-api/encoder-neomerx": "^1.1",
+                "laravel-json-api/exceptions": "^1.0",
+                "laravel-json-api/spec": "^1.0",
+                "laravel-json-api/validation": "^1.0",
                 "laravel/framework": "^8.30",
                 "php": "^7.4|8.0.*"
             },
@@ -3373,9 +3456,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel-json-api/laravel/issues",
-                "source": "https://github.com/laravel-json-api/laravel/tree/v1.0.1"
+                "source": "https://github.com/laravel-json-api/laravel/tree/v1.1.0"
             },
-            "time": "2021-12-08T18:29:08+00:00"
+            "time": "2022-01-03T16:25:58+00:00"
         },
         {
             "name": "laravel-json-api/neomerx-json-api",

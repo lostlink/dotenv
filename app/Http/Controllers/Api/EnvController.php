@@ -22,7 +22,7 @@ class EnvController extends Controller
         );
 
         RecordActivity::dispatch(
-            request()->user()->currentTeam,
+            currentTeam(),
             request()->user(),
             $project,
             $target,

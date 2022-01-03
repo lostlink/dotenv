@@ -41,7 +41,7 @@ class Edit extends Component
         if ($this->model->save()) {
             $this->alert('success', 'ENV Successfully Updated!');
             RecordActivity::dispatch(
-                request()->user()->currentTeam,
+                currentTeam(),
                 request()->user(),
                 $this->project,
                 $this->target,
@@ -58,7 +58,7 @@ class Edit extends Component
 
         $this->alert('error', 'Failed to update ENV, please try again after a few minutes');
         RecordActivity::dispatch(
-            request()->user()->currentTeam,
+            currentTeam(),
             request()->user(),
             $this->project,
             $this->target,

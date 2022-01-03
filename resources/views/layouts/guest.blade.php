@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      x-data="{currentTheme: localStorage.getItem('theme') || localStorage.setItem('theme', 'system')}"
+      x-init="$watch('currentTheme', val => localStorage.setItem('theme', val))"
+      x-bind:class="{'dark': currentTheme === 'dark' || (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)}">
+<head>
+    {!! Meta::toHtml() !!}
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @livewireStyles
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        @livewireStyles
+    <script src="{{ mix('js/app.js') }}" defer></script>
+</head>
+<body>
+    <div class="font-sans text-gray-900 antialiased">
+        {{ $slot }}
+    </div>
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
-
-        @livewireScripts
-    </body>
+    @livewireScripts
+</body>
 </html>

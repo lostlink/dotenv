@@ -21,7 +21,7 @@ class Create extends ModalComponent
     {
         return [
             'name' => Rule::unique(Project::class)
-                ->where(fn ($query) => $query->where('team_id', request()->user()->currentTeam->id)),
+                ->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
             'description' => 'nullable',
             'variables' => 'nullable',
         ];
@@ -31,7 +31,7 @@ class Create extends ModalComponent
     {
         $this->authorize('create', [Project::class]);
 
-        request()->user()->currentTeam->projects()->create(
+        currentTeam()->projects()->create(
             $this->validate()
         );
 
