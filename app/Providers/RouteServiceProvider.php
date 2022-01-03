@@ -29,18 +29,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
-
-        Route::bind('project', function ($value) {
-            return Project::where('id', $value)->orWhere('slug', $value)->first();
-        });
-
-        Route::bind('target', function ($value) {
-            return Target::where('id', $value)->orWhere('slug', $value)->first();
-        });
-
-        Route::bind('environment', function ($value) {
-            return Environment::where('id', $value)->orWhere('slug', $value)->first();
-        });
     }
 
     protected function configureRateLimiting()

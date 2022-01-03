@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,13 @@ class Project extends Model
     ];
 
     protected $guarded = [];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('currentTeam', function (Builder $builder) {
+            $builder->where('team_id', currentTeam('id'));
+        });
+    }
 
     public function routeKey(): Attribute
     {
