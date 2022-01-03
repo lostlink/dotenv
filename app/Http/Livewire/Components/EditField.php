@@ -45,6 +45,6 @@ class EditField extends Component
 
     public function render()
     {
-        return view('livewire.components.edit-field');
+        return view('livewire.edit-field');
     }
 }
