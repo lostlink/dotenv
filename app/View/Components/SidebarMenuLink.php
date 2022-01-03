@@ -15,6 +15,6 @@ class SidebarMenuLink extends Component
 
     public function render(): \Illuminate\Contracts\View\View|\Closure|string
     {
-        return view('components.sidebar-menu-link');
+        return view('components.app.sidebar-menu-link');
     }
 }

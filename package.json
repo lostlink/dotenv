@@ -1,6 +1,8 @@
 {
     "private": true,
     "scripts": {
+        "reset": "rm -fr node_modules package-lock.json && npm install && npm run dev",
+        "clear": "npm run reset",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",

@@ -10,8 +10,8 @@ class ProfileMenu extends Component
         'refresh-navigation-menu' => '$refresh',
     ];
 
-    public function render(): \Illuminate\View\View
+    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('layouts.components.profile-menu');
+        return view('layouts.livewire.profile-menu');
     }
 }

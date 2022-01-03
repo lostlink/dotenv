@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Environment;
 
 use App\Models\Environment;
 use App\Models\Project;
@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
-class CreateEnvironment extends ModalComponent
+class Create extends ModalComponent
 {
     use AuthorizesRequests;
 
@@ -55,6 +55,6 @@ class CreateEnvironment extends ModalComponent
 
     public function render()
     {
-        return view('livewire.create-environment');
+        return view('environment.livewire.create');
     }
 }

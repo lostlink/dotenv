@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Components;
+namespace App\Http\Livewire\Environment;
 
 use App\Jobs\RecordActivity;
 use App\Models\Environment;
@@ -9,7 +9,7 @@ use App\Models\Target;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
-class EditEnv extends Component
+class Edit extends Component
 {
     use LivewireAlert;
 
@@ -73,7 +73,7 @@ class EditEnv extends Component
 
     public function render(): \Illuminate\Contracts\View\View
     {
-        return view('livewire.components.edit-env');
+        return view('environment.livewire.edit');
     }
 
     private function shouldNotSave($originalVariables, $updatedVariables): bool

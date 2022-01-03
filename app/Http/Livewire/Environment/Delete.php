@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Environment;
 
 use App\Models\Environment;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
-class DeleteEnvironment extends ModalComponent
+class Delete extends ModalComponent
 {
     use AuthorizesRequests;
 
@@ -33,6 +33,6 @@ class DeleteEnvironment extends ModalComponent
 
     public function render()
     {
-        return view('livewire.delete-environment');
+        return view('environment.livewire.delete');
     }
 }

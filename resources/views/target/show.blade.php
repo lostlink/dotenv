@@ -118,7 +118,7 @@
                         class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">  </span>
 
                     <a href="#"
-                       @click.prevent='Livewire.emit("openModal", "create-environment", {!! json_encode([' target' => $target->id]) !!})'
+                       @click.prevent='Livewire.emit("openModal", "environment.create", {!! json_encode([' target' => $target->id]) !!})'
                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         Create New Environment
                     </a>
@@ -127,14 +127,14 @@
             </div>
 
             <div x-show="tab === 'project'" x-cloak>
-                <livewire:components.edit-env
+                <livewire:environment.edit
                     :model="$project"
                     :title="$project->name"
                     :project="$project"
                 />
             </div>
             <div x-show="tab === 'target'" x-cloak>
-                <livewire:components.edit-env
+                <livewire:environment.edit
                     :model="$target"
                     :title="$target->name"
                     :project="$project"
@@ -143,7 +143,7 @@
             </div>
             @foreach($target->environments as $environment)
                 <div x-show="tab === '{{ $environment->routeKey }}'" x-cloak>
-                    <livewire:components.edit-env
+                    <livewire:environment.edit
                         :model="$environment"
                         :title="$environment->name"
                         :project="$project"

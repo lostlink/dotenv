@@ -73,7 +73,6 @@
 @stack('modals')
 @livewireScripts
 @livewire('livewire-ui-modal') {{-- http://arslantariq.com/livewireui-modal/ --}}
-@livewireUIScripts
 @powerGridScripts
 <x-livewire-alert::scripts/>
 </body>

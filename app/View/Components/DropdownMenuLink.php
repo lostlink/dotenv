@@ -17,6 +17,6 @@ class DropdownMenuLink extends Component
 
     public function render()
     {
-        return view('components.dropdown-menu-link');
+        return view('components.app.dropdown-menu-link');
     }
 }

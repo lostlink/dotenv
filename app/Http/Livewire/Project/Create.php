@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Project;
 
 use App\Models\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
-class CreateProject extends ModalComponent
+class Create extends ModalComponent
 {
     use AuthorizesRequests;
 
@@ -42,6 +42,6 @@ class CreateProject extends ModalComponent
 
     public function render()
     {
-        return view('livewire.create-project');
+        return view('project.livewire.create');
     }
 }

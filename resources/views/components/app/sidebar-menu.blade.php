@@ -114,16 +114,17 @@
 
                     @if($projects)
                         @foreach($projects as $project)
-                            <x-sidebar-menu-link :active="request()->is('project/'.$project->routeKey,'project/'.$project->routeKey.'/*')"
-                                                 href="{{ route('project.show', ['project' => $project->routeKey]) }}">
+                            <x-sidebar-menu-link
+                                :active="request()->is('project/'.$project->routeKey,'project/'.$project->routeKey.'/*')"
+                                href="{{ route('project.show', ['project' => $project->routeKey]) }}">
                                 <x-heroicon-o-code class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>
                                 {{ $project->name }}
                             </x-sidebar-menu-link>
                         @endforeach
                     @endif
 
-                    @if($projects->isEmpty())
-                        <div class="text-center">
+                    <div class="text-center">
+                        @if($projects->isEmpty())
                             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor"
                                  aria-hidden="true">
@@ -135,15 +136,16 @@
                             <p class="mt-1 text-sm text-gray-400">
                                 Get started by creating a new project.
                             </p>
-                            <div class="mt-6">
-                                <button type="button" onclick='Livewire.emit("openModal", "create-project")'
-                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5"/>
-                                    New Project
-                                </button>
-                            </div>
+                        @endif
+
+                        <div class="mt-6">
+                            <button type="button" onclick='Livewire.emit("openModal", "project.create")'
+                                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5"/>
+                                New Project
+                            </button>
                         </div>
-                    @endif
+                    </div>
 
                 </nav>
             </div>
