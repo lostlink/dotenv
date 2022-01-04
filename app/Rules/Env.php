@@ -10,8 +10,8 @@ class Env implements Rule
     public function passes($attribute, $value): bool
     {
         return collect(explode(PHP_EOL, $value))
+            ->map(fn ($line) => (string) Str::of($line)->before('#')->trim())
             ->filter()
-            ->map(fn ($line) => Str::of($line)->before('#')->trim())
             ->reject(function ($line) {
                 return collect(explode('=', $line, 2))->count() === 2;
             })
