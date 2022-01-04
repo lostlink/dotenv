@@ -68,7 +68,7 @@ class RecordActivity implements ShouldQueue
             'status' => $this->status,
             'reason' => $this->reason,
             'team_model' => $this->team->toArray(),
-            'user_model' => $this->team->toArray(),
+            'user_model' => $this->user->toArray(),
             'project_model' => $this->project?->toArray(),
             'target_model' => $this->target?->toArray(),
             'environment_model' => $this->environment?->toArray(),
