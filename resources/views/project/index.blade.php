@@ -75,14 +75,18 @@
                                             <a href="{{ route('project.target.show', ['project' => $project->slug, 'target' => $target->slug]) }}">
                                             <div class="text-sm text-gray-500">{{ $target->name }}</div>
                                         @endforeach
-                                        {{--                                    <div class="text-sm text-gray-900">Regional Paradigm Technician</div>--}}
-                                        {{--                                    <div class="text-sm text-gray-500">Optimization</div>--}}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                      Active
-                                    </span>
+
+                                        @if(empty($project->disabled_at))
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                              Active
+                                            </span>
+                                        @else
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                              Disabled
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="{{ route('project.show', ['project' => $project->routeKey]) }}"
