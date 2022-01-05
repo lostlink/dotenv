@@ -13,21 +13,21 @@ module.exports = {
         ],
     },
     plugins: [
-        // new CopyWebpackPlugin({
-        //     patterns: [
-        //         {
-        //             from: 'resources/images',
-        //             to: 'images',
-        //         },
-        //     ],
-        // }),
-        // new ImageminPlugin({
-        //     test: /\.(jpe?g|png|gif|svg)$/i,
-        //     plugins: [
-        //         imageminMozjpeg({
-        //             quality: 80,
-        //         }),
-        //     ],
-        // }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'resources/images',
+                    to: 'images',
+                },
+            ],
+        }),
+        new ImageminPlugin({
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            plugins: [
+                imageminMozjpeg({
+                    quality: 80,
+                }),
+            ],
+        }),
     ],
 };

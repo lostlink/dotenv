@@ -29,8 +29,8 @@ class Create extends ModalComponent
             'name' => Rule::unique(Environment::class)
                 ->where(fn ($query) => $query->where('target_id', $this->target->id)),
             'url' => 'nullable|url',
-            'notes' => 'nullable|max:100',
-            'variables' => 'nullable|max:100',
+            'notes' => 'nullable',
+            'variables' => 'nullable',
         ];
     }
 

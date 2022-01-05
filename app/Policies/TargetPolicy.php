@@ -28,22 +28,22 @@ class TargetPolicy
         return $user->hasTeamPermission($user->currentTeam, 'target:create');
     }
 
-    public function update(User $user, Target $target, Project $project): bool
+    public function update(User $user, Target $target): bool
     {
         return $user->hasTeamPermission($user->currentTeam, 'target:update');
     }
 
-    public function delete(User $user, Target $target, Project $project): bool
+    public function delete(User $user, Target $target): bool
     {
         return $user->hasTeamPermission($user->currentTeam, 'target:delete');
     }
 
-    public function restore(User $user, Target $target, Project $project): bool
+    public function restore(User $user, Target $target): bool
     {
         return $user->hasTeamPermission($user->currentTeam, 'target:restore');
     }
 
-    public function forceDelete(User $user, Target $target, Project $project): bool
+    public function forceDelete(User $user, Target $target): bool
     {
         return $user->hasTeamPermission($user->currentTeam, 'target:force-delete');
     }

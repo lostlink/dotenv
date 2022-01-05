@@ -48,6 +48,10 @@
                        type="button">
                         <div class="flex-1 flex flex-col p-8">
                             <h3 class="mt-6 text-gray-900 text-sm font-medium">{{ $target->name }}</h3>
+                            <dl class="mt-1 flex-grow flex flex-col justify-between">
+                                <dt class="sr-only">{{ __('Notes') }}</dt>
+                                <dd class="text-gray-500 text-sm">{{ $target->notes }}</dd>
+                            </dl>
                             @foreach($target->environments as $environment)
                                 <div class="ml-2 flex-shrink-0 flex">
                                     <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ \App\Helpers\BadgeColor::get($environment->color) ?? \App\Helpers\BadgeColor::guess($environment->name) }}">
@@ -55,18 +59,33 @@
                                     </p>
                                 </div>
                             @endforeach
-
-{{--                            <dl class="mt-1 flex-grow flex flex-col justify-between">--}}
-{{--                                <dt class="sr-only">{{ __('Notes') }}</dt>--}}
-{{--                                <dd class="text-gray-500 text-sm">{{ $target->notes }}</dd>--}}
-{{--                            </dl>--}}
                         </div>
                     </a>
+                    <div>
+                        <div class="-mt-px flex divide-x divide-gray-200">
+                            <div class="w-0 flex-1 flex">
+                                <a onclick='Livewire.emit("openModal", "target.delete", {!! json_encode(['target' => $target->id]) !!})'
+                                   class="cursor-pointer relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-red-700 font-medium border border-transparent rounded-bl-lg hover:red-gray-500">
+                                    <x-heroicon-s-trash class="w-5 h-5 text-red-400"/>
+                                    <span class="ml-3">{{ __('Delete') }}</span>
+                                </a>
+                            </div>
+                            <div class="-ml-px w-0 flex-1 flex">
+                                <a onclick='Livewire.emit("openModal", "target.edit", {!! json_encode(['target' => $target->id]) !!})'
+                                   class="cursor-pointer relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-green-700 font-medium border border-transparent rounded-br-lg hover:text-green-500">
+                                    <x-heroicon-s-pencil class="w-5 h-5 text-green-400"/>
+                                    <span class="ml-3">{{ __('Edit') }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             @endforeach
 
             <li class="col-span-1 flex flex-col text-center rounded-lg divide-y divide-gray-200">
-                <button type="button" onclick='Livewire.emit("openModal", "target.create", {!! json_encode(['project' => $project->id]) !!})' class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button type="button"
+                        onclick='Livewire.emit("openModal", "target.create", {!! json_encode(['project' => $project->id]) !!})'
+                        class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <x-heroicon-o-folder-add class="mx-auto h-12 w-12 text-gray-400"/>
                     <span class="mt-2 block text-sm font-medium text-gray-900">{{ __('Create a new Target') }}</span>
                 </button>

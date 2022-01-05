@@ -15,7 +15,7 @@ class EnvController extends Controller
 {
     public function __invoke(Project $project, Target $target, Environment $environment): string
     {
-        $validator = Validator::make([
+        Validator::make([
             'projectEnv' => $project->variables,
             'targetEnv' => $target->variables,
             'environmentEnv' => $environment->variables,

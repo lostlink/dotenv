@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Livewire\Target;
+namespace App\Http\Livewire\Project;
 
 use App\Models\Project;
-use App\Models\Target;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
-class Create extends ModalComponent
+class Edit extends ModalComponent
 {
     use AuthorizesRequests;
 
     public ?string $name = null;
 
-    public ?string $notes = null;
+    public ?string $description = null;
 
     public ?string $variables = null;
 
@@ -23,9 +22,9 @@ class Create extends ModalComponent
     public function rules()
     {
         return [
-            'name' => Rule::unique(Target::class)
-                ->where(fn ($query) => $query->where('project_id', $this->project->id)),
-            'notes' => 'nullable',
+            'name' => Rule::unique(Project::class)
+                ->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
+            'description' => 'nullable',
             'variables' => 'nullable',
         ];
     }
@@ -33,16 +32,18 @@ class Create extends ModalComponent
     public function mount(Project $project)
     {
         $this->project = $project;
+        $this->name = $this->project->name;
+        $this->description = $this->project->description;
+        $this->variables = $this->project->variables;
     }
 
     public function submit()
     {
-        $this->authorize('create', [Target::class, Project::class]);
+        $this->authorize('update', [Project::class]);
 
-        $this->project->targets()
-            ->create(
-                $this->validate()
-            );
+        $this->project->update(
+            $this->validate()
+        );
 
         $this->closeModal();
 
@@ -51,6 +52,6 @@ class Create extends ModalComponent
 
     public function render()
     {
-        return view('target.livewire.create-or-edit');
+        return view('project.livewire.create-or-edit');
     }
 }

@@ -10,19 +10,16 @@ class Delete extends ModalComponent
 {
     use AuthorizesRequests;
 
-    public int $environmentId;
-    public Environment $environment;
+    public Environment|string $environment;
 
-    public function mount(int $environmentId)
+    public function mount(Environment $environment)
     {
-        $this->environmentId = $environmentId;
-        $this->environment = Environment::findOrFail($environmentId);
+        $this->environment = $environment;
     }
 
     public function delete()
     {
-        // TODO: Implement authorization proper
-//        $this->authorize('delete', [request()->user(), Environment::class]);
+        $this->authorize('delete', [Environment::class, $this->environment]);
 
         $this->environment->delete();
 
