@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "182118268e00955930a267b0decefa2b",
+    "content-hash": "fa9da9f614c6a99599c6e9aa634085c8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -10162,6 +10162,74 @@
                 }
             ],
             "time": "2021-11-15T14:24:05+00:00"
+        },
+        {
+            "name": "spatie/crypto",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/crypto.git",
+                "reference": "fc689488384bd39e129ce1d4f147a28a840d3030"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/crypto/zipball/fc689488384bd39e129ce1d4f147a28a840d3030",
+                "reference": "fc689488384bd39e129ce1d4f147a28a840d3030",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/ytz/lostlink/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3",
+                "symfony/var-dumper": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Crypto\\": "src"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/ytz/lostlink/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Encrypting and signing data using private/public keys",
+            "homepage": "https://github.com/spatie/crypto",
+            "keywords": [
+                "crypto",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/crypto/issues",
+                "source": "https://github.com/spatie/crypto/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2020-12-03T13:38:30+00:00"
         },
         {
             "name": "spatie/image",

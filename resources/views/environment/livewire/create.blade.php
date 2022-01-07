@@ -67,26 +67,26 @@
                             </p>
                         </div>
 
-                        <div>
-                            <div class="flex justify-between">
-                                <label for="variables" class="block text-sm font-medium text-gray-700">
-                                    Environment Variables
-                                </label>
-                                <span class="text-sm text-gray-500" id="variables-optional">Optional</span>
-                            </div>
-                            <div class="mt-1">
-                                <textarea wire:model="variables" id="variables" name="variables" rows="3"
-                                          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
-                                          placeholder="APP_NAME=MyAwesomeProject"></textarea>
-                            </div>
-                            <p class="mt-2 text-sm text-red-600" id="name-error">
-                                @error('variables') {{ $message }} @enderror
-                            </p>
-                            <p class="mt-2 text-sm text-gray-500">
-                                These ENV Vars will be restricted to this Enviroment in this Target's scope, you can add
-                                them later if you wish.
-                            </p>
-                        </div>
+{{--                        <div>--}}
+{{--                            <div class="flex justify-between">--}}
+{{--                                <label for="variables" class="block text-sm font-medium text-gray-700">--}}
+{{--                                    Environment Variables--}}
+{{--                                </label>--}}
+{{--                                <span class="text-sm text-gray-500" id="variables-optional">Optional</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="mt-1">--}}
+{{--                                <textarea wire:model="variables" id="variables" name="variables" rows="3"--}}
+{{--                                          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"--}}
+{{--                                          placeholder="APP_NAME=MyAwesomeProject"></textarea>--}}
+{{--                            </div>--}}
+{{--                            <p class="mt-2 text-sm text-red-600" id="name-error">--}}
+{{--                                @error('variables') {{ $message }} @enderror--}}
+{{--                            </p>--}}
+{{--                            <p class="mt-2 text-sm text-gray-500">--}}
+{{--                                These ENV Vars will be restricted to this Enviroment in this Target's scope, you can add--}}
+{{--                                them later if you wish.--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
 
                         <div class="flex justify-end">
                             <button type="button" wire:click.prevent="$emit('closeModal')"
