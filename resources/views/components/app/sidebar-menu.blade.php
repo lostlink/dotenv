@@ -49,6 +49,22 @@
 
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
                 <nav class="px-2 space-y-1">
+                    <p class="group flex items-center px-2 py-2 text-sm font-medium rounded-md  text-white">
+                        <x-heroicon-s-hashtag class="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300"/>
+                        {{ Auth::user()->currentTeam->name }}
+                        {{--<x-heroicon-s-chevron-down class="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300"/>--}}
+                    </p>
+
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-indigo-700 text-lg font-medium text-white">
+                                Main
+                            </span>
+                        </div>
+                    </div>
 
                     <x-sidebar-menu-link :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}"
                                          class="text-base font-medium">
@@ -130,6 +146,23 @@
 
             <div class="mt-5 flex-1 flex flex-col">
                 <nav class="flex-1 px-2 pb-4 space-y-1">
+
+                    <p class="group flex items-center px-2 py-2 text-sm font-medium rounded-md  text-white">
+                        <x-heroicon-s-hashtag class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>
+                        {{ Auth::user()->currentTeam->name }}
+                        {{--<x-heroicon-s-chevron-down class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>--}}
+                    </p>
+
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-indigo-700 text-lg font-medium text-white">
+                                Main
+                            </span>
+                        </div>
+                    </div>
 
                     <x-sidebar-menu-link :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">
                         <x-heroicon-o-home class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"/>
