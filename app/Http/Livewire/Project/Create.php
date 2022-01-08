@@ -41,6 +41,7 @@ class Create extends ModalComponent
             ->performedOn(currentTeam())
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
+                $activity->setAttribute('trigger', 'WEB');
             })
             ->withProperties(
                 $project->toArray()

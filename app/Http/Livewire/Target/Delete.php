@@ -30,6 +30,7 @@ class Delete extends ModalComponent
             ->performedOn($this->target)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
+                $activity->setAttribute('trigger', 'WEB');
             })
             ->log('Target Deleted');
 

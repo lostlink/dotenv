@@ -51,6 +51,7 @@ class Edit extends ModalComponent
             ->performedOn($this->project)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
+                $activity->setAttribute('trigger', 'WEB');
             })
             ->withProperties([
                 'update' => $this->project->getOriginal(),

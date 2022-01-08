@@ -115,6 +115,7 @@ class Edit extends Component
                 ->performedOn($this->model)
                 ->tap(function (Activity $activity) {
                     $activity->setAttribute('team_id', currentTeam('id'));
+                    $activity->setAttribute('trigger', 'WEB');
                 })
                 ->withProperties([
                     'updatedVariables' => $updatedVariables,
@@ -131,6 +132,8 @@ class Edit extends Component
             ->performedOn($this->model)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
+                $activity->setAttribute('trigger', 'WEB');
+                $activity->setAttribute('succeeded', false);
             })
             ->withProperties([
                 'updatedVariables' => $updatedVariables,

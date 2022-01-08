@@ -43,6 +43,7 @@ class EnvController extends Controller
             ->performedOn($project)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
+                $activity->setAttribute('trigger', 'API');
             })
             ->withProperties([
                 'project' => $project->getAttribute('id'),
