@@ -28,9 +28,4 @@ class Team extends JetstreamTeam
     {
         return $this->hasMany(\App\Models\Project::class);
     }
-
-    public function activities(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\App\Models\Activity::class);
-    }
 }

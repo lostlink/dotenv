@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Environment;
 use App\Models\Environment;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Activitylog\Models\Activity;
 
 class Delete extends ModalComponent
 {
@@ -22,6 +23,17 @@ class Delete extends ModalComponent
         $this->authorize('delete', [Environment::class, $this->environment]);
 
         $this->environment->delete();
+
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn($this->environment->target)
+            ->tap(function (Activity $activity) {
+                $activity->setAttribute('team_id', currentTeam('id'));
+            })
+            ->withProperties(
+                $this->environment->getOriginal()
+            )
+            ->log('Target Environment Deleted');
 
         $this->closeModal();
 

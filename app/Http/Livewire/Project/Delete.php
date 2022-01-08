@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Project;
 use App\Models\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Activitylog\Models\Activity;
 
 class Delete extends ModalComponent
 {
@@ -23,6 +24,14 @@ class Delete extends ModalComponent
         $this->authorize('delete', [Project::class, $this->project]);
 
         $this->project->delete();
+
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn($this->project)
+            ->tap(function (Activity $activity) {
+                $activity->setAttribute('team_id', currentTeam('id'));
+            })
+            ->log('Project Deleted');
 
         $this->closeModal();
 

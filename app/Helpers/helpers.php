@@ -15,6 +15,13 @@ if (! function_exists('currentTeam')) {
     }
 }
 
+if (! function_exists('isBinary')) {
+    function isBinary($str): bool
+    {
+        return preg_match('~[^\x20-\x7E\t\r\n]~', $str) > 0;
+    }
+}
+
 if (! function_exists('option')) {
     function option($key = null, $default = null)
     {

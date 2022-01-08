@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Activitylog\Models\Activity;
 
 class Create extends ModalComponent
 {
@@ -31,9 +32,20 @@ class Create extends ModalComponent
     {
         $this->authorize('create', [Project::class]);
 
-        currentTeam()->projects()->create(
+        $project = currentTeam()->projects()->create(
             $this->validate()
         );
+
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn(currentTeam())
+            ->tap(function (Activity $activity) {
+                $activity->setAttribute('team_id', currentTeam('id'));
+            })
+            ->withProperties(
+                $project->toArray()
+            )
+            ->log('Project Created');
 
         $this->closeModal();
 
