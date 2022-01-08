@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Activitylog\Models\Activity;
 
 class Edit extends ModalComponent
 {
@@ -37,13 +38,25 @@ class Edit extends ModalComponent
         $this->variables = $this->project->variables;
     }
 
-    public function submit()
+    public function submit(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         $this->authorize('update', [Project::class]);
 
         $this->project->update(
             $this->validate()
         );
+
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn($this->project)
+            ->tap(function (Activity $activity) {
+                $activity->team_id = currentTeam('id');
+            })
+            ->withProperties([
+                'update' => $this->project->getOriginal(),
+                'original' => $this->project->getDirty(),
+            ])
+            ->log('Project Updated');
 
         $this->closeModal();
 

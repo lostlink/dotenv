@@ -96,35 +96,41 @@
             <ul role="list" class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
                 @foreach($activities as $activity)
                     <li>
-                        <a href="#" class="block px-4 py-4 bg-white hover:bg-gray-50">
-                        <span class="flex items-center space-x-4">
-                            <span class="flex-1 flex space-x-2 truncate">
-                                <x-heroicon-s-cash class="flex-shrink-0 h-5 w-5 text-gray-400"/>
-                                <span class="flex flex-col text-gray-500 text-sm truncate">
-                                    <span class="truncate">{{ $activity->transaction }}</span>
-                                    <span><span class="text-gray-900 font-medium">{{ $activity->project->name }}</span> -> {{ $activity->target->name }} -> {{ $activity->environment->name }}</span>
-                                    <time datetime="{{ $activity->created_at->format('Y-m-d') }}">{{ $activity->created_at->format('M D, Y') }}</time>
+                        <a class="block px-4 py-4 bg-white hover:bg-gray-50">
+                            <span class="flex items-center space-x-4">
+                                <span class="flex-1 flex space-x-2 truncate">
+                                    <div class="flex-shrink-0">
+                                        <img src="{{ $activity->get('causer')->profile_photo_url }}"
+                                             alt="{{ $activity->get('causer')->name }}"
+                                             class="h-10 w-10 rounded-full">
+                                    </div>
+                                    <span class="flex flex-col text-gray-500 text-sm truncate">
+                                        <span class="truncate">{{ $activity->get('description') }}</span>
+{{--                                        <span><span class="text-gray-900 font-medium">{{ $activity->project->name }}</span> -> {{ $activity->target->name }} -> {{ $activity->environment->name }}</span>--}}
+                                        <time datetime="{{ $activity->get('created_at')->format('Y-m-d') }}">
+                                            {{ $activity->get('created_at')->format('M D, Y') }}
+                                        </time>
+                                    </span>
                                 </span>
                             </span>
-                        </span>
                         </a>
                     </li>
                 @endforeach
             </ul>
 
-{{--            <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"--}}
-{{--                 aria-label="Pagination">--}}
-{{--                <div class="flex-1 flex justify-between">--}}
-{{--                    <a href="#"--}}
-{{--                       class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">--}}
-{{--                        Previous--}}
-{{--                    </a>--}}
-{{--                    <a href="#"--}}
-{{--                       class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">--}}
-{{--                        Next--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            </nav>--}}
+            {{--            <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"--}}
+            {{--                 aria-label="Pagination">--}}
+            {{--                <div class="flex-1 flex justify-between">--}}
+            {{--                    <a href="#"--}}
+            {{--                       class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">--}}
+            {{--                        Previous--}}
+            {{--                    </a>--}}
+            {{--                    <a href="#"--}}
+            {{--                       class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">--}}
+            {{--                        Next--}}
+            {{--                    </a>--}}
+            {{--                </div>--}}
+            {{--            </nav>--}}
 
         </div>
 
@@ -133,91 +139,87 @@
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col mt-2">
                     <div class="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
-                            <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Transaction
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Project
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Target
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Environment
-                                </th>
-                                <th class="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
-                                    Status
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Date
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($activities as $activity)
-                                <tr class="bg-white">
-                                    <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                        {{ $activity->transaction }}
-                                    </td>
-                                    <td class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        <div class="flex">
-                                            <a href="{{ $activity->project->slug ? route('project.show', ['project' => $activity->project->slug]) : '#' }}" class="group inline-flex space-x-2 truncate text-sm">
-                                                <p class="text-gray-500 truncate group-hover:text-gray-900">
-                                                    {{ $activity->project->name }}
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                        {{ $activity->target->name }}
-                                    </td>
-                                    <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                        {{ $activity->environment->name }}
-                                    </td>
-                                    <td class="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize {{ $activity->status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                          {{ $activity->status }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                        <time datetime="{{ $activity->created_at->format('Y-m-d') }}">{{ $activity->created_at->format('M D, Y') }}</time>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        <div class="hidden sm:block bg-white shadow overflow-hidden sm:rounded-md">
+                            <ul role="list" class="divide-y divide-gray-200">
+                                @foreach($activities as $activity)
+                                    <li>
+                                        <a class="block hover:bg-gray-50">
+                                            <div class="flex items-center px-4 py-4 sm:px-6">
+                                                <div class="min-w-0 flex-1 flex items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ $activity->get('causer')->profile_photo_url }}"
+                                                             alt="{{ $activity->get('causer')->name }}"
+                                                             class="h-10 w-10 rounded-full">
+                                                    </div>
+                                                    <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                                        <div>
+                                                            <p class="text-sm font-medium text-indigo-600 truncate">
+                                                                {{ $activity->get('causer')->name }}
+                                                            </p>
+                                                            <p class="mt-2 flex items-center text-sm text-gray-500">
+                                                                <x-heroicon-s-mail
+                                                                    class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"/>
+                                                                <span class="truncate">
+                                                                    {{ $activity->get('causer')->email }}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="hidden md:block">
+                                                            <div>
+                                                                <p class="text-sm text-gray-900">
+                                                                    Applied on
+                                                                    <time
+                                                                        datetime="{{ $activity->get('created_at')->format('Y-m-d') }}">
+                                                                        {{ $activity->get('created_at')->format('M d, Y') }}
+                                                                    </time>
+                                                                </p>
+                                                                <p class="mt-2 flex items-center text-sm text-gray-500">
+                                                                    <x-heroicon-s-check-circle
+                                                                        class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"/>
+                                                                    {{ $activity->get('description') }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <x-heroicon-s-chevron-right class="h-5 w-5 text-gray-400"/>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
 
-
-                        {{-- Pagination --}}
-{{--                        <nav--}}
-{{--                            class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"--}}
-{{--                            aria-label="Pagination">--}}
-{{--                            <div class="hidden sm:block">--}}
-{{--                                <p class="text-sm text-gray-700">--}}
-{{--                                    Showing--}}
-{{--                                    <span class="font-medium">1</span>--}}
-{{--                                    to--}}
-{{--                                    <span class="font-medium">10</span>--}}
-{{--                                    of--}}
-{{--                                    <span class="font-medium">20</span>--}}
-{{--                                    results--}}
-{{--                                </p>--}}
-{{--                            </div>--}}
-{{--                            <div class="flex-1 flex justify-between sm:justify-end">--}}
-{{--                                <a href="#"--}}
-{{--                                   class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">--}}
-{{--                                    Previous--}}
-{{--                                </a>--}}
-{{--                                <a href="#"--}}
-{{--                                   class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">--}}
-{{--                                    Next--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </nav>--}}
+                                <li>
+                                    {{-- Pagination --}}
+                                    {{--                                    <nav--}}
+                                    {{--                                        class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"--}}
+                                    {{--                                        aria-label="Pagination">--}}
+                                    {{--                                        <div class="hidden sm:block">--}}
+                                    {{--                                            <p class="text-sm text-gray-700">--}}
+                                    {{--                                                Showing--}}
+                                    {{--                                                <span class="font-medium">1</span>--}}
+                                    {{--                                                to--}}
+                                    {{--                                                <span class="font-medium">10</span>--}}
+                                    {{--                                                of--}}
+                                    {{--                                                <span class="font-medium">20</span>--}}
+                                    {{--                                                results--}}
+                                    {{--                                            </p>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                        <div class="flex-1 flex justify-between sm:justify-end">--}}
+                                    {{--                                            <a href="#"--}}
+                                    {{--                                               class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">--}}
+                                    {{--                                                Previous--}}
+                                    {{--                                            </a>--}}
+                                    {{--                                            <a href="#"--}}
+                                    {{--                                               class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">--}}
+                                    {{--                                                Next--}}
+                                    {{--                                            </a>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </nav>--}}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

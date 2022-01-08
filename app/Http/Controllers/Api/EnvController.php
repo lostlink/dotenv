@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\EnvParser;
 use App\Http\Controllers\Controller;
-use App\Jobs\RecordActivity;
 use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;
 use App\Rules\Env;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Activitylog\Models\Activity;
 
 class EnvController extends Controller
 {
@@ -33,17 +33,19 @@ class EnvController extends Controller
                 ->toArray()
         );
 
-        RecordActivity::dispatch(
-            currentTeam(),
-            request()->user(),
-            $project,
-            $target,
-            $environment,
-            'API Call - ENV',
-            'success',
-            'ENV Variables successfully retrieved',
-            $env
-        );
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn($project)
+            ->tap(function (Activity $activity) {
+                $activity->team_id = currentTeam('id');
+            })
+            ->withProperties([
+                'project' => $project->id,
+                'target' => $target->id,
+                'environment' => $environment->id,
+                'env' => $env,
+            ])
+            ->log('Environment Variables Retrieved');
 
         return $env;
     }

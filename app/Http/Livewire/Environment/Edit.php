@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Environment;
 
-use App\Jobs\RecordActivity;
 use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;
 use App\Rules\Env;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Spatie\Activitylog\Models\Activity;
 use Spatie\Crypto\Rsa\Exceptions\CouldNotDecryptData;
 use Spatie\Crypto\Rsa\PrivateKey;
 use Spatie\Crypto\Rsa\PublicKey;
@@ -39,6 +39,7 @@ class Edit extends Component
     {
         if (! session()->exists(currentTeam('id') . '_private_key')) {
             $this->emit('openModal', 'team.request-private-key');
+
             return;
         }
 
@@ -46,6 +47,7 @@ class Edit extends Component
 
         if (! ctype_xdigit($this->variables)) {
             $this->alert('warning', 'Already Decrypted!');
+
             return;
         }
 
@@ -55,9 +57,11 @@ class Edit extends Component
             try {
                 $this->variables = PrivateKey::fromString($privateKey)->decrypt($variables);
                 $this->alert('success', 'Successfully Decrypted!');
+
                 return;
             } catch (CouldNotDecryptData $e) {
                 $this->alert('error', $e->getMessage());
+
                 return;
             }
         }
@@ -69,6 +73,7 @@ class Edit extends Component
     {
         if (! session()->exists(currentTeam('id') . '_private_key')) {
             $this->emit('openModal', 'team.request-private-key');
+
             return;
         }
 
@@ -76,12 +81,14 @@ class Edit extends Component
 
         if (ctype_xdigit($this->variables)) {
             $this->alert('warning', 'Already Encrypted!');
+
             return;
         }
 
         if (! is_null($this->variables)) {
             $this->variables = bin2hex(PublicKey::fromString(PrivateKey::fromString($privateKey)->details()['key'])->encrypt($this->variables));
             $this->alert('success', 'Successfully Encrypted!');
+
             return;
         }
 
@@ -103,35 +110,33 @@ class Edit extends Component
 
         if ($this->model->save()) {
             $this->alert('success', 'ENV Successfully Updated!');
-            RecordActivity::dispatch(
-                currentTeam(),
-                request()->user(),
-                $this->project,
-                $this->target,
-                $this->environment,
-                'WEB Update - ENV',
-                'success',
-                'Environment Variables Successfully Updated',
-                $updatedVariables,
-                $originalVariables
-            );
+            activity()
+                ->causedBy(request()->user())
+                ->performedOn($this->model)
+                ->tap(function (Activity $activity) {
+                    $activity->team_id = currentTeam('id');
+                })
+                ->withProperties([
+                    'updatedVariables' => $updatedVariables,
+                    'originalVariables' => $originalVariables,
+                ])
+                ->log('Environment Variables Updated');
 
             return;
         }
 
         $this->alert('error', 'Failed to update ENV, please try again after a few minutes');
-        RecordActivity::dispatch(
-            currentTeam(),
-            request()->user(),
-            $this->project,
-            $this->target,
-            $this->environment,
-            'WEB Update - ENV',
-            'fail',
-            'Environment Variables Failed to Update',
-            $updatedVariables,
-            $originalVariables
-        );
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn($this->model)
+            ->tap(function (Activity $activity) {
+                $activity->team_id = currentTeam('id');
+            })
+            ->withProperties([
+                'updatedVariables' => $updatedVariables,
+                'originalVariables' => $originalVariables,
+            ])
+            ->log('Environment Variables Update Failed');
     }
 
     public function render(): \Illuminate\Contracts\View\View

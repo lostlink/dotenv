@@ -22,7 +22,6 @@ if (! function_exists('isBinary')) {
     }
 }
 
-
 if (! function_exists('option')) {
     function option($key = null, $default = null)
     {

@@ -8,6 +8,7 @@ use App\Models\Target;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Activitylog\Models\Activity;
 
 class Create extends ModalComponent
 {
@@ -39,14 +40,25 @@ class Create extends ModalComponent
         $this->target = $target;
     }
 
-    public function submit()
+    public function submit(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         $this->authorize('create', [Environment::class, Target::class, Project::class]);
 
-        $this->target->environments()
+        $environment = $this->target->environments()
             ->create(
                 $this->validate()
             );
+
+        activity()
+            ->causedBy(request()->user())
+            ->performedOn($this->target)
+            ->tap(function (Activity $activity) {
+                $activity->team_id = currentTeam('id');
+            })
+            ->withProperties(
+                $environment->toArray()
+            )
+            ->log('Target Environment Created');
 
         $this->closeModal();
 
