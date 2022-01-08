@@ -26,6 +26,16 @@ class Team extends JetstreamTeam
 
     public function projects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(\App\Models\Project::class);
+        return $this->hasMany(Project::class);
+    }
+
+    public function targets()
+    {
+        return $this->hasManyThrough(Target::class, Project::class);
+    }
+
+    public function environments()
+    {
+        return Environment::whereIn('target_id', $this->targets()->pluck('targets.id'))->get();
     }
 }

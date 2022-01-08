@@ -10,9 +10,9 @@ class DashboardController extends Controller
     public function index(): \Illuminate\Contracts\View\View
     {
         return view('dashboard', [
-            'projectsCount' => Project::where('team_id', currentTeam('id'))->count(),
-            'targetsCount' => Project::where('team_id', currentTeam('id'))->count(),
-            'environmentsCount' => Project::where('team_id', currentTeam('id'))->count(),
+            'projectsCount' => currentTeam()->projects()->count(),
+            'targetsCount' => currentTeam()->targets()->count(),
+            'environmentsCount' => currentTeam()->environments()->count(),
             'activities' => Activity::where('team_id', currentTeam('id'))->get()
                 ->map(function ($activity) {
                     $causerType = $activity->getAttribute('causer_type');
