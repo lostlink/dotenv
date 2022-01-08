@@ -163,6 +163,6 @@ class Edit extends Component
     public function clearPrivateKeyFromSession()
     {
         session()->forget(currentTeam('id') . '_private_key');
-        $this->alert('success', 'PrivateKey Cleared from the Session!');
+        $this->alert('success', 'PrivateKey cleared from the session!');
     }
 }
