@@ -77,7 +77,13 @@ class Edit extends Component
             return;
         }
 
-        $decryptedVariables = Crypt::decrypt($this->variables, $privateKey);
+        try {
+            $decryptedVariables = Crypt::decrypt($this->variables, $privateKey);
+        } catch (\Exception $e) {
+            $this->alert('error', 'Unable to decrypt, please verify PrivateKey!');
+
+            return;
+        }
 
         if (is_null($decryptedVariables)) {
             $this->alert('warning', 'Already Decrypted!');
