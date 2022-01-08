@@ -53,7 +53,7 @@ class Create extends ModalComponent
             ->causedBy(request()->user())
             ->performedOn($this->target)
             ->tap(function (Activity $activity) {
-                $activity->team_id = currentTeam('id');
+                $activity->setAttribute('team_id', currentTeam('id'));
             })
             ->withProperties(
                 $environment->toArray()

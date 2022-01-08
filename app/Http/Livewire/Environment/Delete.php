@@ -28,7 +28,7 @@ class Delete extends ModalComponent
             ->causedBy(request()->user())
             ->performedOn($this->environment->target)
             ->tap(function (Activity $activity) {
-                $activity->team_id = currentTeam('id');
+                $activity->setAttribute('team_id', currentTeam('id'));
             })
             ->withProperties(
                 $this->environment->getOriginal()

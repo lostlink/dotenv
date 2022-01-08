@@ -29,7 +29,7 @@ class Delete extends ModalComponent
             ->causedBy(request()->user())
             ->performedOn($this->project)
             ->tap(function (Activity $activity) {
-                $activity->team_id = currentTeam('id');
+                $activity->setAttribute('team_id', currentTeam('id'));
             })
             ->log('Project Deleted');
 

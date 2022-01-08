@@ -114,7 +114,7 @@ class Edit extends Component
                 ->causedBy(request()->user())
                 ->performedOn($this->model)
                 ->tap(function (Activity $activity) {
-                    $activity->team_id = currentTeam('id');
+                    $activity->setAttribute('team_id', currentTeam('id'));
                 })
                 ->withProperties([
                     'updatedVariables' => $updatedVariables,
@@ -130,7 +130,7 @@ class Edit extends Component
             ->causedBy(request()->user())
             ->performedOn($this->model)
             ->tap(function (Activity $activity) {
-                $activity->team_id = currentTeam('id');
+                $activity->setAttribute('team_id', currentTeam('id'));
             })
             ->withProperties([
                 'updatedVariables' => $updatedVariables,
