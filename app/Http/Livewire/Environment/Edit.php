@@ -35,6 +35,12 @@ class Edit extends Component
 
     public function encrypt()
     {
+        if (is_null($this->variables)) {
+            $this->alert('warning', 'Nothing to Encrypt!');
+
+            return;
+        }
+
         $privateKey = $this->getPrivateKeyFromSession();
 
         if (is_null($privateKey)) {
@@ -57,6 +63,12 @@ class Edit extends Component
 
     public function decrypt()
     {
+        if (is_null($this->variables)) {
+            $this->alert('warning', 'Nothing to Decrypt!');
+
+            return;
+        }
+
         $privateKey = $this->getPrivateKeyFromSession();
 
         if (is_null($privateKey)) {
