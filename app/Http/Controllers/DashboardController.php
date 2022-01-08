@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
 use Spatie\Activitylog\Models\Activity;
 
 class DashboardController extends Controller

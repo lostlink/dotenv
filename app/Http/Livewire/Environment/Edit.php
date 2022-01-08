@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Environment;
 
+use App\Helpers\Crypt;
 use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;
@@ -35,64 +36,48 @@ class Edit extends Component
         $this->validateOnly($propertyName, ['variables' => new Env()]);
     }
 
-    public function decrypt()
-    {
-        if (! session()->exists(currentTeam('id') . '_private_key')) {
-            $this->emit('openModal', 'team.request-private-key');
-
-            return;
-        }
-
-        $privateKey = session(currentTeam('id') . '_private_key');
-
-        if (! ctype_xdigit($this->variables)) {
-            $this->alert('warning', 'Already Decrypted!');
-
-            return;
-        }
-
-        $variables = hex2bin($this->variables);
-
-        if (isBinary($variables)) {
-            try {
-                $this->variables = PrivateKey::fromString($privateKey)->decrypt($variables);
-                $this->alert('success', 'Successfully Decrypted!');
-
-                return;
-            } catch (CouldNotDecryptData $e) {
-                $this->alert('error', $e->getMessage());
-
-                return;
-            }
-        }
-
-        $this->alert('warning', 'Nothing to Decrypt!');
-    }
-
     public function encrypt()
     {
-        if (! session()->exists(currentTeam('id') . '_private_key')) {
-            $this->emit('openModal', 'team.request-private-key');
+        $privateKey = $this->getPrivateKeyFromSession();
+
+        if (is_null($privateKey)) {
+            $this->alert('error', 'Missing PrivateKey!');
 
             return;
         }
 
-        $privateKey = session(currentTeam('id') . '_private_key');
+        $encryptedVariables = Crypt::encrypt($this->variables, $privateKey);
 
-        if (ctype_xdigit($this->variables)) {
+        if (is_null($encryptedVariables)) {
             $this->alert('warning', 'Already Encrypted!');
 
             return;
         }
 
-        if (! is_null($this->variables)) {
-            $this->variables = bin2hex(PublicKey::fromString(PrivateKey::fromString($privateKey)->details()['key'])->encrypt($this->variables));
-            $this->alert('success', 'Successfully Encrypted!');
+        $this->variables = $encryptedVariables;
+        $this->alert('success', 'Successfully Encrypted!');
+    }
+
+    public function decrypt()
+    {
+        $privateKey = $this->getPrivateKeyFromSession();
+
+        if (is_null($privateKey)) {
+            $this->alert('error', 'Missing PrivateKey!');
 
             return;
         }
 
-        $this->alert('warning', 'Nothing to Encrypt!');
+        $decryptedVariables = Crypt::decrypt($this->variables, $privateKey);
+
+        if (is_null($decryptedVariables)) {
+            $this->alert('warning', 'Already Decrypted!');
+
+            return;
+        }
+
+        $this->variables = $decryptedVariables;
+        $this->alert('success', 'Successfully Decrypted!');
     }
 
     public function save()
@@ -147,5 +132,16 @@ class Edit extends Component
     private function shouldNotSave($originalVariables, $updatedVariables): bool
     {
         return trim($originalVariables) === trim($updatedVariables);
+    }
+
+    private function getPrivateKeyFromSession()
+    {
+        if (! session()->exists(currentTeam('id') . '_private_key')) {
+            $this->emit('openModal', 'team.request-private-key');
+
+            return null;
+        }
+
+        return session(currentTeam('id') . '_private_key');
     }
 }

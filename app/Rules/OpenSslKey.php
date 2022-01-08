@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class OpenSslKey implements Rule
 {
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         if (Str::containsAll($value, ['-----BEGIN PUBLIC KEY-----', '-----END PUBLIC KEY-----'])) {
             return $this->checkKey($value, 'PUBLIC');
@@ -20,7 +20,7 @@ class OpenSslKey implements Rule
         return false;
     }
 
-    public function message()
+    public function message(): string
     {
         return 'Invalid OpenSSL Key provided';
     }
