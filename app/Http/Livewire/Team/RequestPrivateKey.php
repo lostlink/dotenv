@@ -28,6 +28,11 @@ class RequestPrivateKey extends ModalComponent
         };
     }
 
+    public function generateKey($type = 'cipher')
+    {
+        $this->privateKey = Crypt::generateKey($type);
+    }
+
     public function submit()
     {
         $this->validate();

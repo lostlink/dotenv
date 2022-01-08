@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Spatie\Crypto\Rsa\KeyPair;
 use Spatie\Crypto\Rsa\PrivateKey;
 use Spatie\Crypto\Rsa\PublicKey;
 
@@ -18,6 +19,11 @@ class CryptOpenSsl
         $this->privateKey = PrivateKey::fromString($privateKey);
         $this->publicKey = PublicKey::fromString($this->privateKey->details()['key']);
         $this->value = $value;
+    }
+
+    public static function generateKey(): string
+    {
+        return collect((new KeyPair())->generate())->first();
     }
 
     public function encrypt(): ?string

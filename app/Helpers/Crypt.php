@@ -6,6 +6,15 @@ use Illuminate\Support\Str;
 
 class Crypt
 {
+    public static function generateKey($type = 'cipher'): string
+    {
+        return match ($type) {
+            'cipher' => CryptCipher::generateKey(),
+            'openssl' => CryptOpenSsl::generateKey(),
+            default => ''
+        };
+    }
+
     public static function encrypt(string $value, ?string $privateKey)
     {
         if (is_null($privateKey)) {
@@ -43,5 +52,10 @@ class Crypt
         }
 
         return null;
+    }
+
+    public static function clearPrivateKey()
+    {
+        session()->forget('privateKey');
     }
 }

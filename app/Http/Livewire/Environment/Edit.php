@@ -153,4 +153,10 @@ class Edit extends Component
 
         return session(currentTeam('id') . '_private_key');
     }
+
+    public function clearPrivateKeyFromSession()
+    {
+        session()->forget(currentTeam('id') . '_private_key');
+        $this->alert('success', 'PrivateKey Cleared from the Session!');
+    }
 }
