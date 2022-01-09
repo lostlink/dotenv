@@ -10,7 +10,7 @@ class AddExtraColumnsToActivityLogTable extends Migration
     {
         Schema::table('activity_log', function (Blueprint $table) {
             $table->boolean('succeeded')->after('team_id')->default(true);
-            $table->string('trigger')->after('succeeded');
+            $table->string('trigger')->after('succeeded')->default('WEB');
         });
     }
 }
