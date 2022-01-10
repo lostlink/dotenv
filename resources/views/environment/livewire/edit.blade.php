@@ -96,7 +96,7 @@
                             >
                                 <div class="py-1" role="none">
                                     <a href="#"
-                                       wire:click="clearPrivateKeyFromSession"
+                                       wire:click.prevent="clearPrivateKeyFromSession"
                                        class="text-gray-700 group flex items-center px-4 py-2 text-sm"
                                        role="menuitem" tabindex="-1" id="menu-item-0">
                                         <x-heroicon-s-shield-exclamation
@@ -118,7 +118,7 @@
                                         <a href="#"
                                            @click.prevent='Livewire.emit("openModal", "environment.delete", {!! json_encode(['environment' => $environment->id]) !!})'
                                            class="text-red-700 group flex items-center px-4 py-2 text-sm"
-                                           role="menuitem" tabindex="-1" id="menu-item-1">
+                                           role="menuitem" tabindex="-1" id="menu-item-2">
                                             <x-heroicon-s-trash
                                                 class="mr-3 h-5 w-5 text-red-400 group-hover:text-red-500"/>
                                             Delete
