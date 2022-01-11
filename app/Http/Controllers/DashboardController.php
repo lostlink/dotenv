@@ -22,6 +22,7 @@ class DashboardController extends Controller
                         'causer' => (new $causerType())->find($activity->getAttribute('causer_id')),
                         'subject' => (new $subjectType())->find($activity->getAttribute('subject_id')),
                         'properties' => $activity->getAttribute('properties'),
+                        'succeeded' => $activity->getAttribute('succeeded'),
                         'created_at' => $activity->getAttribute('created_at'),
                     ]);
                 }),
