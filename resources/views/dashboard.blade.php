@@ -88,7 +88,7 @@
         </div>
 
         <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-8">
-            Changes by Subject
+            Activity over the last 10 days
         </h2>
 
         <div class="mt-2 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -182,8 +182,13 @@
                                                                     </time>
                                                                 </p>
                                                                 <p class="mt-2 flex items-center text-sm text-gray-500">
-                                                                    <x-heroicon-s-check-circle
-                                                                        class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"/>
+                                                                    @if($activity->get('succeeded'))
+                                                                        <x-heroicon-s-check-circle
+                                                                            class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"/>
+                                                                    @else
+                                                                        <x-heroicon-s-x-circle
+                                                                            class="flex-shrink-0 mr-1.5 h-5 w-5 text-red-400"/>
+                                                                    @endif
                                                                     {{ $activity->get('description') }}
                                                                 </p>
                                                             </div>
