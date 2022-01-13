@@ -69,6 +69,7 @@ class JetstreamServiceProvider extends ServiceProvider
             'read',
             'update',
             'delete',
+
             'project:list',
             'project:create',
             'project:view',
