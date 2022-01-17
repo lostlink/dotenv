@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class Browsershot extends Component
 {
-    9
     public BrowsershotModel $model;
     public string $class;
     public string $imageUrl;
