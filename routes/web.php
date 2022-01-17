@@ -37,3 +37,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         ->name('project.target.show')
         ->scopeBindings();
 });
+
+Route::mediaLibrary();

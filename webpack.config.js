@@ -10,6 +10,7 @@ module.exports = {
         },
         modules: [
             "node_modules",
+            __dirname + "/vendor/spatie/laravel-medialibrary-pro/resources/js",
         ],
     },
     plugins: [

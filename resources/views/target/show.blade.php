@@ -56,10 +56,25 @@
     </x-slot>
 
     <div class="py-12">
+
+        <div class="sm:flex">
+            <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
+                <livewire:browsershot :model="$target->project" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold">
+                    {{ $target->project->name }} -> {{ $target->name }}
+                </h4>
+                <p class="mt-1">
+                    {{ $target->description ?? $target->project->description }}
+                </p>
+            </div>
+        </div>
+
         <div class="md:flex md:items-center md:justify-between">
-            <h3 class="text-lg leading-6 font-medium text-gray-900">
-                {{ __('Environment Variables') }}
-            </h3>
+{{--            <h3 class="text-lg leading-6 font-medium text-gray-900">--}}
+{{--                {{ __('Environment Variables') }}--}}
+{{--            </h3>--}}
         </div>
         <div class="mt-4" x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'target' }">
             <div class="lg:hidden sm:hidden">

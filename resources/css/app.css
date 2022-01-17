@@ -1,3 +1,5 @@
+@import "../../vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-styles";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
