@@ -7,7 +7,7 @@ on:
       - hotfix/*
   workflow_call:
     secrets:
-      COMPOSER_AUTH:
+      COMPOSER_AUTH_JSON:
         required: true
       VAPOR_API_TOKEN:
         required: true
@@ -37,6 +37,9 @@ jobs:
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
 
+      - name: Add HTTP basic auth credentials
+        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress --no-scripts --ignore-platform-reqs
 
@@ -53,3 +56,6 @@ jobs:
 
       - name: PHPStan Analyze
         run: vendor/bin/phpstan analyze
+
+      - name: Remove auth.json file
+        run: rm -f $GITHUB_WORKSPACE/auth.json

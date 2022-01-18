@@ -7,7 +7,7 @@ on:
       - hotfix/*
   workflow_call:
     secrets:
-      COMPOSER_AUTH:
+      COMPOSER_AUTH_JSON:
         required: true
 
 jobs:
@@ -41,6 +41,9 @@ jobs:
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
 
+      - name: Add HTTP basic auth credentials
+        run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
+
       - name: Validate Composer
         run: composer validate
 
@@ -63,6 +66,9 @@ jobs:
         run: ./vendor/bin/pest
         env:
           APP_ENV: testing
+
+      - name: Remove auth.json file
+        run: rm -f $GITHUB_WORKSPACE/auth.json
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
