@@ -62,6 +62,7 @@
         }
     },
     "dependencies": {
-        "@ryangjchandler/alpine-clipboard": "^2.1.0"
+        "@ryangjchandler/alpine-clipboard": "^2.1.0",
+        "puppeteer": "^13.0.1"
     }
 }

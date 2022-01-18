@@ -6,6 +6,9 @@ on:
       - feature/*
       - hotfix/*
   workflow_call:
+    secrets:
+      COMPOSER_AUTH:
+        required: true
 
 jobs:
   test:

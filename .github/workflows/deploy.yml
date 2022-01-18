@@ -11,17 +11,24 @@ jobs:
   linters-tlint:
     name: Linters
     uses: lostlink/dotenv/.github/workflows/tlint.yml@main
+    secrets:
+      COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
   linters-phpcs:
     name: Linters
     uses: lostlink/dotenv/.github/workflows/phpcs.yml@main
+    secrets:
+      COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
   linters-phpstan:
     name: Linters
     uses: lostlink/dotenv/.github/workflows/phpstan.yml@main
     secrets:
+      COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
       VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
   test:
     name: Test
     uses: lostlink/dotenv/.github/workflows/test.yml@main
+    secrets:
+      COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
   deploy:
     name: Deploy to Vapor
     runs-on: ubuntu-latest
