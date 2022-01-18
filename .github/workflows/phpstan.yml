@@ -7,6 +7,8 @@ on:
       - hotfix/*
   workflow_call:
     secrets:
+      COMPOSER_AUTH:
+        required: true
       VAPOR_API_TOKEN:
         required: true
 
