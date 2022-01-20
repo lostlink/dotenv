@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Activitylog\Models\Activity;
 
-class Create extends ModalComponent
+class Update extends ModalComponent
 {
     use AuthorizesRequests;
 
@@ -20,43 +20,47 @@ class Create extends ModalComponent
 
     public ?string $notes = null;
 
-    public Target|string $target;
+    public Environment|string $environment;
 
     public function rules()
     {
         return [
             'name' => Rule::unique(Environment::class)
-                ->where(fn ($query) => $query->where('target_id', $this->target->id)),
+                ->where(fn ($query) => $query->where('target_id', $this->environment->target_id)),
             'url' => 'nullable|url',
             'notes' => 'nullable',
         ];
     }
 
-    public function mount(Target $target)
+    public function mount(Environment $environment)
     {
-        $this->target = $target;
+        $this->environment = $environment;
+        $this->name = $environment->name;
+        $this->url = $environment->url;
+        $this->notes = $environment->notes;
     }
 
     public function submit(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        $this->authorize('create', [Environment::class, Target::class, Project::class]);
+        $this->authorize('update', [Environment::class, $this->environment]);
 
-        $environment = $this->target->environments()
-            ->create(
+        $this->environment
+            ->update(
                 $this->validate()
             );
 
         activity()
             ->causedBy(request()->user())
-            ->performedOn($this->target)
+            ->performedOn($this->environment)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
                 $activity->setAttribute('trigger', 'WEB');
             })
-            ->withProperties(
-                $environment->toArray()
-            )
-            ->log('Target Environment Created');
+            ->withProperties([
+                'update' => $this->environment->getOriginal(),
+                'original' => $this->environment->getDirty(),
+            ])
+            ->log('Environment Updated');
 
         $this->closeModal();
 

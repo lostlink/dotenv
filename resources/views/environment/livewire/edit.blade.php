@@ -94,6 +94,20 @@
                                  tabindex="-1"
                                  class="origin-top-right absolute right-0 mt-5 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
                             >
+                                @if($project && $target && $environment)
+                                    <div class="py-1" role="none">
+                                        <a href="#"
+                                           @click.prevent='Livewire.emit("openModal", "environment.update", {!! json_encode(['environment' => $environment->id]) !!})'
+                                           class="text-green-700 group flex items-center px-4 py-2 text-sm"
+                                           role="menuitem" tabindex="-1" id="menu-item-2">
+                                            <x-heroicon-s-pencil
+                                                class="mr-3 h-5 w-5 text-green-400 group-hover:text-green-500"/>
+                                            Edit
+                                        </a>
+                                    </div>
+                                @endif
+
+
                                 <div class="py-1" role="none">
                                     <a href="#"
                                        wire:click.prevent="clearPrivateKeyFromSession"
