@@ -17,7 +17,7 @@
 
             <label for="description" class="sr-only">Variables</label>
             <textarea wire:model="variables" rows="7" name="variables" id="variables" placeholder="ENV=VALUE"
-                      class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm"></textarea>
+                      class="block w-full border-0 py-0 resize placeholder-gray-500 focus:ring-0 sm:text-sm"></textarea>
 
             {{-- Spacer element to match the height of the toolbar --}}
             <div aria-hidden="true">
@@ -140,10 +140,8 @@
                                     </div>
                                 @endif
 
-
                             </div>
                         </div>
-
 
                     </div>
 

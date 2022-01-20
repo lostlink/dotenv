@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Environment;
 
 use App\Models\Environment;
-use App\Models\Project;
-use App\Models\Target;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
