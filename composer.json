@@ -15,7 +15,6 @@
         "fruitcake/laravel-cors": "^v2.0.4",
         "guzzlehttp/guzzle": "^7.4.1",
         "jantinnerezo/livewire-alert": "^2.2.3",
-        "laravel-json-api/laravel": "^v1.0.1",
         "laravel/framework": "^v8.77.1",
         "laravel/jetstream": "^2.5.0",
         "laravel/octane": "^1.1.1",

@@ -1,3 +1,3 @@
-FROM lostlink/vapor:php80-debian-octane
+FROM lostlink/vapor:php81-debian-octane-puppeteer
 
 COPY . /var/task
