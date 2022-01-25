@@ -40,7 +40,7 @@ class Edit extends ModalComponent
 
     public function submit(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        $this->authorize('update', [Project::class]);
+        $this->authorize('update', [Project::class, $this->project]);
 
         $this->project->update(
             $this->validate()
