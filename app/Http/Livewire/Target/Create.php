@@ -64,6 +64,6 @@ class Create extends ModalComponent
 
     public function render()
     {
-        return view('target.livewire.create-or-edit');
+        return view('target.livewire.create-or-update');
     }
 }

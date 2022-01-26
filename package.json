@@ -63,6 +63,7 @@
     },
     "dependencies": {
         "@ryangjchandler/alpine-clipboard": "^2.1.0",
+        "laravel-vapor": "^0.5.1",
         "puppeteer": "^13.0.1"
     }
 }

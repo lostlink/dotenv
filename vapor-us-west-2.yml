@@ -10,6 +10,7 @@ environments:
     scheduler: true
     runtime: docker
     database: ytz-57-west
+    storage: dotenv-us-west-2-production
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
@@ -31,6 +32,7 @@ environments:
     scheduler: true
     runtime: docker
     database: ytz-57-west
+    storage: dotenv-us-west-2-develop
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10

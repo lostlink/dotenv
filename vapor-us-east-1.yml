@@ -11,6 +11,7 @@ environments:
     scheduler: true
     runtime: docker
     database: lostlink
+    storage: dotenv-us-east-1-production
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10
@@ -34,6 +35,7 @@ environments:
     scheduler: true
     runtime: docker
     database: lostlink
+    storage: dotenv-us-east-1-develop
     octane: true
     octane-database-session-persist: true
     octane-database-session-ttl: 10

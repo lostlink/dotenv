@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Activitylog\Models\Activity;
 
-class Edit extends ModalComponent
+class Update extends ModalComponent
 {
     use AuthorizesRequests;
 
@@ -66,6 +66,6 @@ class Edit extends ModalComponent
 
     public function render()
     {
-        return view('project.livewire.create-or-edit');
+        return view('project.livewire.create-or-update');
     }
 }
