@@ -12,7 +12,7 @@ return [
             'CHROME_BINARY_PATH',
             collect([
                 trim(shell_exec('npm list -g | head -1') ?? ''),
-                'node_modules/puppeteer/.local-chromium/linux-950341/chrome-linux',
+                'node_modules/puppeteer/.local-chromium/linux-950341/chrome-linux/chrome',
             ])->implode(DIRECTORY_SEPARATOR)
         ),
     ],
