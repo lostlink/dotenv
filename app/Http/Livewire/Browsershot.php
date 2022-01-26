@@ -3,11 +3,17 @@
 namespace App\Http\Livewire;
 
 use App\Models\BrowsershotModel;
+use App\Traits\TakesScreenshots;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Browsershot extends Component
 {
+    use LivewireAlert;
+    use TakesScreenshots;
+
     public BrowsershotModel $model;
     public string $class;
     public string $imageUrl;
@@ -27,19 +33,20 @@ class Browsershot extends Component
     public function refresh()
     {
         if (is_null($this->model->getAttribute('url'))) {
+            $this->alert('warning', 'No URL Defined!');
+
             return;
         }
 
-        \Spatie\Browsershot\Browsershot::url($this->model->getAttribute('url'))
-            ->setNodeModulePath(config('_app.paths.node_modules'))
-            ->setNpmBinary(config('_app.binaries.npm'))
-            ->setNodeBinary(config('_app.binaries.node'))
-            ->setBinPath(app_path('Services/Browsershot/browser.js'))
-            ->save(Str::slug($this->model->getAttribute('name')) . '.png');
+        $path = 'browsershot/' . Str::slug($this->model->getAttribute('name')) . '.png';
+
+        Storage::put($path, $this->getImage($this->model->getAttribute('url')));
 
         $this->model
-            ->addMedia(public_path(Str::slug($this->model->getAttribute('name')) . '.png'))
+            ->addMedia(Storage::path($path))
             ->toMediaCollection('browsershot');
+
+        $this->alert('success', 'Screenshot Updated!');
 
         $this->imageUrl = $this->model->refresh()->getFirstMediaUrl('browsershot');
     }
