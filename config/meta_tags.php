@@ -34,7 +34,7 @@ return [
      * Packages, that should be included everywhere
      */
     'packages' => [
-        // 'jquery', 'bootstrap', ...
+        'favicons',
     ],
 
     'charset' => 'utf-8',
