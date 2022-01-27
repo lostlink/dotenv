@@ -16,6 +16,8 @@ class Update extends ModalComponent
 
     public ?string $description = null;
 
+    public ?string $url = null;
+
     public ?string $variables = null;
 
     public Project|string $project;
@@ -23,10 +25,24 @@ class Update extends ModalComponent
     public function rules()
     {
         return [
-            'name' => Rule::unique(Project::class)
-                ->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
-            'description' => 'nullable',
-            'variables' => 'nullable',
+            'name' => [
+                'string',
+                $this->name === $this->project->getOriginal('name')
+                    ? null
+                    : Rule::unique(Project::class)->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
+            ],
+            'url' => [
+                'url',
+                'nullable',
+            ],
+            'description' => [
+                'string',
+                'nullable',
+            ],
+            'variables' => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 
@@ -34,6 +50,7 @@ class Update extends ModalComponent
     {
         $this->project = $project;
         $this->name = $this->project->name;
+        $this->url = $this->project->url;
         $this->description = $this->project->description;
         $this->variables = $this->project->variables;
     }

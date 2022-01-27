@@ -28,6 +28,27 @@
                             </div>
                         </div>
 
+                        <div class="col-span-3 sm:col-span-2">
+                            <div class="flex justify-between">
+                                <label for="url" class="block text-sm font-medium text-gray-700">
+                                    URL
+                                </label>
+                                <span class="text-sm text-gray-500" id="url-optional">Optional</span>
+                            </div>
+                            <div class="mt-1 flex rounded-md shadow-sm">
+                                    <span
+                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                      http(s)://
+                                    </span>
+                                <input type="text" wire:model="url" name="url" id="url"
+                                       class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                       placeholder="www.example.com">
+                            </div>
+                            <p class="mt-2 text-sm text-red-600" id="name-error">
+                                @error('url') {{ $message }} @enderror
+                            </p>
+                        </div>
+
                         <div>
                             <div class="flex justify-between">
                                 <label for="notes" class="block text-sm font-medium text-gray-700">

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Target extends Model
+class Target extends BrowsershotModel
 {
     use HasFactory;
     use HasSlug;

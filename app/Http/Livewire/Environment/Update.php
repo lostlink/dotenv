@@ -23,10 +23,19 @@ class Update extends ModalComponent
     public function rules()
     {
         return [
-            'name' => Rule::unique(Environment::class)
-                ->where(fn ($query) => $query->where('target_id', $this->environment->target_id)),
-            'url' => 'nullable|url',
-            'notes' => 'nullable',
+            'name' => [
+                'string',
+                $this->name === $this->environment->getOriginal('name')
+                    ? null
+                    : Rule::unique(Environment::class)->where(fn ($query) => $query->where('target_id', $this->environment->target_id)),
+            ],
+            'url' => [
+                'url',
+                'nullable',
+            ],
+            'notes' => [
+                'nullable',
+            ],
         ];
     }
 

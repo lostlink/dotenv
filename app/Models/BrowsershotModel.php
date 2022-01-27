@@ -14,7 +14,7 @@ class BrowsershotModel extends Model implements HasMedia
     {
         $this->addMediaCollection('browsershot')
             ->useFallbackUrl(asset('/images/profile/project.webp'))
-            ->useFallbackPath(public_path('/images/profile/project.webp.jpg'))
+            ->useFallbackPath(public_path('/images/profile/project.webp'))
             ->withResponsiveImages()
             ->singleFile();
     }

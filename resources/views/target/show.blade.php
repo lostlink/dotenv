@@ -55,11 +55,25 @@
         </nav>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'target' }">
 
-        <div class="sm:flex">
+        <div x-show="tab === 'project'" class="sm:flex" x-cloak>
             <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
                 <livewire:browsershot :model="$target->project" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold">
+                    {{ $target->project->name }}
+                </h4>
+                <p class="mt-1">
+                    {{ $target->project->description }}
+                </p>
+            </div>
+        </div>
+
+        <div x-show="tab === 'target'" class="sm:flex" x-cloak>
+            <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
+                <livewire:browsershot :model="$target" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
             </div>
             <div>
                 <h4 class="text-lg font-bold">
@@ -71,12 +85,32 @@
             </div>
         </div>
 
+        @foreach($target->environments as $environment)
+            <div x-show="tab === '{{ $environment->routeKey }}'" class="sm:flex" x-cloak>
+                <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
+                    <livewire:browsershot :model="$environment" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold">
+                        {{ $target->project->name }} -> {{ $target->name }} -> {{ $environment->name }}
+                    </h4>
+                    <p class="mt-1">
+                        {{ $environment->description ?? $target->description ?? $target->project->description }}
+                    </p>
+                </div>
+            </div>
+        @endforeach
+
+
+
+
+
         <div class="md:flex md:items-center md:justify-between">
 {{--            <h3 class="text-lg leading-6 font-medium text-gray-900">--}}
 {{--                {{ __('Environment Variables') }}--}}
 {{--            </h3>--}}
         </div>
-        <div class="mt-4" x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'target' }">
+        <div class="mt-4">
             <div class="lg:hidden sm:hidden">
                 <label for="current-tab" class="sr-only">{{ __('Select Environment') }}</label>
                 <select
@@ -140,14 +174,14 @@
                 </nav>
             </div>
 
-            <div x-show="tab === 'project'" x-cloak>
+            <div x-show="tab === 'project'" class="mt-1" x-cloak>
                 <livewire:environment.edit
                     :model="$project"
                     :title="$project->name"
                     :project="$project"
                 />
             </div>
-            <div x-show="tab === 'target'" x-cloak>
+            <div x-show="tab === 'target'" class="mt-1" x-cloak>
                 <livewire:environment.edit
                     :model="$target"
                     :title="$target->name"
@@ -156,7 +190,7 @@
                 />
             </div>
             @foreach($target->environments as $environment)
-                <div x-show="tab === '{{ $environment->routeKey }}'" x-cloak>
+                <div x-show="tab === '{{ $environment->routeKey }}'" class="mt-1" x-cloak>
                     <livewire:environment.edit
                         :model="$environment"
                         :title="$environment->name"

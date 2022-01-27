@@ -14,6 +14,8 @@ class Create extends ModalComponent
 
     public ?string $name = null;
 
+    public ?string $url = null;
+
     public ?string $description = null;
 
     public ?string $variables = null;
