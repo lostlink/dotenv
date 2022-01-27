@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 
 class ActivitySeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         //
     }

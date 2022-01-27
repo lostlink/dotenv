@@ -14,12 +14,12 @@ class Delete extends ModalComponent
     public int $environmentId;
     public Project|string $project;
 
-    public function mount(Project $project)
+    public function mount(Project $project): void
     {
         $this->project = $project;
     }
 
-    public function delete()
+    public function delete(): \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {
         $this->authorize('delete', [Project::class, $this->project]);
 
@@ -39,7 +39,7 @@ class Delete extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('project.livewire.delete');
     }

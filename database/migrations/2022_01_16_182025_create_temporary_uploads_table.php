@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTemporaryUploadsTable extends Migration
-{
-    public function up()
+return new class extends Migration {
+    public function up(): void
     {
         Schema::create('temporary_uploads', function (Blueprint $table) {
             $table->increments('id');
@@ -14,4 +13,4 @@ class CreateTemporaryUploadsTable extends Migration
             $table->timestamps();
         });
     }
-}
+};

@@ -8,17 +8,11 @@ use Illuminate\Support\Str;
 
 class CryptCipher
 {
-    public string $value;
-
-    private string $privateKey;
-
     private Encrypter $encrypter;
 
-    public function __construct(string $value, string $privateKey)
+    public function __construct(public string $value, private string $privateKey)
     {
-        $this->privateKey = $privateKey;
         $this->encrypter = new Encrypter(base64_decode($this->privateKey), config('app.cipher'));
-        $this->value = $value;
     }
 
     public static function generateKey(): string

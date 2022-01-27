@@ -6,14 +6,11 @@ use Illuminate\View\Component;
 
 class SidebarMenuLink extends Component
 {
-    public string $active;
-
-    public function __construct($active)
+    public function __construct(public $active)
     {
-        $this->active = $active;
     }
 
-    public function render(): \Illuminate\Contracts\View\View|\Closure|string
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('components.app.sidebar-menu-link');
     }

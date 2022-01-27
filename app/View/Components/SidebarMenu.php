@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class SidebarMenu extends Component
 {
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view(
             'components.app.sidebar-menu',

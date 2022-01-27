@@ -15,7 +15,7 @@ class EditField extends Component
     public string $field; // this is can be column. It comes from the blade-view foreach($fields as $field)
     public string $model; // Eloquent model with full name-space
 
-    public function mount($model, $entity)
+    public function mount($model, $entity): void
     {
         $this->entityId = $entity->id;
         $this->shortId = $entity->short_id;
@@ -24,7 +24,7 @@ class EditField extends Component
         $this->init($this->model, $entity); // initialize the component state
     }
 
-    public function save()
+    public function save(): void
     {
         $entity = $this->model::findOrFail($this->entityId);
         $newName = (string) Str::of($this->newName)->trim()->substr(0, 100); // trim whitespace & more than 100 characters
@@ -36,14 +36,14 @@ class EditField extends Component
         $this->dispatchBrowserEvent('notify', Str::studly($this->field) . ' successfully updated!');
     }
 
-    private function init($model, $entity)
+    private function init($model, $entity): void
     {
         $this->origName = $entity->{$this->field} ?: $this->shortId;
         $this->newName = $this->origName;
         $this->isName = $entity->{$this->field} ?? false;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.edit-field');
     }

@@ -23,13 +23,13 @@
                 <a x-on:click="$wire.call('exportToXLS'); open = false"
                    href="#"
                    class="px-2 block text-gray-800 hover:bg-gray-100 hover:text-black-300 dark:text-gray-200 dark:hover:bg-gray-700 rounded">
-                    @lang('livewire-powergrid::datatable.labels.all')
+                    {{ __('livewire-powergrid::datatable.labels.all') }}
                 </a>
                 @if($checkbox)
                     <a x-on:click="$wire.call('exportToXLS', true); open = false"
                        href="#"
                        class="px-2 block text-gray-800 hover:bg-gray-100 hover:text-black-300 dark:text-gray-200 dark:hover:bg-gray-700 rounded">
-                        @lang('livewire-powergrid::datatable.labels.selected')
+                        {{ __('livewire-powergrid::datatable.labels.selected') }}
                     </a>
                 @endif
             </div>
@@ -39,12 +39,12 @@
                 <span class="w-12">Csv</span>
                 <a x-on:click="$wire.call('exportToCsv'); open = false" href="#"
                    class="px-2 block text-gray-800 hover:bg-gray-100 hover:text-black-300 dark:text-gray-200 dark:hover:bg-gray-700 rounded">
-                    @lang('livewire-powergrid::datatable.labels.all')
+                    {{ __('livewire-powergrid::datatable.labels.all') }}
                 </a>
                 @if($checkbox)
                     <a x-on:click="$wire.call('exportToCsv', true); open = false" href="#"
                        class="px-2 block text-gray-800 hover:bg-gray-100 hover:text-black-300 dark:text-gray-200 dark:hover:bg-gray-700 rounded">
-                        @lang('livewire-powergrid::datatable.labels.selected')
+                        {{ __('livewire-powergrid::datatable.labels.selected') }}
                     </a>
                 @endif
             </div>

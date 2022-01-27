@@ -12,7 +12,7 @@ use Butschster\Head\Providers\MetaTagsApplicationServiceProvider as ServiceProvi
 
 class MetaTagsServiceProvider extends ServiceProvider
 {
-    protected function packages()
+    protected function packages(): void
     {
         PackageManager::create('favicons', function (Package $package) {
             $package->setFavicon('/images/favicon/favicon.ico');

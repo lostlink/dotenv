@@ -8,17 +8,14 @@ use Spatie\Crypto\Rsa\PublicKey;
 
 class CryptOpenSsl
 {
-    public string $value;
-
     private PrivateKey|string $privateKey;
 
     private PublicKey|string $publicKey;
 
-    public function __construct(string $value, string $privateKey)
+    public function __construct(public string $value, string $privateKey)
     {
         $this->privateKey = PrivateKey::fromString($privateKey);
         $this->publicKey = PublicKey::fromString($this->privateKey->details()['key']);
-        $this->value = $value;
     }
 
     public static function generateKey(): string

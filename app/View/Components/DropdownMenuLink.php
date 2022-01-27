@@ -6,16 +6,11 @@ use Illuminate\View\Component;
 
 class DropdownMenuLink extends Component
 {
-    public string $active;
-    public ?string $index;
-
-    public function __construct($active = false, $index = null)
+    public function __construct(public $active = false, public ?string $index = null)
     {
-        $this->active = $active;
-        $this->index = $index;
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('components.app.dropdown-menu-link');
     }

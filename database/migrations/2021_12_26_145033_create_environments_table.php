@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnvironmentsTable extends Migration
-{
-    public function up()
+return new class extends Migration {
+    public function up(): void
     {
         Schema::create('environments', function (Blueprint $table) {
             $table->id();
@@ -23,4 +22,4 @@ class CreateEnvironmentsTable extends Migration
             $table->unique(['target_id', 'parent_id', 'name']);
         });
     }
-}
+};

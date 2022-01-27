@@ -20,7 +20,7 @@ class Update extends ModalComponent
 
     public Environment|string $environment;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => [
@@ -39,7 +39,7 @@ class Update extends ModalComponent
         ];
     }
 
-    public function mount(Environment $environment)
+    public function mount(Environment $environment): void
     {
         $this->environment = $environment;
         $this->name = $environment->name;
@@ -74,7 +74,7 @@ class Update extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('environment.livewire.create-or-update');
     }

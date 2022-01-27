@@ -18,7 +18,7 @@ class Env implements Rule
             ->isEmpty();
     }
 
-    public function message()
+    public function message(): string
     {
         return 'Invalid Environment';
     }

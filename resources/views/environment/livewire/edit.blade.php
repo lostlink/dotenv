@@ -67,9 +67,9 @@
                         >
                             <div class="py-1" role="none">
                                 <a href="#"
-                                   @if($environment) @click.prevent='Livewire.emit("openModal", "environment.update", {!! json_encode(['environment' => $environment->id]) !!})'
-                                   @elseif($target) @click.prevent='Livewire.emit("openModal", "target.update", {!! json_encode(['target' => $target->id]) !!})'
-                                   @elseif($project) @click.prevent='Livewire.emit("openModal", "project.update", {!! json_encode(['project' => $project->id]) !!})'
+                                   @if($environment) @click.prevent='Livewire.emit("openModal", "environment.update", @json(['environment' => $environment->id]))'
+                                   @elseif($target) @click.prevent='Livewire.emit("openModal", "target.update", @json(['target' => $target->id]))'
+                                   @elseif($project) @click.prevent='Livewire.emit("openModal", "project.update", @json(['project' => $project->id]))'
                                    @endif
                                    class="text-green-700 group flex items-center px-4 py-2 text-sm"
                                    role="menuitem" tabindex="-1" id="menu-item-2">
@@ -106,7 +106,7 @@
                             @if($project && $target && $environment)
                                 <div class="py-1" role="none">
                                     <a href="#"
-                                       @click.prevent='Livewire.emit("openModal", "environment.delete", {!! json_encode(['environment' => $environment->id]) !!})'
+                                       @click.prevent='Livewire.emit("openModal", "environment.delete", @json(['environment' => $environment->id]))'
                                        class="text-red-700 group flex items-center px-4 py-2 text-sm"
                                        role="menuitem" tabindex="-1" id="menu-item-2">
                                         <x-heroicon-s-trash

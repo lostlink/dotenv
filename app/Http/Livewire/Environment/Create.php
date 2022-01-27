@@ -22,7 +22,7 @@ class Create extends ModalComponent
 
     public Target|string $target;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => Rule::unique(Environment::class)
@@ -32,7 +32,7 @@ class Create extends ModalComponent
         ];
     }
 
-    public function mount(Target $target)
+    public function mount(Target $target): void
     {
         $this->target = $target;
     }
@@ -63,7 +63,7 @@ class Create extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('environment.livewire.create-or-update');
     }

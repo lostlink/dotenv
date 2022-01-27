@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTargetsTable extends Migration
-{
-    public function up()
+return new class extends Migration {
+    public function up(): void
     {
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
@@ -21,4 +20,4 @@ class CreateTargetsTable extends Migration
             $table->unique(['project_id', 'name']);
         });
     }
-}
+};

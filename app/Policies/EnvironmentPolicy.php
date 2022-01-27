@@ -12,7 +12,7 @@ class EnvironmentPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return
             $user->hasTeamPermission($user->currentTeam, 'read') ||
@@ -30,21 +30,21 @@ class EnvironmentPolicy
             $target->id === $environment->target_id;
     }
 
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return
             $user->hasTeamPermission($user->currentTeam, 'environment:create') ||
             $user->hasTeamPermission($user->currentTeam, 'create');
     }
 
-    public function update(User $user, Environment $environment)
+    public function update(User $user, Environment $environment): bool
     {
         return
             $user->hasTeamPermission($user->currentTeam, 'environment:update') ||
             $user->hasTeamPermission($user->currentTeam, 'update');
     }
 
-    public function delete(User $user, Environment $environment)
+    public function delete(User $user, Environment $environment): bool
     {
         return
             (
@@ -54,14 +54,14 @@ class EnvironmentPolicy
             $user->currentTeam->getAttribute('id') === $environment->target->project->team->id;
     }
 
-    public function restore(User $user, Environment $environment)
+    public function restore(User $user, Environment $environment): bool
     {
         return
             $user->hasTeamPermission($user->currentTeam, 'environment:restore') ||
             $user->hasTeamPermission($user->currentTeam, 'update');
     }
 
-    public function forceDelete(User $user, Environment $environment)
+    public function forceDelete(User $user, Environment $environment): bool
     {
         return
             $user->hasTeamPermission($user->currentTeam, 'environment:force-delete') ||

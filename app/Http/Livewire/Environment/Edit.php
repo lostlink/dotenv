@@ -22,18 +22,18 @@ class Edit extends Component
     public ?Target $target = null;
     public ?Environment $environment = null;
 
-    public function mount()
+    public function mount(): void
     {
         $this->variables = $this->model->variables;
         $this->validateOnly('variables', ['variables' => new Env()]);
     }
 
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         $this->validateOnly($propertyName, ['variables' => new Env()]);
     }
 
-    public function encrypt()
+    public function encrypt(): void
     {
         if (is_null($this->variables)) {
             $this->alert('warning', 'Nothing to Encrypt!');
@@ -61,7 +61,7 @@ class Edit extends Component
         $this->alert('success', 'Successfully Encrypted!');
     }
 
-    public function decrypt()
+    public function decrypt(): void
     {
         if (is_null($this->variables)) {
             $this->alert('warning', 'Nothing to Decrypt!');
@@ -95,7 +95,7 @@ class Edit extends Component
         $this->alert('success', 'Successfully Decrypted!');
     }
 
-    public function save()
+    public function save(): void
     {
         $this->model->variables = $this->variables;
 
@@ -163,7 +163,7 @@ class Edit extends Component
         return session(currentTeam('id') . '_private_key');
     }
 
-    public function clearPrivateKeyFromSession()
+    public function clearPrivateKeyFromSession(): void
     {
         session()->forget(currentTeam('id') . '_private_key');
         $this->alert('success', 'PrivateKey cleared from the session!');

@@ -19,18 +19,18 @@ class Browsershot extends Component
     public string $imageUrl;
     public string $imageName;
 
-    public function mount()
+    public function mount(): void
     {
         $this->imageUrl = $this->model->getFirstMediaUrl('browsershot');
         $this->imageName = $this->model->getAttribute('name');
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('livewire.browsershot');
     }
 
-    public function refresh()
+    public function refresh(): void
     {
         if (is_null($this->model->getAttribute('url'))) {
             $this->alert('warning', 'No URL Defined!');

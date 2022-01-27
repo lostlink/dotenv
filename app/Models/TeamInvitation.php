@@ -7,10 +7,7 @@ use Laravel\Jetstream\TeamInvitation as JetstreamTeamInvitation;
 
 class TeamInvitation extends JetstreamTeamInvitation
 {
-    protected $fillable = [
-        'email',
-        'role',
-    ];
+    protected $guarded = ['id'];
 
     public function team(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

@@ -7,17 +7,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'team_id' => Team::factory(),
-            'name' => $this->faker->domainWord,
-            'description' => $this->faker->paragraph,
+            'name' => $this->faker->domainWord(),
+            'description' => $this->faker->paragraph(),
             'variables' => ['PROJECT_ENV' => 'TEMP'],
         ];
     }

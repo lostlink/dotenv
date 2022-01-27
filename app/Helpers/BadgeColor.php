@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 class BadgeColor
 {
-    public static function get($modelColor)
+    public static function get($modelColor): ?string
     {
         if (is_null($modelColor)) {
             return null;
@@ -20,7 +20,7 @@ class BadgeColor
         };
     }
 
-    public static function guess($modelName)
+    public static function guess($modelName): string
     {
         $modelName = Str::lower($modelName);
 

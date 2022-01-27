@@ -64,14 +64,14 @@
                     <div>
                         <div class="-mt-px flex divide-x divide-gray-200">
                             <div class="w-0 flex-1 flex">
-                                <a onclick='Livewire.emit("openModal", "target.delete", {!! json_encode(['target' => $target->id]) !!})'
+                                <a onclick='Livewire.emit("openModal", "target.delete", @json(['target' => $target->id]))'
                                    class="cursor-pointer relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-red-700 font-medium border border-transparent rounded-bl-lg hover:red-gray-500">
                                     <x-heroicon-s-trash class="w-5 h-5 text-red-400"/>
                                     <span class="ml-3">{{ __('Delete') }}</span>
                                 </a>
                             </div>
                             <div class="-ml-px w-0 flex-1 flex">
-                                <a onclick='Livewire.emit("openModal", "target.update", {!! json_encode(['target' => $target->id]) !!})'
+                                <a onclick='Livewire.emit("openModal", "target.update", @json(['target' => $target->id]))'
                                    class="cursor-pointer relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-green-700 font-medium border border-transparent rounded-br-lg hover:text-green-500">
                                     <x-heroicon-s-pencil class="w-5 h-5 text-green-400"/>
                                     <span class="ml-3">{{ __('Edit') }}</span>
@@ -84,7 +84,7 @@
 
             <li class="col-span-1 flex flex-col text-center rounded-lg divide-y divide-gray-200">
                 <button type="button"
-                        onclick='Livewire.emit("openModal", "target.create", {!! json_encode(['project' => $project->id]) !!})'
+                        onclick='Livewire.emit("openModal", "target.create", @json(['project' => $project->id]))'
                         class="relative block w-full h-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <x-heroicon-o-folder-add class="mx-auto h-12 w-12 text-gray-400"/>
                     <span class="mt-2 block text-sm font-medium text-gray-900">{{ __('Create a new Target') }}</span>

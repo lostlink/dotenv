@@ -29,7 +29,7 @@ class Team extends JetstreamTeam
         return $this->hasMany(Project::class);
     }
 
-    public function targets()
+    public function targets(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
         return $this->hasManyThrough(Target::class, Project::class);
     }

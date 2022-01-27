@@ -12,7 +12,7 @@ class Dashboard extends Component
 {
     public bool $firstRun = true;
 
-    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function render(): \Illuminate\Contracts\View\View
     {
         $range = CarbonPeriod::start(Carbon::now()->subDays(10))->untilNow();
         $activities = Activity::where('team_id', currentTeam('id'))

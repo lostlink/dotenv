@@ -20,12 +20,12 @@
                         <div class="dropdown-item">
                             Excel
                             <a class="text-black-50" wire:click="exportToXLS()" href="#">
-                                @lang('livewire-powergrid::datatable.labels.all')
+                                {{ __('livewire-powergrid::datatable.labels.all') }}
                             </a>
                             @if($checkbox)
                                 /
                                 <a class="text-black-50" wire:click="exportToXLS(true)" href="#">
-                                    @lang('livewire-powergrid::datatable.labels.selected')
+                                    {{ __('livewire-powergrid::datatable.labels.selected') }}
                                 </a>
                             @endif
                         </div>
@@ -36,12 +36,12 @@
                         <div class="dropdown-item">
                             Csv
                             <a class="text-black-50" wire:click="exportToCsv()" href="#">
-                                @lang('livewire-powergrid::datatable.labels.all')
+                                {{ __('livewire-powergrid::datatable.labels.all') }}
                             </a>
                             @if($checkbox)
                                 /
                                 <a class="text-black-50" wire:click="exportToCsv(true)" href="#">
-                                    @lang('livewire-powergrid::datatable.labels.selected')
+                                    {{ __('livewire-powergrid::datatable.labels.selected') }}
                                 </a>
                             @endif
                         </div>

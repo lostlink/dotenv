@@ -13,7 +13,7 @@ class RequestPrivateKey extends ModalComponent
 {
     public ?string $privateKey = '';
 
-    public function rules()
+    public function rules(): array
     {
         return match (Crypt::guessCryptFromPrivateKey($this->privateKey)) {
             'cipher' => [
@@ -28,12 +28,12 @@ class RequestPrivateKey extends ModalComponent
         };
     }
 
-    public function generateKey($type = 'cipher')
+    public function generateKey($type = 'cipher'): void
     {
         $this->privateKey = Crypt::generateKey($type);
     }
 
-    public function submit()
+    public function submit(): void
     {
         $this->validate();
 
@@ -52,7 +52,7 @@ class RequestPrivateKey extends ModalComponent
         $this->closeModal();
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('teams.request-private-key');
     }

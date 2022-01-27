@@ -23,7 +23,7 @@ class Project extends BrowsershotModel
 
     protected $guarded = [];
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope('currentTeam', function (Builder $builder) {
             $builder->where('team_id', currentTeam('id'));

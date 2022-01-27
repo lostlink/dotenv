@@ -15,7 +15,7 @@ class Crypt
         };
     }
 
-    public static function encrypt(string $value, ?string $privateKey)
+    public static function encrypt(string $value, ?string $privateKey): ?string
     {
         if (is_null($privateKey)) {
             return $value;
@@ -28,7 +28,7 @@ class Crypt
         };
     }
 
-    public static function decrypt(string $value, ?string $privateKey)
+    public static function decrypt(string $value, ?string $privateKey): ?string
     {
         if (is_null($privateKey)) {
             return $value;
@@ -54,7 +54,7 @@ class Crypt
         return null;
     }
 
-    public static function clearPrivateKey()
+    public static function clearPrivateKey(): void
     {
         session()->forget('privateKey');
     }

@@ -17,7 +17,7 @@ class StoreMarketingQueryParamsMiddleware
         ];
         foreach ($utmQueryParams as $utmQueryParam) {
             if ($request->has($utmQueryParam)) {
-                session()->put($utmQueryParam, $request->input($utmQueryParam));
+                $request->session()->put($utmQueryParam, $request->input($utmQueryParam));
             }
         }
 

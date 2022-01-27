@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivitiesTable extends Migration
-{
-    public function up()
+return new class extends Migration {
+    public function up(): void
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
@@ -28,4 +27,4 @@ class CreateActivitiesTable extends Migration
             $table->timestamps();
         });
     }
-}
+};

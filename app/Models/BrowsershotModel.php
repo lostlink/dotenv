@@ -10,6 +10,8 @@ class BrowsershotModel extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $guarded = ['id'];
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('browsershot')

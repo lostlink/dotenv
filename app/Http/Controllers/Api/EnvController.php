@@ -9,12 +9,13 @@ use App\Models\Environment;
 use App\Models\Project;
 use App\Models\Target;
 use App\Rules\Env;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Activitylog\Models\Activity;
 
 class EnvController extends Controller
 {
-    public function __invoke(Project $project, Target $target, Environment $environment): string
+    public function __invoke(Request $request, Project $project, Target $target, Environment $environment): string
     {
         $project->setAttribute('variables', $this->decryptIfNecessary($project->getAttribute('variables')));
         $target->setAttribute('variables', $this->decryptIfNecessary($target->getAttribute('variables')));
@@ -39,7 +40,7 @@ class EnvController extends Controller
         );
 
         activity()
-            ->causedBy(request()->user())
+            ->causedBy($request->user())
             ->performedOn($project)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));

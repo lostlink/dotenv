@@ -20,7 +20,7 @@ class Create extends ModalComponent
 
     public ?string $variables = null;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => Rule::unique(Project::class)
@@ -30,7 +30,7 @@ class Create extends ModalComponent
         ];
     }
 
-    public function submit()
+    public function submit(): \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     {
         $this->authorize('create', [Project::class]);
 
@@ -55,7 +55,7 @@ class Create extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('project.livewire.create-or-update');
     }

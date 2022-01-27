@@ -22,7 +22,7 @@ class Update extends ModalComponent
 
     public Project|string $project;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => [
@@ -46,7 +46,7 @@ class Update extends ModalComponent
         ];
     }
 
-    public function mount(Project $project)
+    public function mount(Project $project): void
     {
         $this->project = $project;
         $this->name = $this->project->name;
@@ -81,7 +81,7 @@ class Update extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('project.livewire.create-or-update');
     }
