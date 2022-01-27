@@ -7,8 +7,8 @@
     <input type="hidden" name="utm_content" value="{{ session('utm_content') }}">
 
     {{-- Other handy inputs for marketing ROIs --}}
-    <input type="hidden" name="url" value="{{request()->url()}}">
-    <input type="hidden" name="ip_address" class="ip" value="{{request()->ip()}}">
+    <input type="hidden" name="url" value="{{ request()->url() }}">
+    <input type="hidden" name="ip_address" class="ip" value="{{ request()->ip() }}">
     <input type="hidden" name="locale" value="{{ app()->getLocale() }}">
 
     {{-- And you might want to add other inputs like: country, currency ..etc --}}
