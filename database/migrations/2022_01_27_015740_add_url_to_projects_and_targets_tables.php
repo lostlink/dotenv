@@ -10,7 +10,6 @@ class AddUrlToProjectsAndTargetsTables extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->string('url')->nullable()->after('name');
-
         });
 
         Schema::table('targets', function (Blueprint $table) {
