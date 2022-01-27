@@ -71,7 +71,7 @@
                                 </a>
                             </div>
                             <div class="-ml-px w-0 flex-1 flex">
-                                <a onclick='Livewire.emit("openModal", "target.edit", {!! json_encode(['target' => $target->id]) !!})'
+                                <a onclick='Livewire.emit("openModal", "target.update", {!! json_encode(['target' => $target->id]) !!})'
                                    class="cursor-pointer relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-green-700 font-medium border border-transparent rounded-br-lg hover:text-green-500">
                                     <x-heroicon-s-pencil class="w-5 h-5 text-green-400"/>
                                     <span class="ml-3">{{ __('Edit') }}</span>
