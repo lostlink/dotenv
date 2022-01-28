@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Screenshot;
 
 use App\Models\BrowsershotModel;
 use App\Traits\TakesScreenshots;
@@ -25,11 +25,6 @@ class Browsershot extends Component
         $this->imageName = $this->model->getAttribute('name');
     }
 
-    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-    {
-        return view('livewire.browsershot');
-    }
-
     public function refresh(): void
     {
         if (is_null($this->model->getAttribute('url'))) {
@@ -46,8 +41,13 @@ class Browsershot extends Component
             ->addMedia(Storage::path($path))
             ->toMediaCollection('browsershot');
 
-        $this->alert('success', 'Screenshot Updated!');
+        $this->alert('success', 'Update Updated!');
 
         $this->imageUrl = $this->model->refresh()->getFirstMediaUrl('browsershot');
+    }
+
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    {
+        return view('screenshot.livewire.browsershot');
     }
 }

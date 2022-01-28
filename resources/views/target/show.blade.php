@@ -59,7 +59,7 @@
 
         <div x-show="tab === 'project'" class="sm:flex" x-cloak>
             <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
-                <livewire:browsershot :model="$target->project" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
+                <livewire:screenshot.browsershot :model="$target->project" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
             </div>
             <div>
                 <h4 class="text-lg font-bold">
@@ -73,7 +73,7 @@
 
         <div x-show="tab === 'target'" class="sm:flex" x-cloak>
             <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
-                <livewire:browsershot :model="$target" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
+                <livewire:screenshot.browsershot :model="$target" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
             </div>
             <div>
                 <h4 class="text-lg font-bold">
@@ -88,7 +88,7 @@
         @foreach($target->environments as $environment)
             <div x-show="tab === '{{ $environment->routeKey }}'" class="sm:flex" x-cloak>
                 <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
-                    <livewire:browsershot :model="$environment" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
+                    <livewire:screenshot.browsershot :model="$environment" class="h-32 w-full sm:w-32 border border-gray-300 bg-white text-gray-300"/>
                 </div>
                 <div>
                     <h4 class="text-lg font-bold">

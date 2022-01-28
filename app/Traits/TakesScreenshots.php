@@ -55,7 +55,7 @@ trait TakesScreenshots
             ->setNodeModulePath(config('_app.paths.node_modules'))
             ->setNpmBinary(config('_app.binaries.npm'))
             ->setNodeBinary(config('_app.binaries.node'))
-            ->setChromePath(config('_app.binaries.chrome'))
+//            ->setChromePath(config('_app.binaries.chrome'))
             ->setBinPath(app_path('Services/Browsershot/browser.js'))
             ->setOption('args', [
                 '--autoplay-policy=user-gesture-required',
