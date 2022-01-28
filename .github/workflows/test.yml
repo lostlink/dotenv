@@ -3,8 +3,8 @@ name: Test
 on:
   push:
     branches:
-      - feature/*
-      - hotfix/*
+      - hotfix/**
+      - feature/**
   workflow_call:
     secrets:
       COMPOSER_AUTH_JSON:
@@ -14,13 +14,23 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
-    env:
-      APP_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+    environment: ${{ contains(github.ref, 'refs/heads/releases/') && 'production' || 'develop' }}
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+
+      - name: Set Environment - Production
+        if: contains(github.ref, 'refs/heads/releases/')
+        run: echo "APP_ENV=production" >> $GITHUB_ENV
+
+      - name: Set Environment - Staging
+        if: contains(github.ref, 'refs/heads/main')
+        run: echo "APP_ENV=staging" >> $GITHUB_ENV
+
+      - name: Set Environment - Develop
+        if: contains(github.ref, 'refs/heads/develop') || contains(github.ref, 'refs/heads/feature') || contains(github.ref, 'refs/heads/hotfix')
+        run: echo "APP_ENV=develop" >> $GITHUB_ENV
 
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -50,6 +60,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress --no-scripts
 
+      - name: Remove auth.json file
+        run: rm -f $GITHUB_WORKSPACE/auth.json
+
       - name: Copy testing environment config file
         run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
 
@@ -73,6 +86,3 @@ jobs:
         with:
           name: Logs
           path: ./storage/logs
-
-      - name: Remove auth.json file
-        run: rm -f $GITHUB_WORKSPACE/auth.json

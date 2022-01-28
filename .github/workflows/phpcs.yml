@@ -3,8 +3,8 @@ name: Linters - PHPCS
 on:
   push:
     branches:
-      - feature/*
-      - hotfix/*
+      - hotfix/**
+      - feature/**
   workflow_call:
     secrets:
       COMPOSER_AUTH_JSON:
@@ -14,13 +14,23 @@ jobs:
   phpcs:
     name: PHPCS
     runs-on: ubuntu-latest
-    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
-    env:
-      APP_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
+    environment: ${{ contains(github.ref, 'refs/heads/releases/') && 'production' || 'develop' }}
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+
+      - name: Set Environment - Production
+        if: contains(github.ref, 'refs/heads/releases/')
+        run: echo "APP_ENV=production" >> $GITHUB_ENV
+
+      - name: Set Environment - Staging
+        if: contains(github.ref, 'refs/heads/main')
+        run: echo "APP_ENV=staging" >> $GITHUB_ENV
+
+      - name: Set Environment - Develop
+        if: contains(github.ref, 'refs/heads/develop') || contains(github.ref, 'refs/heads/feature') || contains(github.ref, 'refs/heads/hotfix')
+        run: echo "APP_ENV=develop" >> $GITHUB_ENV
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -41,8 +51,15 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress --no-scripts --ignore-platform-reqs
 
+      - name: Remove auth.json file
+        run: rm -f $GITHUB_WORKSPACE/auth.json
+
       - name: PHPCS lint
         run: vendor/bin/duster phpcs
 
-      - name: Remove auth.json file
-        run: rm -f $GITHUB_WORKSPACE/auth.json
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: Logs
+          path: ./storage/logs
