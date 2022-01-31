@@ -30,7 +30,7 @@ class Update extends ModalComponent
         $this->imageName = $this->model->getAttribute('name');
     }
 
-    public function upload()
+    public function upload(): void
     {
         $this->validate([
             'screenshot' => 'required',
@@ -47,7 +47,7 @@ class Update extends ModalComponent
         $this->clearMedia();
     }
 
-    public function browsershot(): void
+    public function fromUrl(): void
     {
         if (is_null($this->model->getAttribute('url'))) {
             $this->alert('warning', 'No URL Defined!');

@@ -3,10 +3,6 @@
 namespace App\Http\Livewire\Screenshot;
 
 use App\Models\BrowsershotModel;
-use App\Traits\TakesScreenshots;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Show extends Component
