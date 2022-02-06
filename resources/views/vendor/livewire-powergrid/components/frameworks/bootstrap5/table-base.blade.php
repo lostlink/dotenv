@@ -1,7 +1,7 @@
 <div>
     <div class="col-md-12">
         @include($theme->layout->header, [
-                'enabledFilters' => $enabledFilters
+        'enabledFilters' => $enabledFilters
         ])
 
         @includeIf($theme->layout->message)
@@ -14,5 +14,3 @@
         @include($theme->footer->view, ['theme' => $theme])
     </div>
 </div>
-
-

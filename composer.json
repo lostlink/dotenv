@@ -91,6 +91,7 @@
             "./vendor/bin/phpstan analyze"
         ],
         "fix": [
+            "./node_modules/.bin/prettier --write resources/**/*.blade.php",
             "./vendor/bin/php-cs-fixer fix",
             "./vendor/bin/phpcbf"
         ],

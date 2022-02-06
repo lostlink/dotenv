@@ -1,5 +1,7 @@
-<script src="{{ config('livewire-powergrid.plugins.flat_piker.js') }}"></script>
-<script src="{{ config('livewire-powergrid.plugins.flat_piker.translate') }}"></script>
+<script src="{{ config('livewire-powergrid.plugins.flat_piker.js') }}">
+</script>
+<script src="{{ config('livewire-powergrid.plugins.flat_piker.translate') }}">
+</script>
 
 @includeIf(powerGridThemeRoot().".scripts")
 
@@ -20,19 +22,22 @@
     }
 
     function isV2() {
-        return window.Alpine && window.Alpine.version && /^2\..+\..+$/.test(window.Alpine.version)
+        return window.Alpine && window.Alpine.version && /^2\..+\..+$/.test(
+            window.Alpine.version)
     }
 
-    setTimeout(function () {
+    setTimeout(function() {
         if (isV2()) {
-            console.warn('⚡️ Powergrid alert ⚡ ️- Alpine 2x will be discontinued soo.')
+            console.warn(
+                '⚡️ Powergrid alert ⚡ ️- Alpine 2x will be discontinued soo.'
+                )
         }
     }, 1000)
 </script>
 
-@if(powerGridJsFramework() === JS_FRAMEWORK_ALPINE)
-    <script src="{{ config('livewire-powergrid.js_framework_cdn.alpinejs') }}" defer></script>
+@if (powerGridJsFramework() === JS_FRAMEWORK_ALPINE)
+    <script src="{{ config('livewire-powergrid.js_framework_cdn.alpinejs') }}"
+        defer></script>
 @endif
 
 @stack('power_grid_scripts')
-

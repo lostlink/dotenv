@@ -1,4 +1,5 @@
-<script src="{{ config('livewire-powergrid.plugins.bootstrap-select.js') }}" crossorigin="anonymous"></script>
+<script src="{{ config('livewire-powergrid.plugins.bootstrap-select.js') }}"
+crossorigin="anonymous"></script>
 
 <script>
     function toggle(event) {
@@ -27,6 +28,8 @@
     }
 
     function editableInput(id, value, field) {
-        return '<input value="' + value + '" class="form-control" @keydown.enter=saveEditableInput($event,' + id + ',"' + field + '") >';
+        return '<input value="' + value +
+            '" class="form-control" @keydown.enter=saveEditableInput($event,' +
+            id + ',"' + field + '") >';
     }
 </script>

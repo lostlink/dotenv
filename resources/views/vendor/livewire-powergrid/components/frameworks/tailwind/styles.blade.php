@@ -2,5 +2,5 @@
     [x-cloak] {
         display: none;
     }
-</style>
 
+</style>

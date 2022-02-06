@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-logo-with-text class="h-20 w-auto" color="#0891b2"/>
+            <x-logo-with-text class="h-20 w-auto" color="#0891b2" />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
@@ -21,7 +21,8 @@
 
             <div class="block">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email"
+                    name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
