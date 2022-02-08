@@ -2,7 +2,10 @@
     "name": "lostlink/dotenv",
     "type": "project",
     "description": "dotEnv Manager",
-    "keywords": ["dotenv", "laravel"],
+    "keywords": [
+        "dotenv",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -21,8 +24,7 @@
         "laravel/sanctum": "^v2.14.0",
         "laravel/tinker": "^v2.7.0",
         "laravel/vapor-core": "^v2.19.1",
-        "league/flysystem-aws-s3-v3": "^1.0.29",
-        "league/flysystem-cached-adapter": "^1.0.2",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^v2.10.1",
         "mad-web/laravel-robots": "^3.0.0",
         "pestphp/pest": "^v1.21.1",
