@@ -1,9 +1,6 @@
-<link rel="stylesheet"
-    href="{{ config('livewire-powergrid.plugins.bootstrap-select.css') }}"
-    crossorigin="anonymous" />
+<link rel="stylesheet" href="{{ config('livewire-powergrid.plugins.bootstrap-select.css') }}" crossorigin="anonymous"/>
 <style>
-    .dropdown-toggle,
-    .dropdown-item {
+    .dropdown-toggle, .dropdown-item {
         padding-left: 15px;
         font-size: 0.85rem;
         color: #454444;
@@ -13,9 +10,7 @@
         vertical-align: middle;
         line-height: normal;
     }
-
     .bootstrap-select {
         padding-left: 0 !important;
     }
-
 </style>
