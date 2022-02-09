@@ -3,17 +3,16 @@
         <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
-                    <img class="h-32 w-32 rounded-md" src="{{ $imageUrl }}"
-                        alt="{{ $imageName }}">
+                    {{ $model->url }}
+                    <img class="h-32 w-32 rounded-md" src="{{ $imageUrl }}" alt="{{ $imageName }}">
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <form class="space-y-6" wire:submit.prevent="upload"
-                        method="POST">
+                          method="POST">
                         <div class="grid grid-cols-3 gap-6">
                             <div class="col-span-3 sm:col-span-2">
                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                    <x-media-library-attachment
-                                        name="screenshot" />
+                                    <x-media-library-attachment name="screenshot"/>
                                 </div>
                             </div>
                         </div>
@@ -38,17 +37,17 @@
                         {{-- </div> --}}
 
                         <div class="flex justify-end">
-                            <button type="button" wire:click.prevent="fromUrl()"
-                                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <button type="button" wire:click.prevent="fromUrl"
+                                    class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Refresh
                             </button>
                             <button type="button"
-                                wire:click.prevent="$emit('closeModal')"
-                                class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    wire:click.prevent="$emit('closeModal')"
+                                    class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Cancel
                             </button>
                             <button type="submit"
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Save
                             </button>
                         </div>
