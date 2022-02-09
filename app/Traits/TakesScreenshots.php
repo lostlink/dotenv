@@ -4,7 +4,7 @@ namespace App\Traits;
 
 //use App\Models\UserAgent;
 use Exception;
-use Spatie\Browsershot\Browsershot;
+use Wnx\SidecarBrowsershot\BrowsershotLambda as Browsershot;
 
 trait TakesScreenshots
 {
@@ -17,24 +17,6 @@ trait TakesScreenshots
         }
 
         return $this->browsershot()->bodyHtml();
-    }
-
-    public function getImage($url = null): string
-    {
-        if ($url) {
-            $this->setUrl($url);
-        }
-
-        return $this->browsershot()->screenshot();
-    }
-
-    public function getBase64($url = null): string
-    {
-        if ($url) {
-            $this->setUrl($url);
-        }
-
-        return $this->browsershot()->base64Screenshot();
     }
 
     public function setUrl(string $url): self
@@ -52,11 +34,6 @@ trait TakesScreenshots
 
         return Browsershot::url($this->url)
             ->windowSize(720, 1280)
-            ->setNodeModulePath(config('_app.paths.node_modules'))
-            ->setNpmBinary(config('_app.binaries.npm'))
-            ->setNodeBinary(config('_app.binaries.node'))
-//            ->setChromePath(config('_app.binaries.chrome'))
-            ->setBinPath(app_path('Services/Browsershot/browser.js'))
             ->setOption('args', [
                 '--autoplay-policy=user-gesture-required',
                 '--disable-background-networking',
@@ -97,5 +74,23 @@ trait TakesScreenshots
             ])
 //            ->userAgent(UserAgent::first()->useragent)
             ->waitUntilNetworkIdle();
+    }
+
+    public function getImage($url = null): string
+    {
+        if ($url) {
+            $this->setUrl($url);
+        }
+
+        return $this->browsershot()->screenshot();
+    }
+
+    public function getBase64($url = null): string
+    {
+        if ($url) {
+            $this->setUrl($url);
+        }
+
+        return $this->browsershot()->base64Screenshot();
     }
 }
