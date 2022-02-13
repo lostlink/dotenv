@@ -30,7 +30,7 @@
         if (isV2()) {
             console.warn(
                 '⚡️ Powergrid alert ⚡ ️- Alpine 2x will be discontinued soo.'
-                )
+            )
         }
     }, 1000)
 </script>

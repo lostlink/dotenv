@@ -8,7 +8,7 @@
     'dataField' => null,
 ])
 <div>
-    @if ($column->hidden === false)
+    @if($column->hidden === false)
         @php
             if (filled($column->dataField)) {
                 $field = $column->dataField;
@@ -16,23 +16,22 @@
                 $field = $column->field;
             }
         @endphp
-        <th class="{{ $theme->table->thClass . ' ' . $column->headerClass }}"
-            style="width: max-content; @if ($column->sortable) cursor:pointer; @endif{{ $theme->table->thStyle . ' ' . $column->headerStyle }}">
-            <div class="{{ $theme->cols->divClass }}" @if ($column->sortable === true) wire:click="sortBy('{{ $field }}')"@endif>
-                @if ($column->sortable === true)
-                    <span class="text-base pr-2"
-                        style="font-size: 1rem !important;">
-                        @if ($sortField !== $field)
+        <th class="{{ $theme->table->thClass .' '. $column->headerClass }}"
+            style="width: max-content; @if($column->sortable) cursor:pointer; @endif{{ $theme->table->thStyle.' '. $column->headerStyle }}">
+            <div class="{{ $theme->cols->divClass }}" @if($column->sortable === true) wire:click="sortBy('{{ $field }}')"@endif>
+                @if($column->sortable === true)
+                    <span class="text-base pr-2" style="font-size: 1rem !important;">
+						@if ($sortField !== $field)
                             &#8597;
                         @elseif ($sortDirection == 'desc')
                             &#8593;
                         @else
                             &#8595;
                         @endif
-                    </span>
+					</span>
                 @endif
                 <span>
-                    {{ $column->title }}
+                    {{$column->title}}
                 </span>
             </div>
         </th>
