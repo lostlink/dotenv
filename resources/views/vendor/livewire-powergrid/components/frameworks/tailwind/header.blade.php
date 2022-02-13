@@ -3,13 +3,14 @@
     <div class="md:flex md:flex-row w-full">
 
         <div>
-            <x-livewire-powergrid::actions-header :theme="$theme"
-                :actions="$this->headers" />
+            <x-livewire-powergrid::actions-header
+                :theme="$theme"
+                :actions="$this->headers"/>
         </div>
 
         <div class="flex flex-row">
 
-            @if ($exportOption)
+            @if($exportOption)
                 <div class="mr-2 mt-2 sm:mt-0">
                     @include(powerGridThemeRoot().'.export')
                 </div>
@@ -30,3 +31,4 @@
 @include(powerGridThemeRoot().'.batch-exporting')
 
 @include(powerGridThemeRoot().'.enabled-filters')
+

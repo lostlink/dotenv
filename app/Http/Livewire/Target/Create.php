@@ -2,9 +2,14 @@
 
 namespace App\Http\Livewire\Target;
 
+use App\Http\Livewire\Traits\Screenshot;
 use App\Models\Project;
 use App\Models\Target;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Activitylog\Models\Activity;
@@ -12,16 +17,17 @@ use Spatie\Activitylog\Models\Activity;
 class Create extends ModalComponent
 {
     use AuthorizesRequests;
-
-    public ?string $name = null;
-
-    public ?string $url = null;
-
-    public ?string $notes = null;
-
-    public ?string $variables = null;
+    use Screenshot;
 
     public Project|string $project;
+    public ?string $name = null;
+    public ?string $url = null;
+    public ?string $notes = null;
+    public ?string $variables = null;
+    public ?string $imageUrl;
+    public ?string $imageName;
+    public array $mediaComponentNames = ['screenshot'];
+    public $screenshot;
 
     public function rules(): array
     {
@@ -36,9 +42,10 @@ class Create extends ModalComponent
     public function mount(Project $project): void
     {
         $this->project = $project;
+        $this->imageUrl = asset('images/profile/project.webp');
     }
 
-    public function submit(): \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    public function submit(): RedirectResponse|Redirector
     {
         $this->authorize('create', [Target::class, Project::class]);
 
@@ -46,6 +53,10 @@ class Create extends ModalComponent
             ->create(
                 $this->validate()
             );
+
+        if ($this->screenshot) {
+            $this->screenshotFromUpload($target);
+        }
 
         activity()
             ->causedBy(request()->user())
@@ -64,7 +75,7 @@ class Create extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function render(): Factory|View
     {
         return view('target.livewire.create-or-update');
     }

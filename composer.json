@@ -14,6 +14,7 @@
         "calebporzio/sushi": "^v2.4.0",
         "fruitcake/laravel-cors": "^v2.0.5",
         "guzzlehttp/guzzle": "^7.4.1",
+        "hammerstone/sidecar": "^0.3.7",
         "jantinnerezo/livewire-alert": "^2.2.3",
         "laravel/framework": "^v8.81.0",
         "laravel/jetstream": "^2.6.3",
@@ -39,7 +40,8 @@
         "spatie/laravel-sitemap": "^6.1.0",
         "spatie/laravel-sluggable": "^3.3.0",
         "staudenmeir/eloquent-has-many-deep": "^v1.14.4",
-        "wire-elements/modal": "^1.0.4"
+        "wire-elements/modal": "^1.0.4",
+        "wnx/sidecar-browsershot": "dev-main"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^v3.6.5",

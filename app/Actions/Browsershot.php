@@ -1,62 +1,44 @@
 <?php
 
-namespace App\Traits;
+namespace App\Actions;
 
 //use App\Models\UserAgent;
 use Exception;
-use Spatie\Browsershot\Browsershot;
+use Wnx\SidecarBrowsershot\BrowsershotLambda;
 
-trait TakesScreenshots
+class Browsershot
 {
-    public string $url;
+    public string $screenshotUrl;
 
-    public function getHtml($url = null): string
+    public static function __callStatic($funName, $arguments)
     {
-        if ($url) {
-            $this->setUrl($url);
+        return (new self())->$funName($arguments);
+    }
+
+    public function getHtml($screenshotUrl = null): string
+    {
+        if ($screenshotUrl) {
+            $this->setUrl($screenshotUrl);
         }
 
         return $this->browsershot()->bodyHtml();
     }
 
-    public function getImage($url = null): string
+    public function setUrl(string $screenshotUrl): self
     {
-        if ($url) {
-            $this->setUrl($url);
-        }
-
-        return $this->browsershot()->screenshot();
-    }
-
-    public function getBase64($url = null): string
-    {
-        if ($url) {
-            $this->setUrl($url);
-        }
-
-        return $this->browsershot()->base64Screenshot();
-    }
-
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
+        $this->screenshotUrl = $screenshotUrl;
 
         return $this;
     }
 
-    private function browsershot(): Browsershot
+    private function browsershot(): BrowsershotLambda
     {
-        if (empty($this->url)) {
+        if (empty($this->screenshotUrl)) {
             throw new Exception('URL cannot be empty');
         }
 
-        return Browsershot::url($this->url)
+        return BrowsershotLambda::url($this->screenshotUrl)
             ->windowSize(720, 1280)
-            ->setNodeModulePath(config('_app.paths.node_modules'))
-            ->setNpmBinary(config('_app.binaries.npm'))
-            ->setNodeBinary(config('_app.binaries.node'))
-            ->setChromePath(config('_app.binaries.chrome'))
-            ->setBinPath(app_path('Services/Browsershot/browser.js'))
             ->setOption('args', [
                 '--autoplay-policy=user-gesture-required',
                 '--disable-background-networking',
@@ -97,5 +79,23 @@ trait TakesScreenshots
             ])
 //            ->userAgent(UserAgent::first()->useragent)
             ->waitUntilNetworkIdle();
+    }
+
+    public function getImage($screenshotUrl = null): string
+    {
+        if ($screenshotUrl) {
+            $this->setUrl($screenshotUrl);
+        }
+
+        return $this->browsershot()->screenshot();
+    }
+
+    public function getBase64($screenshotUrl = null): string
+    {
+        if ($screenshotUrl) {
+            $this->setUrl($screenshotUrl);
+        }
+
+        return $this->browsershot()->base64Screenshot();
     }
 }
