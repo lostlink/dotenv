@@ -2,25 +2,32 @@
 
 namespace App\Http\Livewire\Target;
 
+use App\Http\Livewire\Traits\Screenshot;
 use App\Models\Target;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Activitylog\Models\Activity;
 
 class Update extends ModalComponent
 {
     use AuthorizesRequests;
-
-    public ?string $name = null;
-
-    public ?string $url = null;
-
-    public ?string $notes = null;
-
-    public ?string $variables = null;
+    use LivewireAlert;
+    use Screenshot;
 
     public Target|string $target;
+    public ?string $name = null;
+    public ?string $url = null;
+    public ?string $notes = null;
+    public ?string $variables = null;
+    public string $imageUrl;
+    public string $imageName;
 
     public function rules(): array
     {
@@ -53,9 +60,11 @@ class Update extends ModalComponent
         $this->url = $this->target->url;
         $this->notes = $this->target->notes;
         $this->variables = $this->target->variables;
+        $this->imageUrl = $this->target->getFirstMediaUrl('browsershot');
+        $this->imageName = $this->name;
     }
 
-    public function submit(): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public function submit(): Redirector|Application|RedirectResponse
     {
         $this->authorize('update', [Target::class, $this->target]);
 
@@ -63,6 +72,10 @@ class Update extends ModalComponent
             ->update(
                 $this->validate()
             );
+
+        if ($this->screenshot) {
+            $this->screenshotFromUpload($this->target);
+        }
 
         activity()
             ->causedBy(request()->user())
@@ -82,7 +95,7 @@ class Update extends ModalComponent
         return redirect(request()->header('Referer'));
     }
 
-    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function render(): Factory|View
     {
         return view('target.livewire.create-or-update');
     }

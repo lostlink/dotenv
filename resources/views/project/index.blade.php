@@ -63,7 +63,7 @@
                                                 <div
                                                     class="flex-shrink-0 h-10 w-10">
                                                     <img class="h-10 w-10 rounded-full"
-                                                         src="{{ asset('images/profile/project.webp') }}"
+                                                         src="{{ $project->getFirstMediaUrl('browsershot') }}"
                                                          alt="{{ $project->name }}">
                                                 </div>
                                                 <div class="ml-4">

@@ -1,38 +1,43 @@
 <?php
 
-namespace App\Traits;
+namespace App\Actions;
 
 //use App\Models\UserAgent;
 use Exception;
-use Wnx\SidecarBrowsershot\BrowsershotLambda as Browsershot;
+use Wnx\SidecarBrowsershot\BrowsershotLambda;
 
-trait TakesScreenshots
+class Browsershot
 {
-    public string $url;
+    public string $screenshotUrl;
 
-    public function getHtml($url = null): string
+    public static function __callStatic($funName, $arguments)
     {
-        if ($url) {
-            $this->setUrl($url);
+        return (new self())->$funName($arguments);
+    }
+
+    public function getHtml($screenshotUrl = null): string
+    {
+        if ($screenshotUrl) {
+            $this->setUrl($screenshotUrl);
         }
 
         return $this->browsershot()->bodyHtml();
     }
 
-    public function setUrl(string $url): self
+    public function setUrl(string $screenshotUrl): self
     {
-        $this->url = $url;
+        $this->screenshotUrl = $screenshotUrl;
 
         return $this;
     }
 
-    private function browsershot(): Browsershot
+    private function browsershot(): BrowsershotLambda
     {
-        if (empty($this->url)) {
+        if (empty($this->screenshotUrl)) {
             throw new Exception('URL cannot be empty');
         }
 
-        return Browsershot::url($this->url)
+        return BrowsershotLambda::url($this->screenshotUrl)
             ->windowSize(720, 1280)
             ->setOption('args', [
                 '--autoplay-policy=user-gesture-required',
@@ -76,19 +81,19 @@ trait TakesScreenshots
             ->waitUntilNetworkIdle();
     }
 
-    public function getImage($url = null): string
+    public function getImage($screenshotUrl = null): string
     {
-        if ($url) {
-            $this->setUrl($url);
+        if ($screenshotUrl) {
+            $this->setUrl($screenshotUrl);
         }
 
         return $this->browsershot()->screenshot();
     }
 
-    public function getBase64($url = null): string
+    public function getBase64($screenshotUrl = null): string
     {
-        if ($url) {
-            $this->setUrl($url);
+        if ($screenshotUrl) {
+            $this->setUrl($screenshotUrl);
         }
 
         return $this->browsershot()->base64Screenshot();
