@@ -19,7 +19,7 @@ class Update extends ModalComponent
     use AuthorizesRequests;
     use Screenshot;
 
-    public Project|string $project;
+    public Project|string $model;
     public ?string $name = null;
     public ?string $description = null;
     public ?string $url = null;
@@ -32,7 +32,7 @@ class Update extends ModalComponent
         return [
             'name' => [
                 'string',
-                $this->name === $this->project->getOriginal('name')
+                $this->name === $this->model->getOriginal('name')
                     ? null
                     : Rule::unique(Project::class)->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
             ],
@@ -53,37 +53,37 @@ class Update extends ModalComponent
 
     public function mount(Project $project): void
     {
-        $this->project = $project;
-        $this->name = $this->project->name;
-        $this->url = $this->project->url;
-        $this->description = $this->project->description;
-        $this->variables = $this->project->variables;
-        $this->imageUrl = $this->project->getFirstMediaUrl('browsershot');
+        $this->model = $project;
+        $this->name = $this->model->name;
+        $this->url = $this->model->url;
+        $this->description = $this->model->description;
+        $this->variables = $this->model->variables;
+        $this->imageUrl = $this->model->getFirstMediaUrl('browsershot');
         $this->imageName = $this->name;
     }
 
     public function submit(): Redirector|Application|RedirectResponse
     {
-        $this->authorize('update', [Project::class, $this->project]);
+        $this->authorize('update', [Project::class, $this->model]);
 
-        $this->project->update(
+        $this->model->update(
             $this->validate()
         );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($this->project);
+            $this->screenshotFromUpload($this->model);
         }
 
         activity()
             ->causedBy(request()->user())
-            ->performedOn($this->project)
+            ->performedOn($this->model)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
                 $activity->setAttribute('trigger', 'WEB');
             })
             ->withProperties([
-                'update' => $this->project->getOriginal(),
-                'original' => $this->project->getDirty(),
+                'update' => $this->model->getOriginal(),
+                'original' => $this->model->getDirty(),
             ])
             ->log('Project Updated');
 

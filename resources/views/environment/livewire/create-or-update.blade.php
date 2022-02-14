@@ -45,9 +45,10 @@
                                       id="url-optional">Optional</span>
                             </div>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                {{-- <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"> --}}
-                                {{-- http(s):// --}}
-                                {{-- </span> --}}
+                                <button wire:click.prevent="screenshotFromUrl"
+                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                    <x-heroicon-o-refresh class="h-5 w-5"/>
+                                </button>
                                 <input type="text" wire:model="url" name="url"
                                        id="url"
                                        class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"

@@ -2,11 +2,15 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Actions\Browsershot;
+use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\MediaLibraryPro\Http\Livewire\Concerns\WithMedia;
 
 trait Screenshot
 {
     use WithMedia;
+    use LivewireAlert;
 
     public array $mediaComponentNames = ['screenshot'];
     public $screenshot;
@@ -21,30 +25,24 @@ trait Screenshot
             ->addFromMediaLibraryRequest($this->screenshot)
             ->toMediaCollection('browsershot');
 
-//        $this->alert('success', 'Screenshot Updated!');
-//        $this->imageUrl = $model->refresh()->getFirstMediaUrl('browsershot');
-
         $this->clearMedia();
     }
 
-//    public function screenshotFromUrl(): void
-//    {
-//        if (is_null($this->model->getAttribute('url'))) {
-//            $this->alert('warning', 'No URL Defined!');
-//
-//            return;
-//        }
-//
-//        $path = 'browsershot/' . Str::slug($this->model->getAttribute('name')) . '.png';
-//
-//        Storage::put($path, Browsershot::getImage($this->model->getAttribute('url')));
-//
-//        $this->model
-//            ->addMedia(Storage::path($path))
-//            ->toMediaCollection('browsershot');
-//
-//        $this->alert('success', 'Screenshot Updated!');
-//
-//        $this->imageUrl = $this->model->refresh()->getFirstMediaUrl('browsershot');
-//    }
+    public function screenshotFromUrl(): void
+    {
+        $this->validate([
+            'url' => 'url',
+        ]);
+
+        $browsershotImage = (new Browsershot())->getBase64($this->url);
+
+        $this->model
+            ->addMediaFromBase64(trim($browsershotImage))
+            ->usingFileName(Str::slug($this->model->getAttribute('name')) . '.png')
+            ->toMediaCollection('browsershot');
+
+        $this->alert('success', 'Screenshot Updated!');
+
+        $this->imageUrl = $this->model->refresh()->getFirstMediaUrl('browsershot');
+    }
 }

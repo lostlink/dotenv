@@ -19,6 +19,7 @@ class Create extends ModalComponent
     use AuthorizesRequests;
     use Screenshot;
 
+    public Target $model;
     public Project|string $project;
     public ?string $name = null;
     public ?string $url = null;
@@ -49,13 +50,13 @@ class Create extends ModalComponent
     {
         $this->authorize('create', [Target::class, Project::class]);
 
-        $target = $this->project->targets()
+        $this->model = $this->project->targets()
             ->create(
                 $this->validate()
             );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($target);
+            $this->screenshotFromUpload($this->model);
         }
 
         activity()
@@ -66,7 +67,7 @@ class Create extends ModalComponent
                 $activity->setAttribute('trigger', 'WEB');
             })
             ->withProperties(
-                $target->toArray()
+                $this->model->toArray()
             )
             ->log('Target Created');
 
