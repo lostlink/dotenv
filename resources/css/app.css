@@ -1,4 +1,6 @@
 @import "../../vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-styles";
+@import "../../node_modules/tippy.js/dist/tippy.css";
+@import "../../node_modules/tippy.js/themes/light-border.css";
 
 @tailwind base;
 @tailwind components;

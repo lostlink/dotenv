@@ -48,8 +48,10 @@
                                       id="url-optional">Optional</span>
                             </div>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <button wire:click.prevent="screenshotFromUrl"
-                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                <button
+                                    wire:click.prevent="updateUrlScreenshot"
+                                    class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+                                >
                                     <x-heroicon-o-refresh class="h-5 w-5"/>
                                 </button>
                                 <input type="text" wire:model="url" name="url"
@@ -60,6 +62,9 @@
                             <p class="mt-2 text-sm text-red-600"
                                id="name-error">
                                 @error('url') {{ $message }} @enderror
+                            </p>
+                            <p class="mt-2 text-xs text-gray-500">
+                                <i>Tip: Use the refresh button to grab a screenshot from the URL.</i>
                             </p>
                         </div>
 
@@ -75,7 +80,8 @@
                             <div class="mt-1">
                                 <textarea wire:model="description"
                                           id="description" name="description" rows="3"
-                                          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                                          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
+                                </textarea>
                             </div>
                             <p class="mt-2 text-sm text-red-600"
                                id="description-error">
@@ -136,5 +142,5 @@
                 </div>
             </div>
         </div>
-
     </div>
+</div>

@@ -1,12 +1,14 @@
 import Alpine from 'alpinejs';
-import Clipboard from "@ryangjchandler/alpine-clipboard"
+import Clipboard from '@ryangjchandler/alpine-clipboard';
 import Swal from 'sweetalert2';
 
-Alpine.plugin(Clipboard.configure({
-    onCopy: () => {
-        console.log('Copied!')
-    }
-}));
+Alpine.plugin(
+    Clipboard.configure({
+        onCopy: () => {
+            console.log('Copied!');
+        },
+    })
+);
 
 window._ = require('lodash');
 window.axios = require('axios');
@@ -14,6 +16,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Alpine = Alpine;
 window.Swal = Swal;
 window.Vapor = require('laravel-vapor');
+window.tippy = require('tippy.js').default;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

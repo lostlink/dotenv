@@ -27,8 +27,6 @@ class Create extends ModalComponent
     public ?string $variables = null;
     public ?string $imageUrl;
     public ?string $imageName;
-    public array $mediaComponentNames = ['screenshot'];
-    public $screenshot;
 
     public function rules(): array
     {
@@ -56,7 +54,10 @@ class Create extends ModalComponent
             );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($this->model);
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
 
         activity()
