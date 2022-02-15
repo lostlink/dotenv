@@ -34,7 +34,7 @@ class Update extends ModalComponent
                 'string',
                 $this->name === $this->model->getOriginal('name')
                     ? null
-                    : Rule::unique(Project::class)->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
+                    : Rule::unique(Project::class)->where(fn($query) => $query->where('team_id', currentTeam('id'))),
             ],
             'url' => [
                 'url',
@@ -71,9 +71,11 @@ class Update extends ModalComponent
         );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($this->model);
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
-
         activity()
             ->causedBy(request()->user())
             ->performedOn($this->model)

@@ -33,7 +33,7 @@ class Create extends ModalComponent
     {
         return [
             'name' => Rule::unique(Environment::class)
-                ->where(fn ($query) => $query->where('target_id', $this->target->id)),
+                ->where(fn($query) => $query->where('target_id', $this->target->id)),
             'url' => 'nullable|url',
             'notes' => 'nullable',
         ];
@@ -55,7 +55,10 @@ class Create extends ModalComponent
             );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($this->model);
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
 
         activity()
