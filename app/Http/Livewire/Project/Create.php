@@ -38,7 +38,7 @@ class Create extends ModalComponent
 
     public function mount(): void
     {
-        $this->imageUrl = asset('images/profile/project.webp');
+        $this->imageUrl = asset('images/profile/code.svg');
     }
 
     public function submit(): RedirectResponse|Redirector
@@ -50,7 +50,10 @@ class Create extends ModalComponent
         );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($this->model);
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
 
         activity()

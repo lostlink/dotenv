@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Environment extends BrowsershotModel
+class Environment extends MediaModel
 {
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
 
     protected $casts = [
         'id' => 'integer',
     ];
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public function routeKey(): Attribute
     {
@@ -43,8 +46,17 @@ class Environment extends BrowsershotModel
             ->saveSlugsTo('slug');
     }
 
-    public function target(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function registerMediaCollections(): void
     {
-        return $this->belongsTo(\App\Models\Target::class);
+        $this->addMediaCollection('browsershot')
+            ->useFallbackUrl(asset('/images/profile/code.svg'))
+            ->useFallbackPath(public_path('/images/profile/code.svg'))
+            ->withResponsiveImages()
+            ->singleFile();
+    }
+
+    public function target(): BelongsTo
+    {
+        return $this->belongsTo(Target::class);
     }
 }

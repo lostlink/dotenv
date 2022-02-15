@@ -13,7 +13,7 @@ trait Screenshot
     use LivewireAlert;
 
     public array $mediaComponentNames = ['screenshot'];
-    public $screenshot;
+    public string|array|null $screenshot;
 
     public function screenshotFromUpload($model): void
     {
@@ -30,19 +30,20 @@ trait Screenshot
 
     public function screenshotFromUrl(): void
     {
+        $this->model
+            ->addMediaFromBase64($this->screenshot)
+            ->usingFileName(Str::slug($this->model->getAttribute('name')) . '.png')
+            ->toMediaCollection('browsershot');
+    }
+
+    public function updateUrlScreenshot(): void
+    {
         $this->validate([
             'url' => 'url',
         ]);
 
-        $browsershotImage = (new Browsershot())->getBase64($this->url);
+        $this->screenshot = trim((new Browsershot())->getBase64($this->url));
 
-        $this->model
-            ->addMediaFromBase64(trim($browsershotImage))
-            ->usingFileName(Str::slug($this->model->getAttribute('name')) . '.png')
-            ->toMediaCollection('browsershot');
-
-        $this->alert('success', 'Screenshot Updated!');
-
-        $this->imageUrl = $this->model->refresh()->getFirstMediaUrl('browsershot');
+        $this->imageUrl = ' data:image/png;base64,' . $this->screenshot;
     }
 }

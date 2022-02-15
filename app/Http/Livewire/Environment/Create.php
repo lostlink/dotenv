@@ -42,7 +42,7 @@ class Create extends ModalComponent
     public function mount(Target $target): void
     {
         $this->target = $target;
-        $this->imageUrl = asset('images/profile/project.webp');
+        $this->imageUrl = asset('images/profile/code.svg');
     }
 
     public function submit(): Redirector|Application|RedirectResponse
@@ -55,7 +55,10 @@ class Create extends ModalComponent
             );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($this->model);
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
 
         activity()

@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Project extends BrowsershotModel
+class Project extends MediaModel
 {
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
 
     protected $casts = [
         'id' => 'integer',
@@ -21,7 +25,7 @@ class Project extends BrowsershotModel
         'targets',
     ];
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     protected static function booted(): void
     {
@@ -45,13 +49,22 @@ class Project extends BrowsershotModel
             ->saveSlugsTo('slug');
     }
 
-    public function team(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function registerMediaCollections(): void
     {
-        return $this->belongsTo(\App\Models\Team::class);
+        $this->addMediaCollection('browsershot')
+            ->useFallbackUrl(asset('/images/profile/code.svg'))
+            ->useFallbackPath(public_path('/images/profile/code.svg'))
+            ->withResponsiveImages()
+            ->singleFile();
     }
 
-    public function targets(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function team(): BelongsTo
     {
-        return $this->hasMany(\App\Models\Target::class);
+        return $this->belongsTo(Team::class);
+    }
+
+    public function targets(): HasMany
+    {
+        return $this->hasMany(Target::class);
     }
 }
