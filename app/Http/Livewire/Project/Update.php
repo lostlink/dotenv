@@ -34,7 +34,7 @@ class Update extends ModalComponent
                 'string',
                 $this->name === $this->model->getOriginal('name')
                     ? null
-                    : Rule::unique(Project::class)->where(fn($query) => $query->where('team_id', currentTeam('id'))),
+                    : Rule::unique(Project::class)->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
             ],
             'url' => [
                 'url',

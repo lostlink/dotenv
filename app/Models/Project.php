@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Project extends Model implements HasMedia
+class Project extends MediaModel
 {
     use HasFactory;
     use HasSlug;
@@ -39,8 +37,8 @@ class Project extends Model implements HasMedia
     public function routeKey(): Attribute
     {
         return new Attribute(
-            get: fn($value) => $this->getAttribute('slug'),
-            set: fn($value) => $this->getAttribute('slug'),
+            get: fn ($value) => $this->getAttribute('slug'),
+            set: fn ($value) => $this->getAttribute('slug'),
         );
     }
 
