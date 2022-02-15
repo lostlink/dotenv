@@ -32,7 +32,7 @@ class Create extends ModalComponent
     {
         return [
             'name' => Rule::unique(Target::class)
-                ->where(fn ($query) => $query->where('project_id', $this->project->id)),
+                ->where(fn($query) => $query->where('project_id', $this->project->id)),
             'notes' => 'nullable',
             'variables' => 'nullable',
         ];
@@ -41,7 +41,7 @@ class Create extends ModalComponent
     public function mount(Project $project): void
     {
         $this->project = $project;
-        $this->imageUrl = asset('images/profile/project.webp');
+        $this->imageUrl = asset('images/profile/code.svg');
     }
 
     public function submit(): RedirectResponse|Redirector

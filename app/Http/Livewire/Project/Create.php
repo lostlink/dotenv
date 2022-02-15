@@ -38,7 +38,7 @@ class Create extends ModalComponent
 
     public function mount(): void
     {
-        $this->imageUrl = asset('images/profile/project.webp');
+        $this->imageUrl = asset('images/profile/code.svg');
     }
 
     public function submit(): RedirectResponse|Redirector
