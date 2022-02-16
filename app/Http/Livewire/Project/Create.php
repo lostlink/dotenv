@@ -30,7 +30,7 @@ class Create extends ModalComponent
     {
         return [
             'name' => Rule::unique(Project::class)
-                ->where(fn($query) => $query->where('team_id', currentTeam('id'))),
+                ->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
             'description' => 'nullable',
             'variables' => 'nullable',
         ];
