@@ -64,7 +64,7 @@ class Update extends ModalComponent
         $this->imageName = $this->name;
     }
 
-    public function submit(): Redirector|Application|RedirectResponse
+    public function save(): Redirector|Application|RedirectResponse
     {
         $this->authorize('update', [Target::class, $this->model]);
 
@@ -73,7 +73,7 @@ class Update extends ModalComponent
                 $this->validate()
             );
 
-        if ($this->screenshot) {
+        if (! empty($this->screenshot)) {
             match (is_array($this->screenshot)) {
                 true => $this->screenshotFromUpload($this->model),
                 default => $this->screenshotFromUrl()

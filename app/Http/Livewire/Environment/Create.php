@@ -45,7 +45,7 @@ class Create extends ModalComponent
         $this->imageUrl = asset('images/profile/code.svg');
     }
 
-    public function submit(): Redirector|Application|RedirectResponse
+    public function save(): Redirector|Application|RedirectResponse
     {
         $this->authorize('create', [Environment::class, Target::class, Project::class]);
 

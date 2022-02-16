@@ -14,7 +14,7 @@
                     {{--                    </p>--}}
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form class="space-y-6" wire:submit.prevent="submit"
+                    <form class="space-y-6" wire:submit.prevent="save"
                           method="POST">
                         <div class="col-span-3 sm:col-span-2">
                             <div class="flex justify-between">
@@ -46,10 +46,19 @@
                             </div>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <button
+                                    id="updateUrlScreenshot"
                                     wire:click.prevent="updateUrlScreenshot"
+                                    wire:loading.attr="disabled"
                                     class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
                                 >
-                                    <x-heroicon-o-refresh class="h-5 w-5"/>
+                                    <div wire:loading.remove
+                                         wire:target="updateUrlScreenshot">
+                                        <x-heroicon-o-refresh class="h-5 w-5"/>
+                                    </div>
+                                    <div wire:loading
+                                         wire:target="updateUrlScreenshot">
+                                        <x-heroicon-o-refresh class="animate-reverse-spin h-5 w-5"/>
+                                    </div>
                                 </button>
                                 <input type="text" wire:model="url" name="url"
                                        id="url"
@@ -131,9 +140,13 @@
                                     class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Cancel
                             </button>
-                            <button type="submit"
-                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Save
+                            <button
+                                wire:loading.attr="disabled"
+                                type="submit"
+                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                <span wire:loading.remove wire:target="save">Save</span>
+                                <span wire:loading wire:target="save">Saving...</span>
                             </button>
                         </div>
 
