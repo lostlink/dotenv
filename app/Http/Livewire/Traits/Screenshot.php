@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Traits;
 
 use App\Actions\Browsershot;
+use Hammerstone\Sidecar\Exceptions\LambdaExecutionException;
 use Illuminate\Support\Str;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\MediaLibraryPro\Http\Livewire\Concerns\WithMedia;
@@ -42,8 +43,11 @@ trait Screenshot
             'url' => 'url',
         ]);
 
-        $this->screenshot = trim((new Browsershot())->getBase64($this->url));
-
-        $this->imageUrl = ' data:image/png;base64,' . $this->screenshot;
+        try {
+            $this->screenshot = trim((new Browsershot())->getBase64($this->url));
+            $this->imageUrl = ' data:image/png;base64,' . $this->screenshot;
+        } catch (LambdaExecutionException $e) {
+            $this->alert('error', 'Error grabbing the URL Screenshot!');
+        }
     }
 }

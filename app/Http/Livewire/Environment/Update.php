@@ -33,7 +33,7 @@ class Update extends ModalComponent
                 'string',
                 $this->name === $this->model->getOriginal('name')
                     ? null
-                    : Rule::unique(Environment::class)->where(fn ($query) => $query->where('target_id', $this->model->target_id)),
+                    : Rule::unique(Environment::class)->where(fn($query) => $query->where('target_id', $this->model->target_id)),
             ],
             'url' => [
                 'url',
@@ -55,7 +55,7 @@ class Update extends ModalComponent
         $this->imageName = $this->name;
     }
 
-    public function submit(): Redirector|Application|RedirectResponse
+    public function save(): Redirector|Application|RedirectResponse
     {
         $this->authorize('update', [Environment::class, $this->model]);
 
@@ -64,7 +64,7 @@ class Update extends ModalComponent
                 $this->validate()
             );
 
-        if ($this->screenshot) {
+        if (! empty($this->screenshot)) {
             match (is_array($this->screenshot)) {
                 true => $this->screenshotFromUpload($this->model),
                 default => $this->screenshotFromUrl()

@@ -30,7 +30,7 @@ class Create extends ModalComponent
     {
         return [
             'name' => Rule::unique(Project::class)
-                ->where(fn ($query) => $query->where('team_id', currentTeam('id'))),
+                ->where(fn($query) => $query->where('team_id', currentTeam('id'))),
             'description' => 'nullable',
             'variables' => 'nullable',
         ];
@@ -41,7 +41,7 @@ class Create extends ModalComponent
         $this->imageUrl = asset('images/profile/code.svg');
     }
 
-    public function submit(): RedirectResponse|Redirector
+    public function save(): RedirectResponse|Redirector
     {
         $this->authorize('create', [Project::class]);
 
