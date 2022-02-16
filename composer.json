@@ -48,7 +48,6 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^v3.6.5",
         "barryvdh/laravel-ide-helper": "^2.12",
-        "brainmaestro/composer-git-hooks": "^v2.8.5",
         "fakerphp/faker": "^v1.17.0",
         "friendsofphp/php-cs-fixer": "^3.6",
         "laravel-json-api/testing": "^v1.0.0",
@@ -84,7 +83,6 @@
         }
     },
     "scripts": {
-        "hooks": "cghooks",
         "clear": "php artisan route:clear && php artisan view:clear && php artisan cache:clear",
         "check": [
             "./vendor/bin/tlint",
@@ -110,14 +108,10 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "post-install-cmd": [
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || ./vendor/bin/cghooks add --ignore-lock"
-        ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
             "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:generate",
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:meta",
-            "[ $COMPOSER_DEV_MODE -eq 0 ] || ./vendor/bin/cghooks update"
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:meta"
         ]
     },
     "extra": {
