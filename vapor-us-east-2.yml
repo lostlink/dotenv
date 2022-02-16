@@ -24,8 +24,8 @@ environments:
 
   develop:
     domain:
-      - 'us-east-2.dev.dotenv.ca'
-      - 'us-east-2.develop.dotenv.ca'
+      - 'us-east-2-dev.dotenv.ca'
+      - 'us-east-2-develop.dotenv.ca'
     warm: 10
     memory: 1024
     cli-memory: 512
