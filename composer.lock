@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79370f0ac740a6b0cd0575cdbd1aefa3",
+    "content-hash": "a32b2c8d748c77459373fd7ffb18854b",
     "packages": [
         {
             "name": "asantibanez/livewire-charts",
@@ -14944,6 +14944,90 @@
             "time": "2018-12-13T10:34:14+00:00"
         },
         {
+            "name": "brainmaestro/composer-git-hooks",
+            "version": "dev-prepare-for-symfony-6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Jubeki/composer-git-hooks",
+                "reference": "bbe623863089ac4447d41cc1a6c17a524cfd4895"
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/console": "^6.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "bin": [
+                "cghooks"
+            ],
+            "type": "library",
+            "extra": {
+                "hooks": {
+                    "pre-commit": "composer check-style",
+                    "pre-push": [
+                        "composer test",
+                        "appver=$(grep -o -E '\\d.\\d.\\d' cghooks)",
+                        "tag=$(git describe --tags --abbrev=0)",
+                        "if [ \"$tag\" != \"v$appver\" ]; then",
+                        "echo \"The most recent tag $tag does not match the application version $appver\\n\"",
+                        "tag=${tag#v}",
+                        "sed -i -E \"s/$appver/$tag/\" cghooks",
+                        "exit 1",
+                        "fi"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BrainMaestro\\GitHooks\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "BrainMaestro\\GitHooks\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "post-install-cmd": [
+                    "./cghooks add --ignore-lock"
+                ],
+                "post-update-cmd": [
+                    "./cghooks update"
+                ],
+                "check-style": [
+                    "php-cs-fixer fix --using-cache=no --diff --dry-run ."
+                ],
+                "fix-style": [
+                    "php-cs-fixer fix --using-cache=no ."
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ezinwa Okpoechi",
+                    "email": "brainmaestro@outlook.com"
+                }
+            ],
+            "description": "Easily manage git hooks in your composer config",
+            "keywords": [
+                "composer",
+                "git",
+                "hook"
+            ],
+            "time": "2022-01-20T11:16:57+00:00"
+        },
+        {
             "name": "cloudcreativity/json-api-testing",
             "version": "v4.0.0",
             "source": {
@@ -17790,6 +17874,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "wnx/sidecar-browsershot": 20,
+        "brainmaestro/composer-git-hooks": 20,
         "phpmd/phpmd": 20,
         "roave/security-advisories": 20
     },
