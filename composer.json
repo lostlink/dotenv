@@ -17,7 +17,7 @@
         "calebporzio/sushi": "^v2.4.0",
         "fruitcake/laravel-cors": "^v2.0.5",
         "guzzlehttp/guzzle": "^7.4.1",
-        "hammerstone/sidecar": "^0.3.7",
+        "hammerstone/sidecar": "^v0.3.8",
         "jantinnerezo/livewire-alert": "^2.2.3",
         "laravel/framework": "^9.0",
         "laravel/jetstream": "^2.6.3",

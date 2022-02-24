@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a32b2c8d748c77459373fd7ffb18854b",
+    "content-hash": "b20d3d50f3e0b70a45a2b4f3918bd619",
     "packages": [
         {
             "name": "asantibanez/livewire-charts",
@@ -3839,16 +3839,16 @@
         },
         {
             "name": "laravel/vapor-core",
-            "version": "v2.20.0",
+            "version": "v2.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/vapor-core.git",
-                "reference": "517704ac71aa15ad26687fd1ffbc0d0e1919cc49"
+                "reference": "9cf2d32fcb2cb34ea18f509ad2f2bda11b9dd348"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/vapor-core/zipball/517704ac71aa15ad26687fd1ffbc0d0e1919cc49",
-                "reference": "517704ac71aa15ad26687fd1ffbc0d0e1919cc49",
+                "url": "https://api.github.com/repos/laravel/vapor-core/zipball/9cf2d32fcb2cb34ea18f509ad2f2bda11b9dd348",
+                "reference": "9cf2d32fcb2cb34ea18f509ad2f2bda11b9dd348",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3910,9 +3910,9 @@
                 "vapor"
             ],
             "support": {
-                "source": "https://github.com/laravel/vapor-core/tree/v2.20.0"
+                "source": "https://github.com/laravel/vapor-core/tree/v2.21.0"
             },
-            "time": "2022-02-14T17:02:28+00:00"
+            "time": "2022-02-23T20:13:26+00:00"
         },
         {
             "name": "league/commonmark",
