@@ -25,3 +25,30 @@ document.addEventListener('alpine:init', () => {
 });
 
 Alpine.start();
+
+ClipboardJS.on('success', function (e) {
+    Swal.fire({
+        position: 'top-end',
+        timer: 3000,
+        toast: true,
+        text: null,
+        showCancelButton: false,
+        showConfirmButton: false,
+        icon: 'success',
+        title: 'Copied to Clipboard!',
+    });
+    e.clearSelection();
+});
+
+ClipboardJS.on('error', function (e) {
+    Swal.fire({
+        position: 'top-end',
+        timer: 3000,
+        toast: true,
+        text: null,
+        showCancelButton: false,
+        showConfirmButton: false,
+        icon: 'error',
+        title: 'Error copying to the Clipboard!',
+    });
+});

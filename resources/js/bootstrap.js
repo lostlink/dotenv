@@ -1,14 +1,9 @@
-import Alpine from 'alpinejs';
-import Clipboard from '@ryangjchandler/alpine-clipboard';
 import Swal from 'sweetalert2';
+import Alpine from 'alpinejs';
+import Autosize from '@marcreichel/alpine-autosize';
+import ClipboardJS from 'clipboard';
 
-Alpine.plugin(
-    Clipboard.configure({
-        onCopy: () => {
-            console.log('Copied!');
-        },
-    })
-);
+Alpine.plugin(Autosize);
 
 window._ = require('lodash');
 window.axios = require('axios');
@@ -17,6 +12,7 @@ window.Alpine = Alpine;
 window.Swal = Swal;
 window.Vapor = require('laravel-vapor');
 window.tippy = require('tippy.js').default;
+window.ClipboardJS = new ClipboardJS('.clipboard-btn');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
