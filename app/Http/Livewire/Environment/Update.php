@@ -19,7 +19,7 @@ class Update extends ModalComponent
     use AuthorizesRequests;
     use Screenshot;
 
-    public Environment|string $environment;
+    public Environment|string $model;
     public ?string $name = null;
     public ?string $url = null;
     public ?string $notes = null;
@@ -31,9 +31,9 @@ class Update extends ModalComponent
         return [
             'name' => [
                 'string',
-                $this->name === $this->environment->getOriginal('name')
+                $this->name === $this->model->getOriginal('name')
                     ? null
-                    : Rule::unique(Environment::class)->where(fn ($query) => $query->where('target_id', $this->environment->target_id)),
+                    : Rule::unique(Environment::class)->where(fn ($query) => $query->where('target_id', $this->model->target_id)),
             ],
             'url' => [
                 'url',
@@ -47,37 +47,40 @@ class Update extends ModalComponent
 
     public function mount(Environment $environment): void
     {
-        $this->environment = $environment;
+        $this->model = $environment;
         $this->name = $environment->name;
         $this->url = $environment->url;
         $this->notes = $environment->notes;
-        $this->imageUrl = $this->environment->getFirstMediaUrl('browsershot');
+        $this->imageUrl = $this->model->getFirstMediaUrl('browsershot');
         $this->imageName = $this->name;
     }
 
-    public function submit(): Redirector|Application|RedirectResponse
+    public function save(): Redirector|Application|RedirectResponse
     {
-        $this->authorize('update', [Environment::class, $this->environment]);
+        $this->authorize('update', [Environment::class, $this->model]);
 
-        $this->environment
+        $this->model
             ->update(
                 $this->validate()
             );
 
-        if ($this->screenshot) {
-            $this->screenshotFromUpload($this->environment);
+        if (! empty($this->screenshot)) {
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
 
         activity()
             ->causedBy(request()->user())
-            ->performedOn($this->environment)
+            ->performedOn($this->model)
             ->tap(function (Activity $activity) {
                 $activity->setAttribute('team_id', currentTeam('id'));
                 $activity->setAttribute('trigger', 'WEB');
             })
             ->withProperties([
-                'update' => $this->environment->getOriginal(),
-                'original' => $this->environment->getDirty(),
+                'update' => $this->model->getOriginal(),
+                'original' => $this->model->getDirty(),
             ])
             ->log('Environment Updated');
 

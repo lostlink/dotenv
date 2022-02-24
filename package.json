@@ -63,8 +63,10 @@
         }
     },
     "dependencies": {
-        "@ryangjchandler/alpine-clipboard": "^2.1.0",
+        "@marcreichel/alpine-autosize": "^1.0.0",
+        "clipboard": "^2.0.10",
         "laravel-vapor": "^0.5.1",
-        "puppeteer": "^13.0.1"
+        "puppeteer": "^13.0.1",
+        "tippy.js": "^6.3.7"
     }
 }

@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Target extends BrowsershotModel
+class Target extends MediaModel
 {
     use HasFactory;
     use HasSlug;
+    use InteractsWithMedia;
 
     protected $casts = [
         'id' => 'integer',
@@ -21,7 +25,7 @@ class Target extends BrowsershotModel
         'environments',
     ];
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public function routeKey(): Attribute
     {
@@ -47,13 +51,22 @@ class Target extends BrowsershotModel
             ->saveSlugsTo('slug');
     }
 
-    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function registerMediaCollections(): void
     {
-        return $this->belongsTo(\App\Models\Project::class);
+        $this->addMediaCollection('browsershot')
+            ->useFallbackUrl(asset('/images/profile/code.svg'))
+            ->useFallbackPath(public_path('/images/profile/code.svg'))
+            ->withResponsiveImages()
+            ->singleFile();
     }
 
-    public function environments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function project(): BelongsTo
     {
-        return $this->hasMany(\App\Models\Environment::class);
+        return $this->belongsTo(Project::class);
+    }
+
+    public function environments(): HasMany
+    {
+        return $this->hasMany(Environment::class);
     }
 }

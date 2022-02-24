@@ -15,13 +15,10 @@ mix.js('resources/js/app.js', 'public/js')
     .webpackConfig(require('./webpack.config'))
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
-        require('tailwindcss')(),
+        require('tailwindcss'),
         require('postcss-purgecss-laravel')({
             extend: {
-                safelist: [
-                    /^media-library/,
-                    /^pika-/
-                ],
+                safelist: [/^media-library/, /^pika-/],
             },
         }),
     ]);

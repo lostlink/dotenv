@@ -2,14 +2,19 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Actions\Browsershot;
+use Hammerstone\Sidecar\Exceptions\LambdaExecutionException;
+use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\MediaLibraryPro\Http\Livewire\Concerns\WithMedia;
 
 trait Screenshot
 {
     use WithMedia;
+    use LivewireAlert;
 
     public array $mediaComponentNames = ['screenshot'];
-    public $screenshot;
+    public string|array|null $screenshot;
 
     public function screenshotFromUpload($model): void
     {
@@ -21,30 +26,28 @@ trait Screenshot
             ->addFromMediaLibraryRequest($this->screenshot)
             ->toMediaCollection('browsershot');
 
-//        $this->alert('success', 'Screenshot Updated!');
-//        $this->imageUrl = $model->refresh()->getFirstMediaUrl('browsershot');
-
         $this->clearMedia();
     }
 
-//    public function screenshotFromUrl(): void
-//    {
-//        if (is_null($this->model->getAttribute('url'))) {
-//            $this->alert('warning', 'No URL Defined!');
-//
-//            return;
-//        }
-//
-//        $path = 'browsershot/' . Str::slug($this->model->getAttribute('name')) . '.png';
-//
-//        Storage::put($path, Browsershot::getImage($this->model->getAttribute('url')));
-//
-//        $this->model
-//            ->addMedia(Storage::path($path))
-//            ->toMediaCollection('browsershot');
-//
-//        $this->alert('success', 'Screenshot Updated!');
-//
-//        $this->imageUrl = $this->model->refresh()->getFirstMediaUrl('browsershot');
-//    }
+    public function screenshotFromUrl(): void
+    {
+        $this->model
+            ->addMediaFromBase64($this->screenshot)
+            ->usingFileName(Str::slug($this->model->getAttribute('name')) . '.png')
+            ->toMediaCollection('browsershot');
+    }
+
+    public function updateUrlScreenshot(): void
+    {
+        $this->validate([
+            'url' => 'url',
+        ]);
+
+        try {
+            $this->screenshot = trim((new Browsershot())->getBase64($this->url));
+            $this->imageUrl = ' data:image/png;base64,' . $this->screenshot;
+        } catch (LambdaExecutionException $e) {
+            $this->alert('error', 'Error grabbing the URL Screenshot!');
+        }
+    }
 }

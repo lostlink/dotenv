@@ -44,7 +44,6 @@
     </x-slot>
 
     <div class="py-12">
-
         <ul role="list"
             class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             @foreach ($project->targets as $target)
@@ -53,8 +52,13 @@
                     <a href="{{ route('project.target.show', ['project' => $project->routeKey, 'target' => $target->routeKey]) }}"
                        type="button">
                         <div class="flex-1 flex flex-col p-8">
+                            <img class="w-32 h-32 flex-shrink-0 mx-auto rounded-full text-gray-400"
+                                 src="{{ $target->getFirstMediaUrl('browsershot') }}"
+                                 alt="{{ $target->name }}"
+                            >
                             <h3 class="mt-6 text-gray-900 text-sm font-medium">
-                                {{ $target->name }}</h3>
+                                {{ $target->name }}
+                            </h3>
                             <dl
                                 class="mt-1 flex-grow flex flex-col justify-between">
                                 <dt class="sr-only">{{ __('Notes') }}

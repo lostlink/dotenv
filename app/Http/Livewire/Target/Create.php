@@ -19,6 +19,7 @@ class Create extends ModalComponent
     use AuthorizesRequests;
     use Screenshot;
 
+    public Target $model;
     public Project|string $project;
     public ?string $name = null;
     public ?string $url = null;
@@ -26,8 +27,6 @@ class Create extends ModalComponent
     public ?string $variables = null;
     public ?string $imageUrl;
     public ?string $imageName;
-    public array $mediaComponentNames = ['screenshot'];
-    public $screenshot;
 
     public function rules(): array
     {
@@ -42,20 +41,23 @@ class Create extends ModalComponent
     public function mount(Project $project): void
     {
         $this->project = $project;
-        $this->imageUrl = asset('images/profile/project.webp');
+        $this->imageUrl = asset('images/profile/code.svg');
     }
 
-    public function submit(): RedirectResponse|Redirector
+    public function save(): RedirectResponse|Redirector
     {
         $this->authorize('create', [Target::class, Project::class]);
 
-        $target = $this->project->targets()
+        $this->model = $this->project->targets()
             ->create(
                 $this->validate()
             );
 
         if ($this->screenshot) {
-            $this->screenshotFromUpload($target);
+            match (is_array($this->screenshot)) {
+                true => $this->screenshotFromUpload($this->model),
+                default => $this->screenshotFromUrl()
+            };
         }
 
         activity()
@@ -66,7 +68,7 @@ class Create extends ModalComponent
                 $activity->setAttribute('trigger', 'WEB');
             })
             ->withProperties(
-                $target->toArray()
+                $this->model->toArray()
             )
             ->log('Target Created');
 
