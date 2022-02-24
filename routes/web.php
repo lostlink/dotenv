@@ -9,7 +9,7 @@ Route::get('/', function () {
 Route::post('free-trial-registration', [\App\Http\Controllers\RegisterByEmailOnly::class, 'store'])
     ->name('register.by_email_only');
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('email/verify', fn () => view('auth.verify-email'))->name('verification.notice');
 
     Route::get('email/verify/{id}/{hash}', function (Illuminate\Foundation\Auth\EmailVerificationRequest $request) {
@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     })->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::middleware('auth:sanctum', 'verified')->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::name('project.')->group(function () {
