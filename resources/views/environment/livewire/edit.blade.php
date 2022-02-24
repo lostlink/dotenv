@@ -72,7 +72,7 @@
                                    @elseif($project) @click.prevent='Livewire.emit("openModal", "project.update", @json(['project' => $project->id]))'
                                    @endif
                                    class="text-green-700 group flex items-center px-4 py-2 text-sm"
-                                   role="menuitem" tabindex="-1" id="menu-item-2">
+                                   role="menuitem" tabindex="-1" id="menu-item-0">
                                     <x-heroicon-s-pencil
                                         class="mr-3 h-5 w-5 text-green-400 group-hover:text-green-500"/>
                                     Edit
@@ -88,7 +88,7 @@
                                 <a href="#"
                                    wire:click.prevent="clearPrivateKeyFromSession"
                                    class="text-gray-700 group flex items-center px-4 py-2 text-sm"
-                                   role="menuitem" tabindex="-1" id="menu-item-0">
+                                   role="menuitem" tabindex="-1" id="menu-item-1">
                                     <x-heroicon-s-shield-exclamation
                                         class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"/>
                                     Clear PrivateKey
@@ -96,7 +96,7 @@
                                 <a href="#"
                                    @click.prevent='Livewire.emit("openModal", "team.request-private-key");'
                                    class="text-gray-700 group flex items-center px-4 py-2 text-sm"
-                                   role="menuitem" tabindex="-1" id="menu-item-1">
+                                   role="menuitem" tabindex="-1" id="menu-item-2">
                                     <x-heroicon-s-shield-check
                                         class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"/>
                                     Enter PrivateKey
@@ -108,7 +108,7 @@
                                     <a href="#"
                                        @click.prevent='Livewire.emit("openModal", "environment.delete", @json(['environment' => $environment->id]))'
                                        class="text-red-700 group flex items-center px-4 py-2 text-sm"
-                                       role="menuitem" tabindex="-1" id="menu-item-2">
+                                       role="menuitem" tabindex="-1" id="menu-item-3">
                                         <x-heroicon-s-trash
                                             class="mr-3 h-5 w-5 text-red-400 group-hover:text-red-500"/>
                                         Delete
@@ -123,7 +123,11 @@
 
 
             <label for="description" class="sr-only">Variables</label>
-            <textarea wire:model="variables" rows="7" name="variables" id="variables" placeholder="ENV=VALUE"
+            <textarea wire:model="variables"
+                      id="variables"
+                      name="variables"
+                      rows="7"
+                      placeholder="ENV=VALUE"
                       class="block w-full border-0 py-0 resize placeholder-gray-500 focus:ring-0 sm:text-sm"></textarea>
 
             {{-- Spacer element to match the height of the toolbar --}}
@@ -131,18 +135,19 @@
                 <div class="py-2">
                     <div class="h-1"></div>
                 </div>
-                <div x-data="{ input: '' }" class="flex h-px justify-end">
-                    <div class="flex-1">
-                        @if($project && $target && $environment)
-                            <button type="button" @click="$clipboard(input)"
-                                    class="ml-4 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group">
+                <div class="flex h-px justify-end">
+                    @if($project && $target && $environment)
+                        <div class="flex-1">
+                            <button type="button"
+                                    data-clipboard-target="#api_{{ $environment->slug }}"
+                                    class="clipboard-btn ml-4 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group"
+                            >
                                 <x-heroicon-o-clipboard-copy class="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500"/>
-                                <span x-model="input" class="text-sm text-gray-500 group-hover:text-gray-600 italic">
-                                {{ config('app.url') }}/api/{{ $project->slug }}/{{ $target->slug }}/{{ $environment->slug }}
-                            </span>
+                                <span id="api_{{ $environment->slug }}"
+                                      class="text-sm text-gray-500 group-hover:text-gray-600 italic">{{ config('app.url') }}/api/{{ $project->slug }}/{{ $target->slug }}/{{ $environment->slug }}</span>
                             </button>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
                     @error('variables')
                     <div class="right-0 pr-3 py-2 flex items-center pointer-events-none">
