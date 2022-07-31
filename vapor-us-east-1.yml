@@ -10,7 +10,7 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: lostlink
+    database: lostlink-aurora
     storage: dotenv-us-east-1-production
     octane: true
     octane-database-session-persist: true
@@ -34,7 +34,7 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: lostlink
+    database: lostlink-aurora
     storage: dotenv-us-east-1-develop
     octane: true
     octane-database-session-persist: true
