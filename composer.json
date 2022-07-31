@@ -48,7 +48,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^v3.6.5",
         "barryvdh/laravel-ide-helper": "^2.12",
-        "brainmaestro/composer-git-hooks": "dev-prepare-for-symfony-6",
+        "brainmaestro/composer-git-hooks": "dev-master",
         "fakerphp/faker": "^v1.17.0",
         "friendsofphp/php-cs-fixer": "^3.6",
         "laravel-json-api/testing": "^v1.0.0",
@@ -159,10 +159,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
-        "composer-git-hooks": {
-            "type": "git",
-            "url": "https://github.com/Jubeki/composer-git-hooks"
-        },
         "packagist.org": false,
         "private-packagist": {
             "type": "composer",
