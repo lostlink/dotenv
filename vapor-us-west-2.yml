@@ -9,7 +9,7 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: ytz-57-west
+    database: ytz-58
     storage: dotenv-us-west-2-production
     octane: true
     octane-database-session-persist: true
@@ -31,7 +31,7 @@ environments:
     cli-memory: 512
     scheduler: true
     runtime: docker
-    database: ytz-57-west
+    database: ytz-58
     storage: dotenv-us-west-2-develop
     octane: true
     octane-database-session-persist: true
