@@ -15,7 +15,6 @@
         "blade-ui-kit/blade-ui-kit": "^0.3.3",
         "butschster/meta-tags": "^2.2",
         "calebporzio/sushi": "^v2.4.0",
-        "fruitcake/laravel-cors": "^v2.0.5",
         "guzzlehttp/guzzle": "^7.4.1",
         "hammerstone/sidecar": "^v0.3.8",
         "jantinnerezo/livewire-alert": "^2.2.3",
