@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Str;
+
 class EnvParser
 {
     public static function toEnv(?array $data): string
@@ -19,9 +21,10 @@ class EnvParser
 
         return collect(explode(PHP_EOL, $data))
             ->filter()
+            ->reject(fn ($value) => Str::startsWith($value, '#'))
             ->whenNotEmpty(function ($collection) {
                 return $collection->flatMap(function ($env) {
-                    [$variable, $content] = explode('=', $env);
+                    [$variable, $content] = [Str::before($env, '='), Str::after($env, '=')];
 
                     return [$variable => $content];
                 });
