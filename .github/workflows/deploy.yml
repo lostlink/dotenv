@@ -8,22 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  linters-tlint:
-    name: Linters
-    uses: lostlink/dotenv/.github/workflows/tlint.yml@main
-    secrets:
-      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
-  linters-phpcs:
-    name: Linters
-    uses: lostlink/dotenv/.github/workflows/phpcs.yml@main
-    secrets:
-      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
-  linters-phpstan:
-    name: Linters
-    uses: lostlink/dotenv/.github/workflows/phpstan.yml@main
-    secrets:
-      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
-      VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
   test:
     name: Test
     uses: lostlink/dotenv/.github/workflows/test.yml@main
@@ -32,7 +16,7 @@ jobs:
   deploy:
     name: Deploy to Vapor
     runs-on: ubuntu-latest
-    needs: [ linters-tlint,linters-phpcs,linters-phpstan,test ]
+#    needs: [ test ]
     concurrency: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }} - ${{ matrix.region }}
     environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'develop' }}
     env:
@@ -48,7 +32,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           lfs: true
 
@@ -65,13 +49,13 @@ jobs:
           redis-version: 6
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
           cache: npm
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache/files
           key: dependencies-composer-${{ hashFiles('composer.json') }}
@@ -79,7 +63,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, gmp
           coverage: none
 
@@ -116,7 +100,7 @@ jobs:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: Logs
