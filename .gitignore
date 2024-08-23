@@ -20,3 +20,4 @@ _ide_helper.php
 /draft.yaml
 /node_modules
 /storage/*.key
+/auth.json
