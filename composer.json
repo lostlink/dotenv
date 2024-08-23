@@ -42,7 +42,7 @@
         "spatie/laravel-sluggable": "^3.3.0",
         "staudenmeir/eloquent-has-many-deep": "^1.15",
         "wire-elements/modal": "^1.0.4",
-        "wnx/sidecar-browsershot": "^1"
+        "wnx/sidecar-browsershot": "^1.6.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^v3.6.5",

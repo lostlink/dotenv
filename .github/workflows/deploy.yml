@@ -91,8 +91,8 @@ jobs:
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
 
-      - name: Sidecar
-        run: php artisan sidecar:deploy --env=${{ env.APP_ENV }} --activate
+#      - name: Sidecar
+#        run: php artisan sidecar:deploy --env=${{ env.APP_ENV }} --activate
 
       - name: Deploy code
         run: ./vendor/bin/vapor deploy ${{ env.APP_ENV }} --commit="${{ github.sha }}"
