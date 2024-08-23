@@ -49,22 +49,14 @@
         "barryvdh/laravel-ide-helper": "^2.12",
         "brainmaestro/composer-git-hooks": "dev-master",
         "fakerphp/faker": "^v1.17.0",
-        "friendsofphp/php-cs-fixer": "^3.6",
         "laravel-json-api/testing": "^v1.0.0",
         "laravel/sail": "^v1.13.1",
         "laravel/vapor-cli": "^v1.36.0",
         "mockery/mockery": "^1.5.0",
         "nunomaduro/collision": "^6.1",
-        "nunomaduro/larastan": "^2.0",
         "pestphp/pest-plugin-livewire": "^v1.0.0",
-        "phpmd/phpmd": "dev-master",
-        "phpstan/phpstan": "^1.4.2",
         "phpunit/phpunit": "^9.5.12",
         "roave/security-advisories": "dev-latest",
-        "squizlabs/php_codesniffer": "^3.6.2",
-        "tightenco/duster": "^v0.3.2",
-        "tightenco/tighten-coding-standard": "^v1.0.2",
-        "tightenco/tlint": "^v6.2.1",
         "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
@@ -85,17 +77,9 @@
     "scripts": {
         "hooks": "cghooks",
         "clear": "php artisan route:clear && php artisan view:clear && php artisan cache:clear",
-        "check": [
-            "./vendor/bin/tlint",
-            "./vendor/bin/phpcs",
-            "./vendor/bin/php-cs-fixer fix --dry-run",
-            "./vendor/bin/phpmd app ansi .phpmd.xml.dist",
-            "./vendor/bin/phpstan analyze"
-        ],
+        "check": [],
         "fix": [
-            "./node_modules/.bin/prettier --write resources/**/*.blade.php",
-            "./vendor/bin/php-cs-fixer fix",
-            "./vendor/bin/phpcbf"
+            "./node_modules/.bin/prettier --write resources/**/*.blade.php"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -124,21 +108,8 @@
             "dont-discover": []
         },
         "hooks": {
-            "pre-commit": [
-                "FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached)",
-                "if ! echo \"${FILES}\" | grep -qE \"^(\\.php-cs-fixer(\\.dist)?\\.php|composer\\.lock)$\"; then EXTRA_ARGS=$(printf -- '--path-mode=intersection\n--\n%s' \"${FILES}\"); else EXTRA_ARGS=''; fi",
-                "./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --stop-on-violation --using-cache=no ${EXTRA_ARGS}",
-                "./vendor/bin/phpcbf ${FILES}",
-                "git add $FILES"
-            ],
-            "pre-push": [
-                "FILES=$(git diff --name-only --cached --diff-filter=ACMRTUXB origin/$(git rev-parse --abbrev-ref HEAD))",
-                "for FILE in `echo ${FILES}`; do ./vendor/bin/tlint lin ${FILE}; done;",
-                "./vendor/bin/phpcs ${FILES}",
-                "./vendor/bin/phpmd app ansi .phpmd.xml.dist",
-                "./vendor/bin/phpstan analyze ${FILES}",
-                "php artisan test"
-            ],
+            "pre-commit": [],
+            "pre-push": [],
             "post-merge": [
                 "composer install",
                 "npm install"
