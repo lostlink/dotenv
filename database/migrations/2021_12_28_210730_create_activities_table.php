@@ -9,11 +9,11 @@ return new class extends Migration {
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\User::class)->index()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Project::class)->index()->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Target::class)->index()->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Environment::class)->index()->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\User::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Project::class)->index()->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Target::class)->index()->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Environment::class)->index()->nullable()->constrained()->cascadeOnDelete();
             $table->string('transaction');
             $table->string('status');
             $table->string('reason')->nullable();

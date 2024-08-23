@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
             $table->string('slug');
             $table->string('name');
             $table->text('variables')->nullable();
