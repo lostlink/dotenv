@@ -14,7 +14,18 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectUsersTo(RouteServiceProvider::HOME);
+
+        $middleware->append(\Fruitcake\Cors\HandleCors::class);
+
+        $middleware->web(\Laravel\Jetstream\Http\Middleware\AuthenticateSession::class);
+
+        $middleware->throttleApi();
+
+        $middleware->alias([
+            'store-marketing-query-params' => \App\Http\Middleware\StoreMarketingQueryParamsMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
