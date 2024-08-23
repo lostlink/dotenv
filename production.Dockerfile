@@ -1,3 +1,3 @@
-FROM lostlink/vapor:php83-debian-octane
+FROM laravelphp/vapor:php83
 
 COPY . /var/task
