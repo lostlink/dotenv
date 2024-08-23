@@ -17,15 +17,18 @@ class Target extends MediaModel
     use HasSlug;
     use InteractsWithMedia;
 
-    protected $casts = [
-        'id' => 'integer',
-    ];
-
     protected $with = [
         'environments',
     ];
 
     protected $guarded = ['id'];
+
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
 
     public function routeKey(): Attribute
     {
