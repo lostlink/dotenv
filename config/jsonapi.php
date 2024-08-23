@@ -27,6 +27,6 @@ return [
     | class name of the server class.
     */
     'servers' => [
-        'v20220101' => \App\JsonApi\V20220101\Server::class,
+        'v20220101' => App\JsonApi\V20220101\Server::class,
     ],
 ];

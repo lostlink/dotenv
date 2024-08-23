@@ -17,15 +17,18 @@ class Project extends MediaModel
     use HasSlug;
     use InteractsWithMedia;
 
-    protected $casts = [
-        'id' => 'integer',
-    ];
-
     protected $with = [
         'targets',
     ];
 
     protected $guarded = ['id'];
+
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
 
     protected static function booted(): void
     {

@@ -8,7 +8,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('{project:slug}/{target:slug}/{environment:slug}', \App\Http\Controllers\Api\EnvController::class)
+    Route::get('{project:slug}/{target:slug}/{environment:slug}', App\Http\Controllers\Api\EnvController::class)
     ->name('project.target.environment')
     ->scopeBindings();
 });

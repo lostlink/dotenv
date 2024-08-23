@@ -12,10 +12,6 @@ class Team extends JetstreamTeam
 {
     use HasFactory;
 
-    protected $casts = [
-        'personal_team' => 'boolean',
-    ];
-
     protected $guarded = [];
 
     protected $dispatchesEvents = [
@@ -23,6 +19,13 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'personal_team' => 'boolean',
+        ];
+    }
 
     public function projects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

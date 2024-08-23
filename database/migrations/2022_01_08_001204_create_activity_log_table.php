@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::connection(config('activitylog.database_connection'))->create(config('activitylog.table_name'), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignIdFor(\App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Team::class)->index()->constrained()->cascadeOnDelete();
             $table->string('log_name')->nullable();
             $table->text('description');
             $table->nullableMorphs('subject', 'subject');
