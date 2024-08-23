@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Http\Request;
 use Closure;
 
 class StoreMarketingQueryParamsMiddleware
 {
-    public function handle($request, Closure $next): mixed
+    public function handle(Request $request, Closure $next): mixed
     {
         $utmQueryParams = [
             'utm_source',
