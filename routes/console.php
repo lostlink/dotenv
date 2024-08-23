@@ -8,6 +8,5 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-
 Schedule::command('media-library:delete-old-temporary-uploads')->daily();
 Schedule::command('livewire:configure-s3-upload-cleanup')->daily();
